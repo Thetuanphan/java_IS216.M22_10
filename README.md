@@ -21,7 +21,7 @@
 * **Tên môn học**: Lập trình Java
 * **Mã môn học**: IS216
 * **Lớp học**: IS216.M22
-* **Ngày bắt đầu**: 
+* **Ngày bắt đầu**: 01/04/2022
 * **Năm học**: 2021
 
 ## GIẢNG VIÊN HƯỚNG DẪN
@@ -31,8 +31,6 @@
 ## HƯỚNG DẪN CÀI ĐẶT
 <a name="caidat"></a>
 * Clone project về máy.
-
-## (Lưu ý: Một số chức năng không hoạt động được trên Microsoft Edge)
 
 
 ## THÀNH VIÊN NHÓM
