@@ -54,7 +54,7 @@ public class GuiMail {
             }
         };
         Session session = Session.getInstance(props, auth);
-
+	//
 
         MimeMessage msg = new MimeMessage(session);
         //set message headers
