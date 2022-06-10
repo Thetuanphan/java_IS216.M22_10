@@ -129,10 +129,15 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="tenLoaiSanPham">
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tenLoaiSanPhamMouseClicked"/>
+        <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="tenLoaiSanPhamPropertyChange"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bThem">
       <Properties>
         <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bThemActionPerformed"/>
@@ -141,6 +146,7 @@
     <Component class="javax.swing.JButton" name="bXoa">
       <Properties>
         <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bXoaActionPerformed"/>
@@ -149,6 +155,7 @@
     <Component class="javax.swing.JButton" name="bSua">
       <Properties>
         <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bSuaActionPerformed"/>

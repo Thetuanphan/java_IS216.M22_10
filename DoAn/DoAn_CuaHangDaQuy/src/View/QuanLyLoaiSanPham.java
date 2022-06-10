@@ -95,7 +95,19 @@ public class QuanLyLoaiSanPham extends javax.swing.JFrame {
 
         jLabel2.setText("Loại sản phẩm");
 
+        tenLoaiSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tenLoaiSanPhamMouseClicked(evt);
+            }
+        });
+        tenLoaiSanPham.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                tenLoaiSanPhamPropertyChange(evt);
+            }
+        });
+
         bThem.setText("Thêm");
+        bThem.setEnabled(false);
         bThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bThemActionPerformed(evt);
@@ -103,6 +115,7 @@ public class QuanLyLoaiSanPham extends javax.swing.JFrame {
         });
 
         bXoa.setText("Xóa");
+        bXoa.setEnabled(false);
         bXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bXoaActionPerformed(evt);
@@ -110,6 +123,7 @@ public class QuanLyLoaiSanPham extends javax.swing.JFrame {
         });
 
         bSua.setText("Sửa");
+        bSua.setEnabled(false);
         bSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bSuaActionPerformed(evt);
@@ -176,6 +190,9 @@ public class QuanLyLoaiSanPham extends javax.swing.JFrame {
 
     private void bangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bangMouseClicked
         // TODO add your handling code here:
+        bThem.setEnabled(false);
+        bXoa.setEnabled(true);
+        bSua.setEnabled(true);
         int Index = bang.getSelectedRow();
         if (Index < DSLoaiSP.getRowCount() && Index >= 0) {
             tenLoaiSanPham.setText(DSLoaiSP.getValueAt(Index, 1).toString());
@@ -207,6 +224,7 @@ public class QuanLyLoaiSanPham extends javax.swing.JFrame {
             setListLoaiSP();
             JOptionPane.showMessageDialog(this, "Thêm thành công !!!");
             tenLoaiSanPham.setText("");
+            bThem.setEnabled(false);
         } catch (SQLException | ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(this, "Thêm thất bại !!!");
         }
@@ -233,6 +251,8 @@ public class QuanLyLoaiSanPham extends javax.swing.JFrame {
             setListLoaiSP();
             JOptionPane.showMessageDialog(this, "Xóa thành công !!!");
             tenLoaiSanPham.setText("");
+            bXoa.setEnabled(false);
+            bSua.setEnabled(false);
         } catch (SQLException | ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(this, "Xóa thất bại !!!");
         }
@@ -270,10 +290,21 @@ public class QuanLyLoaiSanPham extends javax.swing.JFrame {
             setListLoaiSP();
             JOptionPane.showMessageDialog(this, "Sửa thành công !!!");
             tenLoaiSanPham.setText("");
+            bSua.setEnabled(false);
         } catch (SQLException | ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(this, "Sửa thất bại !!!");
         }
     }//GEN-LAST:event_bSuaActionPerformed
+
+    private void tenLoaiSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tenLoaiSanPhamMouseClicked
+        // TODO add your handling code here:
+        bThem.setEnabled(true);
+    }//GEN-LAST:event_tenLoaiSanPhamMouseClicked
+
+    private void tenLoaiSanPhamPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tenLoaiSanPhamPropertyChange
+        // TODO add your handling code here:
+        bXoa.setEnabled(false);
+    }//GEN-LAST:event_tenLoaiSanPhamPropertyChange
 
     /**
      * @param args the command line arguments
