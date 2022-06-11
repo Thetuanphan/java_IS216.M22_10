@@ -4,19 +4,50 @@
  */
 package View;
 
+import Process.KhuyenMai;
+import Process.LoaiSanPham;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author votha
  */
 public class QuanLyKhuyenMai extends javax.swing.JFrame {
 
+    DefaultTableModel DSKM = new DefaultTableModel();
+    int maKM = -1;
     /**
      * Creates new form QuanLyKhuyenMai
      */
-    public QuanLyKhuyenMai() {
+    public QuanLyKhuyenMai() throws SQLException, ClassNotFoundException {
         initComponents();
+        setListKM();
     }
+private void setListKM() throws SQLException, ClassNotFoundException {
+        try {
+            KhuyenMai km = new KhuyenMai();
+            ResultSet rs = km.getListKM();
+            DSKM = (DefaultTableModel) bang.getModel();
+            DSKM.setRowCount(0);
+            String row[] = new String[4];
+            while (rs.next()) {
+                row[0] = rs.getString(1);
+                row[1] = rs.getString(2);
+                row[2] = rs.getString(3);
+                row[3] = rs.getString(4);
+                DSKM.addRow(row);
+            }
+            bang.setModel(DSKM);
 
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println("Xay ra loi");
+        }    
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,13 +61,13 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        bang = new javax.swing.JTable();
+        loaiKhuyenMai = new javax.swing.JFormattedTextField();
+        tiLeGiam = new javax.swing.JFormattedTextField();
+        tienGiam = new javax.swing.JFormattedTextField();
+        bThem = new javax.swing.JButton();
+        bXoa = new javax.swing.JButton();
+        bSua = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
@@ -48,7 +79,7 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
 
         jLabel3.setText("Tiền giảm");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        bang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -56,16 +87,36 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã", "Loại Khuyến Mãi", "Tỷ Lệ Giảm", "Tiền Giảm"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        bang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bangMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(bang);
 
-        jButton1.setText("Thêm");
+        bThem.setText("Thêm");
+        bThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bThemActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Xóa");
+        bXoa.setText("Xóa");
+        bXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bXoaActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Sửa");
+        bSua.setText("Sửa");
+        bSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSuaActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Danh Sách Khuyến Mãi");
 
@@ -88,19 +139,19 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
                                     .addComponent(jLabel3))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
-                                    .addComponent(jFormattedTextField2)
-                                    .addComponent(jFormattedTextField3)))
+                                    .addComponent(loaiKhuyenMai, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
+                                    .addComponent(tiLeGiam)
+                                    .addComponent(tienGiam)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(157, 157, 157)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton1)
+                                        .addComponent(bThem)
                                         .addGap(103, 103, 103)
-                                        .addComponent(jButton2))
+                                        .addComponent(bXoa))
                                     .addComponent(jLabel4))
                                 .addGap(95, 95, 95)
-                                .addComponent(jButton3))))
+                                .addComponent(bSua))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(300, 300, 300)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -114,20 +165,20 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(loaiKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tiLeGiam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tienGiam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(bThem)
+                    .addComponent(bXoa)
+                    .addComponent(bSua))
                 .addGap(50, 50, 50)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
@@ -137,6 +188,130 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bangMouseClicked
+        // TODO add your handling code here:
+        bThem.setEnabled(true);
+        bXoa.setEnabled(true);
+        bSua.setEnabled(true);
+        int Index = bang.getSelectedRow();
+        if (Index < DSKM.getRowCount() && Index >= 0) {
+            maKM = Integer.valueOf(DSKM.getValueAt(Index, 0).toString());
+            loaiKhuyenMai.setText(DSKM.getValueAt(Index, 1).toString());
+            tiLeGiam.setText(DSKM.getValueAt(Index, 2).toString());
+            tienGiam.setText(DSKM.getValueAt(Index, 3).toString());
+            System.out.println(maKM);
+        }
+    }//GEN-LAST:event_bangMouseClicked
+
+    private void bThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bThemActionPerformed
+        // TODO add your handling code here:
+        String loaiKM = loaiKhuyenMai.getText();
+        String tiLG = tiLeGiam.getText();
+        String tienG = tienGiam.getText();
+        if (loaiKM.equals("") || tiLG.equals("") || tienG.equals("")) {
+            JOptionPane.showMessageDialog(this, "Tên không được để trống !!!");
+            return;
+        }
+        int ret = 0;
+        ret = JOptionPane.showConfirmDialog(null, "Bạn có muốn Thêm", "Thêm", JOptionPane.YES_NO_OPTION);
+        if (!(ret == JOptionPane.YES_OPTION)) {
+            return;
+        }
+        try {
+            KhuyenMai km = new KhuyenMai();
+            int check = km.checkLoaiKM(loaiKM);
+            if (check == 0) {
+                JOptionPane.showMessageDialog(this, "Loại khuyến mãi đã tồn tại !!!");
+                return;
+            }
+            int intTiLG = Integer.valueOf(tiLG);
+            int intTienG = Integer.valueOf(tienG);
+            int rs = km.addKM(loaiKM, intTiLG, intTienG);
+            setListKM();
+            JOptionPane.showMessageDialog(this, "Thêm thành công !!!");
+            loaiKhuyenMai.setText("");
+            tiLeGiam.setText("");
+            tienGiam.setText("");
+        } catch (SQLException | ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, "Thêm thất bại !!!");
+        }
+    }//GEN-LAST:event_bThemActionPerformed
+
+    private void bXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bXoaActionPerformed
+        // TODO add your handling code here:
+        int Index = bang.getSelectedRow();
+        if (!(Index < DSKM.getRowCount() && Index >= 0)) {
+            JOptionPane.showMessageDialog(this, "Chọn loại sản phẩm cần xóa !!!");
+            return;
+        }
+
+        int ret = 0;
+        ret = JOptionPane.showConfirmDialog(null, "Bạn có muốn Xóa", "Xóa", JOptionPane.YES_NO_OPTION);
+        if (!(ret == JOptionPane.YES_OPTION)) {
+            return;
+        }
+
+        try {
+            System.out.println(maKM);
+            KhuyenMai km = new KhuyenMai();
+            int rs = km.remoteKM(maKM);
+            setListKM();
+            JOptionPane.showMessageDialog(this, "Xóa thành công !!!");
+            loaiKhuyenMai.setText("");
+            tiLeGiam.setText("");
+            tienGiam.setText("");
+            bXoa.setEnabled(false);
+            bSua.setEnabled(false);
+            bThem.setEnabled(true);
+        } catch (SQLException | ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, "Xóa thất bại !!!");
+        }
+    }//GEN-LAST:event_bXoaActionPerformed
+
+    private void bSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSuaActionPerformed
+        // TODO add your handling code here:
+        int Index = bang.getSelectedRow();
+        if (!(Index < DSKM.getRowCount() && Index >= 0)) {
+            JOptionPane.showMessageDialog(this, "Chọn loại khuyến mãi cần sửa !!!");
+            return;
+        }
+
+        String loaiKM = loaiKhuyenMai.getText();
+        String tiLG = tiLeGiam.getText();
+        String tienG = tienGiam.getText();
+        if (loaiKM.equals("") || tiLG.equals("") || tienG.equals("")) {
+            JOptionPane.showMessageDialog(this, "Tên không được để trống !!!");
+            return;
+        }
+
+        int ret = 0;
+        ret = JOptionPane.showConfirmDialog(null, "Bạn có muốn Sửa", "Sửa", JOptionPane.YES_NO_OPTION);
+        if (!(ret == JOptionPane.YES_OPTION)) {
+            return;
+        }
+
+        try {
+            System.out.println(maKM);
+            KhuyenMai km = new KhuyenMai();
+            int check = km.checkLoaiKM(loaiKM);
+            if (check == 0) {
+                JOptionPane.showMessageDialog(this, "Loại khuyến mãi đã tồn tại !!!");
+                return;
+            }
+            int intTiLG = Integer.valueOf(tiLG);
+            int intTienG = Integer.valueOf(tienG);
+            int rs = km.updateKM(maKM, loaiKM, intTiLG, intTienG);
+            setListKM();
+            JOptionPane.showMessageDialog(this, "Sửa thành công !!!");
+            loaiKhuyenMai.setText("");
+            tiLeGiam.setText("");
+            tienGiam.setText("");
+            bSua.setEnabled(false);
+        } catch (SQLException | ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, "Sửa thất bại !!!");
+        }
+    }//GEN-LAST:event_bSuaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,24 +343,30 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new QuanLyKhuyenMai().setVisible(true);
+                try {
+                    new QuanLyKhuyenMai().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(QuanLyKhuyenMai.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(QuanLyKhuyenMai.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
+    private javax.swing.JButton bSua;
+    private javax.swing.JButton bThem;
+    private javax.swing.JButton bXoa;
+    private javax.swing.JTable bang;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JFormattedTextField loaiKhuyenMai;
+    private javax.swing.JFormattedTextField tiLeGiam;
+    private javax.swing.JFormattedTextField tienGiam;
     // End of variables declaration//GEN-END:variables
 }
