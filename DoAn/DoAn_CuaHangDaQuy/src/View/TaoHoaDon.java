@@ -170,6 +170,7 @@ public class TaoHoaDon extends javax.swing.JFrame {
 private void guiHoaDon(){
             String body = "Xin chào khách hàng: " + tenKhachHang.getText() + "\n"
                 + "Quý khách có 1 hóa đơn ở Cửa hàng đá quý ABC\n"
+                + "Mã hóa đơn: " + maHoaDon.getText() + "\n"
                 + "Tổng tiền:  " + tongTien.getText() + " VND\n"
                 + "Giảm giá: " + tongKhuyenMai.getText() + " VND\n"
                 + "Thành tiền: " + thanhTien.getText() +" VND\n"
