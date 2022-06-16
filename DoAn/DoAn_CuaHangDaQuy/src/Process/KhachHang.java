@@ -18,7 +18,7 @@ public class KhachHang {
     public ResultSet getListKH() throws SQLException, ClassNotFoundException {
         Connection conn = null;
         conn = ConnectionUtils.getMyConnection();
-        String SQL = "SELECT MAKH, TENKH, SDT FROM KHACHHANG";
+        String SQL = "SELECT MAKH, TENKH, EMAIL FROM KHACHHANG";
         PreparedStatement ps = conn.prepareStatement(SQL);
         ResultSet rs = ps.executeQuery();
         return rs;

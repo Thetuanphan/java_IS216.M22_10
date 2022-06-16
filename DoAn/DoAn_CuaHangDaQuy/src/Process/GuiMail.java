@@ -20,14 +20,7 @@ import javax.mail.internet.MimeMessage;
  * @author votha
  */
 public class GuiMail {
-
-    /**
-     * @param args the command line arguments
-     * @throws javax.mail.MessagingException
-     * @throws java.io.UnsupportedEncodingException
-     */
-     public static void main(String[] args) throws MessagingException, UnsupportedEncodingException {
-
+    public void GuiHoaDon(String nguoiN, String noiD) throws MessagingException, UnsupportedEncodingException{
 //        final String fromEmail = "nghenhacvui2022@gmail.com";
 //        // Mat khai email cua ban
 //        final String password = "hqxmgeorzceilvwh";
@@ -36,10 +29,10 @@ public class GuiMail {
         // Mat khai email cua ban
         final String password = "pifbjnmaifqjvwsd";
         // dia chi email nguoi nhan
-        final String toEmail = "vothanhdo20013@gmail.com";
+        final String toEmail = nguoiN;
 
-        final String subject = "Java Example Test";
-        final String body = "Hello Admin";
+        final String subject = "Hóa Đơn Mua Hàng Ngày: " + java.time.LocalDate.now() + " " +java.time.LocalTime.now() ;
+        final String body = noiD;
 
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.mail.yahoo.com"); //SMTP Host
@@ -62,7 +55,7 @@ public class GuiMail {
         msg.addHeader("format", "flowed");
         msg.addHeader("Content-Transfer-Encoding", "8bit");
 
-        msg.setFrom(new InternetAddress(fromEmail, "NoReply-JD"));
+        msg.setFrom(new InternetAddress(fromEmail, "Cửa Hàng Đá Quý ABC"));
 
         msg.setReplyTo(InternetAddress.parse(fromEmail, false));
 
@@ -75,7 +68,8 @@ public class GuiMail {
         msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
         Transport.send(msg);
         System.out.println("Gui mail thanh cong");
-    }        
+    }
+  
 
     
 }
