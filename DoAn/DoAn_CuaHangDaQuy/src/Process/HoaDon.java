@@ -16,6 +16,15 @@ import java.sql.SQLException;
  */
 public class HoaDon {
 
+    public ResultSet getListHD() throws SQLException, ClassNotFoundException {
+        Connection conn = null;
+        conn = ConnectionUtils.getMyConnection();
+        String SQL = "SELECT H.MAHD, TENKH, NGAYTAOHD, THANHTIEN FROM HOADON H, KHACHHANG K WHERE H.MAKH = K.MAKH order by TENKH";
+        PreparedStatement ps = conn.prepareStatement(SQL);
+        ResultSet rs = ps.executeQuery();
+        return rs;
+    }
+
     public int addHD() throws ClassNotFoundException, SQLException {
         int i = 0;
         Connection conn = null;
@@ -25,12 +34,35 @@ public class HoaDon {
         i = ps.executeUpdate();
         return i;
     }
+
+    public int remoteHD(int maHD) throws ClassNotFoundException, SQLException {
+        int i = 0;
+        Connection conn = null;
+        conn = ConnectionUtils.getMyConnection();
+        String SQL = "DELETE HOADON WHERE MAHD = ?";
+        PreparedStatement ps = conn.prepareStatement(SQL);
+        ps.setInt(1, maHD);
+        i = ps.executeUpdate();
+        return i;
+    }
+
+    public int remoteCTHD(int maHD) throws ClassNotFoundException, SQLException {
+        int i = 0;
+        Connection conn = null;
+        conn = ConnectionUtils.getMyConnection();
+        String SQL = "DELETE CTHD WHERE MAHD = ?";
+        PreparedStatement ps = conn.prepareStatement(SQL);
+        ps.setInt(1, maHD);
+        i = ps.executeUpdate();
+        return i;
+    }
+
     public int addCTHD(int maHD, int maSP, int soL) throws ClassNotFoundException, SQLException {
         int i = 0;
         Connection conn = null;
         conn = ConnectionUtils.getMyConnection();
         String SQL = "insert into CTHD values (?, ?, ?)";
-        
+
         PreparedStatement ps = conn.prepareStatement(SQL);
         ps.setInt(1, maHD);
         ps.setInt(2, maSP);
@@ -43,6 +75,7 @@ public class HoaDon {
         i = ps1.executeUpdate();
         return i;
     }
+
     public ResultSet getMaHD() throws SQLException, ClassNotFoundException {
         Connection conn = null;
         conn = ConnectionUtils.getMyConnection();
