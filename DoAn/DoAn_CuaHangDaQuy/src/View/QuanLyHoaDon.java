@@ -4,6 +4,11 @@
  */
 package View;
 
+import Process.HoaDon;
+import Process.KhuyenMai;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author votha
@@ -33,6 +38,7 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        TaoHD = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,6 +63,13 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
 
         jLabel2.setText("Quản lý Hóa Đơn");
 
+        TaoHD.setText("Tạo Hóa Đơn");
+        TaoHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TaoHDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,26 +92,48 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
                         .addComponent(jButton2)
                         .addGap(60, 60, 60)
                         .addComponent(jButton1)
-                        .addGap(235, 235, 235))))
+                        .addGap(32, 32, 32)
+                        .addComponent(TaoHD)
+                        .addGap(165, 165, 165))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(jLabel2)
-                .addGap(43, 43, 43)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(59, 59, 59)
+                    .addComponent(jButton2)
+                    .addComponent(TaoHD))
+                .addGap(52, 52, 52)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(79, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void TaoHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaoHDActionPerformed
+        // TODO add your handling code here:
+        try {
+            HoaDon hd = new HoaDon();
+            int check = hd.addHD();
+            if (check == 0) {
+                JOptionPane.showMessageDialog(this, "Tạo hóa đơn thất bại");
+                return;
+            }
+
+            JOptionPane.showMessageDialog(this, "Thêm thành công !!!");
+            this.dispose();
+            TaoHoaDon.main(null);
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, "Thêm thất bại !!!");
+        }
+    }//GEN-LAST:event_TaoHDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,6 +171,7 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton TaoHD;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JFormattedTextField jFormattedTextField1;
