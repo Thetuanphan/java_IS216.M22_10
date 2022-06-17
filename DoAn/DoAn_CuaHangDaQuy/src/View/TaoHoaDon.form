@@ -121,7 +121,15 @@
                                                   <Component id="tenSPC" min="-2" pref="332" max="-2" attributes="0"/>
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                                                      <Component id="jSlider1" min="-2" max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="jSlider1" min="-2" max="-2" attributes="0"/>
+                                                          <Group type="102" alignment="0" attributes="0">
+                                                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                                              <Component id="jLabel8" min="-2" pref="12" max="-2" attributes="0"/>
+                                                              <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
+                                                              <Component id="jLabel18" min="-2" pref="37" max="-2" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
                                                   </Group>
                                               </Group>
                                           </Group>
@@ -254,7 +262,12 @@
                   <Component id="jSlider1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="soLC" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
               <Component id="themVaoHoaDon" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
           </Group>
@@ -572,6 +585,12 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JSlider" name="jSlider1">
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSlider1StateChanged"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JSlider(1, 10, 1)"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="soLC">
       <Properties>
@@ -676,6 +695,16 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boKMActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel8">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel18">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="10"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

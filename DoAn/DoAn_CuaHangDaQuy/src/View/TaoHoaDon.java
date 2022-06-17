@@ -283,7 +283,7 @@ private void guiHoaDonHTML(){
         tenSPC = new javax.swing.JFormattedTextField();
         maSPC = new javax.swing.JFormattedTextField();
         jLabel10 = new javax.swing.JLabel();
-        jSlider1 = new javax.swing.JSlider();
+        jSlider1 = new javax.swing.JSlider(1, 10, 1);
         soLC = new javax.swing.JFormattedTextField();
         themVaoHoaDon = new javax.swing.JButton();
         chonLai = new javax.swing.JButton();
@@ -300,6 +300,8 @@ private void guiHoaDonHTML(){
         jLabel17 = new javax.swing.JLabel();
         maHoaDon = new javax.swing.JLabel();
         boKM = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -447,6 +449,12 @@ private void guiHoaDonHTML(){
 
         jLabel10.setText("Số lượng");
 
+        jSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSlider1StateChanged(evt);
+            }
+        });
+
         soLC.setText("1");
         soLC.setEnabled(false);
 
@@ -506,6 +514,10 @@ private void guiHoaDonHTML(){
                 boKMActionPerformed(evt);
             }
         });
+
+        jLabel8.setText("1");
+
+        jLabel18.setText("10");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -590,7 +602,13 @@ private void guiHoaDonHTML(){
                                                     .addComponent(tenSPC, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addGroup(layout.createSequentialGroup()
                                                         .addGap(45, 45, 45)
-                                                        .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addGroup(layout.createSequentialGroup()
+                                                                .addGap(6, 6, 6)
+                                                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(173, 173, 173)
+                                                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 839, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -687,7 +705,11 @@ private void guiHoaDonHTML(){
                     .addComponent(jLabel10)
                     .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(soLC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel18))
+                .addGap(7, 7, 7)
                 .addComponent(themVaoHoaDon)
                 .addGap(153, 153, 153))
         );
@@ -863,6 +885,12 @@ private void guiHoaDonHTML(){
         }
     }//GEN-LAST:event_huyHoaDonActionPerformed
 
+    private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
+        // TODO add your handling code here:
+        System.out.println( jSlider1.getValue());
+        soLC.setText(String.valueOf(jSlider1.getValue()));
+    }//GEN-LAST:event_jSlider1StateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -917,12 +945,14 @@ private void guiHoaDonHTML(){
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
