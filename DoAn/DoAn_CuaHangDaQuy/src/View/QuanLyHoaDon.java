@@ -4,19 +4,49 @@
  */
 package View;
 
+import Process.HoaDon;
+import Process.KhuyenMai;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author votha
  */
 public class QuanLyHoaDon extends javax.swing.JFrame {
-
+    DefaultTableModel DSHD = new DefaultTableModel();
+    int maHD = -1;
     /**
      * Creates new form QuanLyHoaDon
      */
-    public QuanLyHoaDon() {
+    public QuanLyHoaDon() throws SQLException, ClassNotFoundException {
         initComponents();
+        setListHD();
     }
+private void setListHD() throws SQLException, ClassNotFoundException {
+        try {
+            HoaDon hd = new HoaDon();
+            ResultSet rs = hd.getListHD();
+            DSHD = (DefaultTableModel) bang1.getModel();
+            DSHD.setRowCount(0);
+            String row[] = new String[4];
+            while (rs.next()) {
+                row[0] = rs.getString(1);
+                row[1] = rs.getString(2);
+                row[2] = rs.getString(3);
+                row[3] = rs.getString(4);
+                DSHD.addRow(row);
+            }
+            bang1.setModel(DSHD);
 
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println("Xay ra loi");
+        }    
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,16 +57,17 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        bang1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        maHoaDon = new javax.swing.JFormattedTextField();
+        xoa = new javax.swing.JButton();
+        gui = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        TaoHD = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        bang1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -44,18 +75,37 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã HD", "Tên KH", "Ngày Tạo", "Thành Tiền"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        bang1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bang1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(bang1);
 
         jLabel1.setText("Mã hóa đơn đã chọn");
 
-        jButton1.setText("Xóa");
+        xoa.setText("Xóa");
+        xoa.setEnabled(false);
+        xoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                xoaActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Gửi lại hóa đơn");
+        gui.setText("Gửi lại hóa đơn");
+        gui.setEnabled(false);
 
         jLabel2.setText("Quản lý Hóa Đơn");
+
+        TaoHD.setText("Tạo Hóa Đơn");
+        TaoHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TaoHDActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,31 +124,96 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(45, 45, 45)
-                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(maHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(69, 69, 69)
-                        .addComponent(jButton2)
+                        .addComponent(gui)
                         .addGap(60, 60, 60)
-                        .addComponent(jButton1)
-                        .addGap(235, 235, 235))))
+                        .addComponent(xoa)
+                        .addGap(32, 32, 32)
+                        .addComponent(TaoHD)
+                        .addGap(165, 165, 165))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(jLabel2)
-                .addGap(43, 43, 43)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(59, 59, 59)
+                    .addComponent(maHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(xoa)
+                    .addComponent(gui)
+                    .addComponent(TaoHD))
+                .addGap(52, 52, 52)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(79, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void TaoHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaoHDActionPerformed
+        // TODO add your handling code here:
+        try {
+            HoaDon hd = new HoaDon();
+            int check = hd.addHD();
+            if (check == 0) {
+                JOptionPane.showMessageDialog(this, "Tạo hóa đơn thất bại");
+                return;
+            }
+
+            JOptionPane.showMessageDialog(this, "Thêm thành công !!!");
+            this.dispose();
+            TaoHoaDon.main(null);
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, "Thêm thất bại !!!");
+        }
+    }//GEN-LAST:event_TaoHDActionPerformed
+
+    private void bang1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bang1MouseClicked
+        // TODO add your handling code here:
+        xoa.setEnabled(true);
+        gui.setEnabled(true);
+        int Index = bang1.getSelectedRow();
+        if (Index < DSHD.getRowCount() && Index >= 0) {
+            maHD = Integer.valueOf(DSHD.getValueAt(Index, 0).toString());
+            maHoaDon.setText(String.valueOf(maHD));
+        }
+    }//GEN-LAST:event_bang1MouseClicked
+
+    private void xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaActionPerformed
+        // TODO add your handling code here:
+        int Index = bang1.getSelectedRow();
+        if (!(Index < DSHD.getRowCount() && Index >= 0)) {
+            JOptionPane.showMessageDialog(this, "Chọn loại Hóa đơn cần xóa !!!");
+            return;
+        }
+
+        int ret = 0;
+        ret = JOptionPane.showConfirmDialog(null, "Bạn có muốn Xóa", "Xóa", JOptionPane.YES_NO_OPTION);
+        if (!(ret == JOptionPane.YES_OPTION)) {
+            return;
+        }
+        try {
+            HoaDon hd = new HoaDon();
+            int rs = hd.remoteCTHD(maHD);
+        } catch (SQLException | ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, "Xóa thất bại !!!");
+        }
+        try {
+            HoaDon hd = new HoaDon();
+            int rs = hd.remoteHD(maHD);
+            setListHD();
+            JOptionPane.showMessageDialog(this, "Xóa thành công !!!");
+            maHoaDon.setText("");
+            xoa.setEnabled(false);
+        } catch (SQLException | ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, "Xóa thất bại !!!");
+        }
+        
+    }//GEN-LAST:event_xoaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,18 +245,25 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new QuanLyHoaDon().setVisible(true);
+                try {
+                    new QuanLyHoaDon().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(QuanLyHoaDon.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(QuanLyHoaDon.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JButton TaoHD;
+    private javax.swing.JTable bang1;
+    private javax.swing.JButton gui;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JFormattedTextField maHoaDon;
+    private javax.swing.JButton xoa;
     // End of variables declaration//GEN-END:variables
 }

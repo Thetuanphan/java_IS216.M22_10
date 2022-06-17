@@ -210,7 +210,16 @@ private void setListKM() throws SQLException, ClassNotFoundException {
         String tiLG = tiLeGiam.getText();
         String tienG = tienGiam.getText();
         if (loaiKM.equals("") || tiLG.equals("") || tienG.equals("")) {
-            JOptionPane.showMessageDialog(this, "Tên không được để trống !!!");
+            JOptionPane.showMessageDialog(this, "Không được để trống !!!");
+            return;
+        }
+         
+        if (Integer.parseInt(tiLG) > 100 || Integer.parseInt(tiLG) < 0) {
+            JOptionPane.showMessageDialog(this, "Tỉ lệ giảm không hợp lệ !!!");
+            return;
+        }
+        if (Integer.parseInt(tienG) < 0) {
+            JOptionPane.showMessageDialog(this, "Tiền giảm không hợp lệ !!!");
             return;
         }
         int ret = 0;
