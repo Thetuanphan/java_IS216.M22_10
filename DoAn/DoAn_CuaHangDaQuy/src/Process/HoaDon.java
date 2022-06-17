@@ -19,12 +19,20 @@ public class HoaDon {
     public ResultSet getListHD() throws SQLException, ClassNotFoundException {
         Connection conn = null;
         conn = ConnectionUtils.getMyConnection();
-        String SQL = "SELECT H.MAHD, TENKH, NGAYTAOHD, THANHTIEN FROM HOADON H, KHACHHANG K WHERE H.MAKH = K.MAKH order by TENKH";
+        String SQL = "SELECT H.MAHD, TENKH, NGAYTAOHD, TONGTIEN, TIENKM, THANHTIEN FROM HOADON H, KHACHHANG K WHERE H.MAKH = K.MAKH order by MAHD DESC";
         PreparedStatement ps = conn.prepareStatement(SQL);
         ResultSet rs = ps.executeQuery();
         return rs;
     }
-
+    public ResultSet getListCTHD(int maHD) throws SQLException, ClassNotFoundException {
+        Connection conn = null;
+        conn = ConnectionUtils.getMyConnection();
+        String SQL = "SELECT S.MASP, S.TENSP, L.TENLSP, C.SLSP, S.DVT, S.DONGIA FROM CTHD C, SANPHAM S, LOAISANPHAM L WHERE C.MASP = S.MASP AND S.MALSP = L.MALSP AND MAHD = ? ORDER BY TENSP ASC";
+        PreparedStatement ps = conn.prepareStatement(SQL);
+        ps.setInt(1, maHD);
+        ResultSet rs = ps.executeQuery();
+        return rs;
+    }
     public int addHD() throws ClassNotFoundException, SQLException {
         int i = 0;
         Connection conn = null;

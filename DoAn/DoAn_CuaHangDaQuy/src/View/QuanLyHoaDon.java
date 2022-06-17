@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class QuanLyHoaDon extends javax.swing.JFrame {
     DefaultTableModel DSHD = new DefaultTableModel();
+    
     int maHD = -1;
     /**
      * Creates new form QuanLyHoaDon
@@ -33,12 +34,14 @@ private void setListHD() throws SQLException, ClassNotFoundException {
             ResultSet rs = hd.getListHD();
             DSHD = (DefaultTableModel) bang1.getModel();
             DSHD.setRowCount(0);
-            String row[] = new String[4];
+            String row[] = new String[6];
             while (rs.next()) {
                 row[0] = rs.getString(1);
                 row[1] = rs.getString(2);
                 row[2] = rs.getString(3);
                 row[3] = rs.getString(4);
+                row[4] = rs.getString(5);
+                row[5] = rs.getString(6);
                 DSHD.addRow(row);
             }
             bang1.setModel(DSHD);
@@ -64,18 +67,23 @@ private void setListHD() throws SQLException, ClassNotFoundException {
         gui = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         TaoHD = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        bang2 = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         bang1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Mã HD", "Tên KH", "Ngày Tạo", "Thành Tiền"
+                "Mã HD", "Tên KH", "Ngày Tạo", "Tổng Cộng", "Giảm Giá", "Thành Tiền"
             }
         ));
         bang1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -107,20 +115,45 @@ private void setListHD() throws SQLException, ClassNotFoundException {
             }
         });
 
+        jLabel3.setText("Danh Sách Hóa Đơn");
+
+        bang2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Mã", "Tên Sản Phẩm", "Loại Sản Phẩm", "Số Lượng", "Đơn Vị", "Đơn Giá", "Thành Tiền"
+            }
+        ));
+        bang2.setEnabled(false);
+        jScrollPane5.setViewportView(bang2);
+
+        jLabel4.setText("Chi Tiết Hóa Đơn");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(159, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 839, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(219, 219, 219)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(323, 323, 323))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 858, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(415, 415, 415)
-                                .addComponent(jLabel2)))
-                        .addGap(146, 146, 146))
+                        .addComponent(jLabel2)
+                        .addGap(498, 498, 498))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(45, 45, 45)
@@ -131,23 +164,35 @@ private void setListHD() throws SQLException, ClassNotFoundException {
                         .addComponent(xoa)
                         .addGap(32, 32, 32)
                         .addComponent(TaoHD)
-                        .addGap(165, 165, 165))))
+                        .addGap(285, 285, 285))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(jLabel2)
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(maHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(xoa)
-                    .addComponent(gui)
-                    .addComponent(TaoHD))
-                .addGap(52, 52, 52)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(84, 84, 84)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel5))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(maHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(xoa)
+                            .addComponent(gui)
+                            .addComponent(TaoHD))
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel4)))
+                .addContainerGap(264, Short.MAX_VALUE))
         );
 
         pack();
@@ -181,6 +226,30 @@ private void setListHD() throws SQLException, ClassNotFoundException {
             maHD = Integer.valueOf(DSHD.getValueAt(Index, 0).toString());
             maHoaDon.setText(String.valueOf(maHD));
         }
+        try {
+            DefaultTableModel DSCTHD = new DefaultTableModel();
+            HoaDon hd = new HoaDon();
+            ResultSet rs = hd.getListCTHD(maHD);
+            DSCTHD = (DefaultTableModel) bang2.getModel();
+            DSCTHD.setRowCount(0);
+            String row[] = new String[7];
+            while (rs.next()) {
+                row[0] = rs.getString(1);
+                row[1] = rs.getString(2);
+                row[2] = rs.getString(3);
+                row[3] = rs.getString(4);
+                row[4] = rs.getString(5);
+                row[5] = rs.getString(6);
+                float temp = Integer.valueOf(row[3]) * Integer.valueOf(row[5]);
+                row[6] = String.valueOf(temp);
+                DSCTHD.addRow(row);
+            }
+            bang2.setModel(DSCTHD);
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println("Xay ra loi");
+        }    
+        
     }//GEN-LAST:event_bang1MouseClicked
 
     private void xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaActionPerformed
@@ -259,10 +328,15 @@ private void setListHD() throws SQLException, ClassNotFoundException {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton TaoHD;
     private javax.swing.JTable bang1;
+    private javax.swing.JTable bang2;
     private javax.swing.JButton gui;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JFormattedTextField maHoaDon;
     private javax.swing.JButton xoa;
     // End of variables declaration//GEN-END:variables
