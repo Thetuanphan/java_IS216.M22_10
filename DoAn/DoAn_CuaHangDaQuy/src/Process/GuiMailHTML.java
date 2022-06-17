@@ -13,22 +13,18 @@ import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
 /**
  *
  * @author votha
  */
 public class GuiMailHTML {
 
-    /**
-     * @param args the command line arguments
-     * @throws javax.mail.MessagingException
-     * @throws java.io.UnsupportedEncodingException
-     */
-     public static void main(String[] args) throws MessagingException, UnsupportedEncodingException {
-
-//        final String fromEmail = "nghenhacvui2022@gmail.com";
+    public void GuiHoaDon(String nguoiN, String noiD) throws AddressException, MessagingException {
+        //        final String fromEmail = "nghenhacvui2022@gmail.com";
 //        // Mat khai email cua ban
 //        final String password = "hqxmgeorzceilvwh";
 //        // dia chi email nguoi nhan
@@ -36,7 +32,7 @@ public class GuiMailHTML {
         // Mat khai email cua ban
         final String password = "pifbjnmaifqjvwsd";
         // dia chi email nguoi nhan
-        final String toEmail = "vothanhdo20013@gmail.com";
+        final String toEmail = nguoiN;
 
         final String subject = "Java Example Test";
 
@@ -61,35 +57,14 @@ public class GuiMailHTML {
         MimeMessage message = new MimeMessage(session);
         message.setFrom(new InternetAddress(fromEmail));
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
-        message.setSubject(subject);
-        
-        message.setSubject("Hóa Đơn Mua Hàng");
-        String htmlContent = "<meta charset=\"UTF-8\"><h1>Hóa Đơn Mua Hàng</h1> <p>Xin chào khách hàng: .... </p> "
-                + "<p>Bạn đã mua hàng tại Cửa hàng Đá quý ABC lúc: ....</p> "
-                + "<p>Đây là hóa đơn mua hàng của quý khách </p> "
-                + "<table style=\"width:100%; border: 1px solid black; \"> "
-                + "<tr> <td><b>Tên sản phẩm</b>"
-                + "</td> <td><b>Số lượng</b></td> "
-                + "<td><b>Đơn vị</b></td> "
-                + "<td><b>Đơn giá</b></td> </tr> "
-                + "<tr> <td>Alfreds Futterkiste</td> "
-                + "<td>Maria Anders</td> <td>Germany</td> "
-                + "<td>Germany</td> </tr> <tr> "
-                + "<td>Centro comercial Moctezuma</td> "
-                + "<td>Francisco Chang</td> "
-                + "<td>Mexico</td> <td>Germany</td> </tr> "
-                + "</table> "
-                + "<h2>Tổng tiền: ...</h2> "
-                + "<h2>Tổng tiền giảm giá: ...</h2> "
-                + "<h2>Thành tiền: ...</h2>";
-        message.setContent(htmlContent, "UTF-8");
-        message.setContent(htmlContent, "text/html");
-        
+        message.setHeader("Content-Type", "text/plain; charset=utf-8");
+        message.setSubject("Hóa Đơn Mua Hàng Ngày: " + java.time.LocalDate.now() + " " +java.time.LocalTime.now());
+        String htmlContent = noiD;
+        message.setContent(htmlContent, "text/html; charset=utf-8");
+
         Transport.send(message);
 
         System.out.println("Gui mail thanh cong");
 
-    }        
-
-    
+    }
 }

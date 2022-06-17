@@ -5,6 +5,7 @@
 package View;
 
 import Process.GuiMail;
+import Process.GuiMailHTML;
 import Process.HoaDon;
 import Process.KhachHang;
 import Process.KhuyenMai;
@@ -191,6 +192,61 @@ private void guiHoaDon(){
         } catch (MessagingException ex) {
             Logger.getLogger(TaoHoaDon.class.getName()).log(Level.SEVERE, null, ex);
         } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(TaoHoaDon.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
+private void guiHoaDonHTML(){
+            String body = "<div  style='text-align:center;'> <img style='width:75%;height:50%;' src='https://www.marry.vn/wp-content/uploads/2016/04/29/hinh-dang-kim-cuong.jpg' alt='Italian Trulli'> <h1 style='color:red;'>Hóa Đơn Mua Hàng</h1> <p>Xin chào khách hàng: <b>" 
+                    + tenKhachHang.getText() 
+                    + "</b> </p> <p>Bạn đã mua hàng tại Cửa hàng Đá quý ABC lúc: "
+                    + java.time.LocalDate.now() + " " +java.time.LocalTime.now() 
+                    + "</p> <h2>Mã hóa đơn: <b style='color:blue;'>" 
+                    + maHoaDon.getText() 
+                    + "</b></h2> <table style='  font-family: arial, sans-serif; border-collapse: collapse; width: 100%;'> <tbody> <tr style='background-color: #D6EEEE;'> <td><b>Tên sản phẩm</b></td> <td><b>Số lượng</b></td> <td><b>Đơn vị</b></td> <td><b>Đơn giá</b></td> </tr> ";
+//                + "Tổng tiền:  " + tongTien.getText() + " VND\n"
+//                + "Giảm giá: " + tongKhuyenMai.getText() + " VND\n"
+//                + "Thành tiền: " + thanhTien.getText() +" VND\n";
+
+        boolean check = true;
+        for (int i = 0; i < DSSPC.getRowCount(); i++) {
+                if(check){
+                body += "<tr> <td>" 
+                        + DSSPC.getValueAt(i, 1).toString() 
+                        + "</td> <td>"
+                        + DSSPC.getValueAt(i, 3).toString() 
+                        + "</td> <td>"
+                        + DSSPC.getValueAt(i, 4).toString() 
+                        + "</td> <td>"
+                        + DSSPC.getValueAt(i, 6).toString() 
+                        + "</td> </tr>";
+                check = false;
+                }
+                else{
+                body += "<tr style='background-color: #D6EEEE;'> <td>" 
+                        + DSSPC.getValueAt(i, 1).toString() 
+                        + "</td> <td>"
+                        + DSSPC.getValueAt(i, 3).toString() 
+                        + "</td> <td>"
+                        + DSSPC.getValueAt(i, 4).toString() 
+                        + "</td> <td>"
+                        + DSSPC.getValueAt(i, 6).toString() 
+                        + "</td> </tr>";
+                check = true;
+                }
+
+        }
+         body += "</tbody> </table> <h2>Tổng tiền: "
+                 + tongTien.getText()
+                 + " VND </h2> <h2>Tổng tiền giảm giá: "
+                 + tongKhuyenMai.getText()
+                 +" VND</h2> <h2 style='color:red;'>Thành tiền: "
+                 + thanhTien.getText()
+                 +" VND</h2> <a href='https://www.cuahangdaquy.com/'>Cửa Hàng Đá Quý ABC</a> <a href='mailto:cuahangdaquy@abc.com'>cuahangdaquy@abc.com</a> </div>";
+        GuiMailHTML  gm = new GuiMailHTML();
+        try {
+            gm.GuiHoaDon(email, body);
+            JOptionPane.showMessageDialog(this, "Gửi thành công !!!");
+        } catch (MessagingException ex) {
             Logger.getLogger(TaoHoaDon.class.getName()).log(Level.SEVERE, null, ex);
         }
 }
@@ -773,7 +829,7 @@ private void guiHoaDon(){
             }
             JOptionPane.showMessageDialog(this, "Thanh toán thành công !!!");
             addCTHD();
-            guiHoaDon();
+            guiHoaDonHTML();
             this.dispose();
             QuanLyHoaDon.main(null);
         } catch (SQLException | ClassNotFoundException ex) {
