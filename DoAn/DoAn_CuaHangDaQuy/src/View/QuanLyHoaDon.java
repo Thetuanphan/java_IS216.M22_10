@@ -108,6 +108,8 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
 
         jLabel1.setText("Mã hóa đơn đã chọn");
 
+        maHoaDon.setEditable(false);
+
         xoa.setBackground(new java.awt.Color(255, 0, 51));
         xoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         xoa.setForeground(new java.awt.Color(255, 255, 255));
