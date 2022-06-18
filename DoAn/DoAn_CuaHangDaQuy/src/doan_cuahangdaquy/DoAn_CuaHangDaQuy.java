@@ -4,6 +4,10 @@
  */
 package doan_cuahangdaquy;
 
+import View.Menu;
+
+
+
 /**
  *
  * @author thetu
@@ -15,6 +19,7 @@ public class DoAn_CuaHangDaQuy {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Menu.main(null);
     }
     
 }
