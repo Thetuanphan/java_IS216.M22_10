@@ -116,6 +116,11 @@ public class QuanLySanPham extends javax.swing.JFrame {
         jLabel4.setText("Loại sản phẩm");
 
         tenSanPham.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        tenSanPham.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tenSanPhamActionPerformed(evt);
+            }
+        });
 
         soLuong.setText("0");
 
@@ -460,6 +465,10 @@ public class QuanLySanPham extends javax.swing.JFrame {
         this.dispose();
         Menu.main(null);
     }//GEN-LAST:event_quayLaiActionPerformed
+
+    private void tenSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tenSanPhamActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tenSanPhamActionPerformed
 
     /**
      * @param args the command line arguments

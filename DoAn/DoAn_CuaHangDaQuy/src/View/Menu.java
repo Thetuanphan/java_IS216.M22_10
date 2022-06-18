@@ -31,6 +31,7 @@ public class Menu extends javax.swing.JFrame {
         quanLyKhuyenMai = new javax.swing.JButton();
         quanLyLoaiSanPham = new javax.swing.JButton();
         quanLySanPham = new javax.swing.JButton();
+        quanLyDichVu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,6 +67,13 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        quanLyDichVu.setText("Quản Lý Hóa Đơn");
+        quanLyDichVu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quanLyDichVuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -76,7 +84,9 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(55, 55, 55)
-                .addComponent(quanLyHoaDon)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(quanLyDichVu)
+                    .addComponent(quanLyHoaDon))
                 .addGap(73, 73, 73)
                 .addComponent(quanLyKhuyenMai)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
@@ -96,7 +106,9 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(quanLyKhuyenMai)
                     .addComponent(quanLyLoaiSanPham)
                     .addComponent(quanLySanPham))
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(quanLyDichVu)
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         pack();
@@ -125,6 +137,12 @@ public class Menu extends javax.swing.JFrame {
         this.dispose();
         QuanLySanPham.main(null);
     }//GEN-LAST:event_quanLySanPhamActionPerformed
+
+    private void quanLyDichVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLyDichVuActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        QuanLyPhieuDichVu.main(null);
+    }//GEN-LAST:event_quanLyDichVuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,6 +181,7 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton quanLyDichVu;
     private javax.swing.JButton quanLyHoaDon;
     private javax.swing.JButton quanLyKhuyenMai;
     private javax.swing.JButton quanLyLoaiSanPham;

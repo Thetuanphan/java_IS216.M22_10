@@ -30,7 +30,10 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-              <Component id="quanLyHoaDon" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="quanLyDichVu" min="-2" max="-2" attributes="0"/>
+                  <Component id="quanLyHoaDon" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
               <Component id="quanLyKhuyenMai" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="119" max="32767" attributes="0"/>
@@ -53,7 +56,9 @@
                   <Component id="quanLyLoaiSanPham" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="quanLySanPham" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="113" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <Component id="quanLyDichVu" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="57" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -100,6 +105,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quanLySanPhamActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="quanLyDichVu">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; H&#xf3;a &#x110;&#x1a1;n"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quanLyDichVuActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
