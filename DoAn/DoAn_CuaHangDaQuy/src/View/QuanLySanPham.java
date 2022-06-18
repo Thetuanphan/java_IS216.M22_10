@@ -100,6 +100,9 @@ public class QuanLySanPham extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         donVi = new javax.swing.JFormattedTextField();
         loaiSanPham = new javax.swing.JComboBox<>();
+        jSlider1 = new javax.swing.JSlider(0, 1000, 1);
+        jSlider2 = new javax.swing.JSlider(0, 1000000, 1);
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,6 +115,10 @@ public class QuanLySanPham extends javax.swing.JFrame {
         jLabel4.setText("Loại sản phẩm");
 
         tenSanPham.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+
+        soLuong.setText("0");
+
+        donGia.setText("0");
 
         bang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -149,6 +156,9 @@ public class QuanLySanPham extends javax.swing.JFrame {
             bang.getColumnModel().getColumn(5).setMaxWidth(120);
         }
 
+        bThem.setBackground(new java.awt.Color(0, 0, 255));
+        bThem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bThem.setForeground(new java.awt.Color(255, 255, 255));
         bThem.setText("Thêm");
         bThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,6 +166,9 @@ public class QuanLySanPham extends javax.swing.JFrame {
             }
         });
 
+        bXoa.setBackground(new java.awt.Color(255, 0, 0));
+        bXoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bXoa.setForeground(new java.awt.Color(255, 255, 255));
         bXoa.setText("Xóa");
         bXoa.setEnabled(false);
         bXoa.addActionListener(new java.awt.event.ActionListener() {
@@ -164,6 +177,9 @@ public class QuanLySanPham extends javax.swing.JFrame {
             }
         });
 
+        bSua.setBackground(new java.awt.Color(0, 255, 0));
+        bSua.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bSua.setForeground(new java.awt.Color(255, 255, 255));
         bSua.setText("Sửa");
         bSua.setEnabled(false);
         bSua.addActionListener(new java.awt.event.ActionListener() {
@@ -172,13 +188,30 @@ public class QuanLySanPham extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 0, 51));
         jLabel5.setText("Quản Lý Sản Phẩm");
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Danh Sách Sản Phẩm Hiện Có");
 
         jLabel7.setText("Đơn vị");
 
         loaiSanPham.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSlider1StateChanged(evt);
+            }
+        });
+
+        jSlider2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSlider2StateChanged(evt);
+            }
+        });
+
+        jLabel8.setText("VND");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -187,36 +220,40 @@ public class QuanLySanPham extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(soLuong, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
-                            .addComponent(tenSanPham, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
-                            .addComponent(donGia)
-                            .addComponent(donVi)
-                            .addComponent(loaiSanPham, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(53, 53, 53)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bSua, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(bThem, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                                .addComponent(bXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(292, 292, 292)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(273, 273, 273)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel7))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jSlider1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(soLuong, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+                                    .addComponent(tenSanPham, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+                                    .addComponent(donGia)
+                                    .addComponent(donVi)
+                                    .addComponent(loaiSanPham, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jSlider2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel8)))
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bSua, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(bThem, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                .addComponent(bXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -234,29 +271,35 @@ public class QuanLySanPham extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(soLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(53, 53, 53)
+                        .addGap(15, 15, 15)
+                        .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(donVi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(donGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel8)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(bThem)
                         .addGap(29, 29, 29)
                         .addComponent(bXoa)
-                        .addGap(36, 36, 36)
-                        .addComponent(bSua)))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGap(26, 26, 26)
+                        .addComponent(bSua)
+                        .addGap(10, 10, 10)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(loaiSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addGap(17, 17, 17)
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
@@ -292,9 +335,9 @@ public class QuanLySanPham extends javax.swing.JFrame {
             setListSP();
             JOptionPane.showMessageDialog(this, "Thêm thành công !!!");
             tenSanPham.setText("");
-            soLuong.setText("");
+            soLuong.setText("0");
             donVi.setText("");
-            donGia.setText("");
+            donGia.setText("0");
         } catch (SQLException | ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(this, "Thêm thất bại !!!");
         }
@@ -350,9 +393,9 @@ public class QuanLySanPham extends javax.swing.JFrame {
             setListSP();
             JOptionPane.showMessageDialog(this, "Sửa thành công !!!");
             tenSanPham.setText("");
-            soLuong.setText("");
+            soLuong.setText("0");
             donVi.setText("");
-            donGia.setText("");
+            donGia.setText("0");
             bSua.setEnabled(false);
         } catch (SQLException | ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(this, "Sửa thất bại !!!");
@@ -391,6 +434,16 @@ public class QuanLySanPham extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Xóa thất bại !!!");
         }
     }//GEN-LAST:event_bXoaActionPerformed
+
+    private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
+        // TODO add your handling code here:
+        soLuong.setText(String.valueOf(jSlider1.getValue()));
+    }//GEN-LAST:event_jSlider1StateChanged
+
+    private void jSlider2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider2StateChanged
+        // TODO add your handling code here:
+        donGia.setText(String.valueOf(jSlider2.getValue()));
+    }//GEN-LAST:event_jSlider2StateChanged
 
     /**
      * @param args the command line arguments
@@ -441,7 +494,10 @@ public class QuanLySanPham extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSlider jSlider1;
+    private javax.swing.JSlider jSlider2;
     private javax.swing.JComboBox<String> loaiSanPham;
     private javax.swing.JFormattedTextField soLuong;
     private javax.swing.JFormattedTextField tenSanPham;

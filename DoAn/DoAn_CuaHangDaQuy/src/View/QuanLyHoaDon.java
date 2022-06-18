@@ -4,8 +4,10 @@
  */
 package View;
 
+import File.ReadWriteFile;
 import Process.HoaDon;
 import Process.KhuyenMai;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -18,17 +20,21 @@ import javax.swing.table.DefaultTableModel;
  * @author votha
  */
 public class QuanLyHoaDon extends javax.swing.JFrame {
+
     DefaultTableModel DSHD = new DefaultTableModel();
-    
+    int maNV = -1;
     int maHD = -1;
+
     /**
      * Creates new form QuanLyHoaDon
      */
-    public QuanLyHoaDon() throws SQLException, ClassNotFoundException {
+    public QuanLyHoaDon() throws SQLException, ClassNotFoundException, IOException {
         initComponents();
         setListHD();
+        setMaNV();
     }
-private void setListHD() throws SQLException, ClassNotFoundException {
+
+    private void setListHD() throws SQLException, ClassNotFoundException {
         try {
             HoaDon hd = new HoaDon();
             ResultSet rs = hd.getListHD();
@@ -48,8 +54,14 @@ private void setListHD() throws SQLException, ClassNotFoundException {
 
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println("Xay ra loi");
-        }    
-}
+        }
+    }
+    public void setMaNV() throws IOException {
+        ReadWriteFile rw = new ReadWriteFile();
+        String temp = rw.readMaNV();
+        maNV = Integer.valueOf(temp);
+        System.out.println(maNV);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -95,6 +107,9 @@ private void setListHD() throws SQLException, ClassNotFoundException {
 
         jLabel1.setText("Mã hóa đơn đã chọn");
 
+        xoa.setBackground(new java.awt.Color(255, 0, 51));
+        xoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        xoa.setForeground(new java.awt.Color(255, 255, 255));
         xoa.setText("Xóa");
         xoa.setEnabled(false);
         xoa.addActionListener(new java.awt.event.ActionListener() {
@@ -103,11 +118,24 @@ private void setListHD() throws SQLException, ClassNotFoundException {
             }
         });
 
+        gui.setBackground(new java.awt.Color(51, 255, 51));
+        gui.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        gui.setForeground(new java.awt.Color(255, 255, 255));
         gui.setText("Gửi lại hóa đơn");
         gui.setEnabled(false);
+        gui.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guiActionPerformed(evt);
+            }
+        });
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
         jLabel2.setText("Quản lý Hóa Đơn");
 
+        TaoHD.setBackground(new java.awt.Color(51, 51, 255));
+        TaoHD.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        TaoHD.setForeground(new java.awt.Color(255, 255, 255));
         TaoHD.setText("Tạo Hóa Đơn");
         TaoHD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,6 +143,7 @@ private void setListHD() throws SQLException, ClassNotFoundException {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Danh Sách Hóa Đơn");
 
         bang2.setModel(new javax.swing.table.DefaultTableModel(
@@ -128,6 +157,7 @@ private void setListHD() throws SQLException, ClassNotFoundException {
         bang2.setEnabled(false);
         jScrollPane5.setViewportView(bang2);
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Chi Tiết Hóa Đơn");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -137,62 +167,60 @@ private void setListHD() throws SQLException, ClassNotFoundException {
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 839, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
+                        .addGap(845, 845, 845))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 839, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(219, 219, 219)
+                .addGap(256, 256, 256)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addGap(323, 323, 323))
+                .addGap(374, 374, 374))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(498, 498, 498))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(45, 45, 45)
+                        .addGap(28, 28, 28)
                         .addComponent(maHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(69, 69, 69)
-                        .addComponent(gui)
-                        .addGap(60, 60, 60)
-                        .addComponent(xoa)
-                        .addGap(32, 32, 32)
-                        .addComponent(TaoHD)
-                        .addGap(285, 285, 285))))
+                        .addGap(86, 86, 86)
+                        .addComponent(gui)))
+                .addGap(60, 60, 60)
+                .addComponent(xoa)
+                .addGap(32, 32, 32)
+                .addComponent(TaoHD)
+                .addGap(285, 285, 285))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(jLabel2)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(maHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(xoa)
+                    .addComponent(gui)
+                    .addComponent(TaoHD))
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel5))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(maHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(xoa)
-                            .addComponent(gui)
-                            .addComponent(TaoHD))
-                        .addGap(39, 39, 39)
-                        .addComponent(jLabel4)))
-                .addContainerGap(264, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addContainerGap(220, Short.MAX_VALUE))
         );
 
         pack();
@@ -200,9 +228,10 @@ private void setListHD() throws SQLException, ClassNotFoundException {
 
     private void TaoHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaoHDActionPerformed
         // TODO add your handling code here:
+        
         try {
             HoaDon hd = new HoaDon();
-            int check = hd.addHD();
+            int check = hd.addHD(maNV);
             if (check == 0) {
                 JOptionPane.showMessageDialog(this, "Tạo hóa đơn thất bại");
                 return;
@@ -248,8 +277,8 @@ private void setListHD() throws SQLException, ClassNotFoundException {
 
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println("Xay ra loi");
-        }    
-        
+        }
+
     }//GEN-LAST:event_bang1MouseClicked
 
     private void xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaActionPerformed
@@ -268,6 +297,7 @@ private void setListHD() throws SQLException, ClassNotFoundException {
         try {
             HoaDon hd = new HoaDon();
             int rs = hd.remoteCTHD(maHD);
+            gui.setEnabled(false);
         } catch (SQLException | ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(this, "Xóa thất bại !!!");
         }
@@ -281,8 +311,20 @@ private void setListHD() throws SQLException, ClassNotFoundException {
         } catch (SQLException | ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(this, "Xóa thất bại !!!");
         }
-        
+
     }//GEN-LAST:event_xoaActionPerformed
+
+    private void guiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guiActionPerformed
+        // TODO add your handling code here:
+        ReadWriteFile rw = new ReadWriteFile();
+        try {
+            rw.saveMaHD(maHoaDon.getText());
+        } catch (IOException ex) {
+            Logger.getLogger(QuanLyHoaDon.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
+        Xem_GuiHoaDon.main(null);
+    }//GEN-LAST:event_guiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -319,6 +361,8 @@ private void setListHD() throws SQLException, ClassNotFoundException {
                 } catch (SQLException ex) {
                     Logger.getLogger(QuanLyHoaDon.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(QuanLyHoaDon.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
                     Logger.getLogger(QuanLyHoaDon.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
