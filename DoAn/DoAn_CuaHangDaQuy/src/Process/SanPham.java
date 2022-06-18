@@ -18,7 +18,7 @@ public class SanPham {
     public ResultSet getListSP() throws SQLException, ClassNotFoundException {
         Connection conn = null;
         conn = ConnectionUtils.getMyConnection();
-        String SQL = "SELECT MASP, TENSP, L.TENLSP, SLTON, DVT, DONGIA FROM SANPHAM S, LOAISANPHAM L WHERE S.MALSP = L.MALSP order by TENSP asc";
+        String SQL = "SELECT MASP, TENSP, L.TENLSP, SLTON, DVT, DONGIA FROM SANPHAM S, LOAISANPHAM L WHERE S.MALSP = L.MALSP AND S.SLTON > 0 order by TENSP asc";
         PreparedStatement ps = conn.prepareStatement(SQL);
         ResultSet rs = ps.executeQuery();
         return rs;

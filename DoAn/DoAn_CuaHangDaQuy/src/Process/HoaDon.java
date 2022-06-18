@@ -19,18 +19,29 @@ public class HoaDon {
     public ResultSet getListHD() throws SQLException, ClassNotFoundException {
         Connection conn = null;
         conn = ConnectionUtils.getMyConnection();
-        String SQL = "SELECT H.MAHD, TENKH, NGAYTAOHD, THANHTIEN FROM HOADON H, KHACHHANG K WHERE H.MAKH = K.MAKH order by TENKH";
+        String SQL = "SELECT H.MAHD, TENKH, NGAYTAOHD, TONGTIEN, TIENKM, THANHTIEN FROM HOADON H, KHACHHANG K WHERE H.MAKH = K.MAKH order by MAHD DESC";
         PreparedStatement ps = conn.prepareStatement(SQL);
         ResultSet rs = ps.executeQuery();
         return rs;
     }
 
-    public int addHD() throws ClassNotFoundException, SQLException {
+    public ResultSet getListCTHD(int maHD) throws SQLException, ClassNotFoundException {
+        Connection conn = null;
+        conn = ConnectionUtils.getMyConnection();
+        String SQL = "SELECT S.MASP, S.TENSP, L.TENLSP, C.SLSP, S.DVT, S.DONGIA FROM CTHD C, SANPHAM S, LOAISANPHAM L WHERE C.MASP = S.MASP AND S.MALSP = L.MALSP AND MAHD = ? ORDER BY TENSP ASC";
+        PreparedStatement ps = conn.prepareStatement(SQL);
+        ps.setInt(1, maHD);
+        ResultSet rs = ps.executeQuery();
+        return rs;
+    }
+
+    public int addHD(int maNV) throws ClassNotFoundException, SQLException {
         int i = 0;
         Connection conn = null;
         conn = ConnectionUtils.getMyConnection();
-        String SQL = "INSERT INTO HOADON (MAHD, MANV, NGAYTAOHD, TONGTIEN, TIENKM, THANHTIEN) VALUES (mahd_seq.nextval, 3, TO_DATE(CURRENT_DATE, 'DD-MM-YYYY HH24:MI:SS'), '0', '0', '0')";
+        String SQL = "INSERT INTO HOADON (MAHD, MANV, NGAYTAOHD, TONGTIEN, TIENKM, THANHTIEN) VALUES (mahd_seq.nextval, ?, TO_DATE(CURRENT_DATE, 'DD-MM-YYYY HH24:MI:SS'), '0', '0', '0')";
         PreparedStatement ps = conn.prepareStatement(SQL);
+        ps.setInt(1, maNV);
         i = ps.executeUpdate();
         return i;
     }
@@ -81,6 +92,16 @@ public class HoaDon {
         conn = ConnectionUtils.getMyConnection();
         String SQL = "SELECT MAHD FROM HOADON ORDER BY  MAHD DESC";
         PreparedStatement ps = conn.prepareStatement(SQL);
+        ResultSet rs = ps.executeQuery();
+        return rs;
+    }
+
+    public ResultSet getHD(int maHD) throws SQLException, ClassNotFoundException {
+        Connection conn = null;
+        conn = ConnectionUtils.getMyConnection();
+        String SQL = "SELECT H.MANV, K.TENKH, K.EMAIL, KM.LOAIKM, H.NGAYTAOHD, H.GHICHU, H.TONGTIEN, H.TIENKM, H.THANHTIEN FROM HOADON H, KHACHHANG K, KHUYENMAI KM WHERE H.MAKH = K.MAKH AND H.MAKM = KM.MAKM AND H.MAHD = ?";
+        PreparedStatement ps = conn.prepareStatement(SQL);
+        ps.setInt(1, maHD);
         ResultSet rs = ps.executeQuery();
         return rs;
     }
