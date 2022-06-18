@@ -212,12 +212,12 @@ public class TaoPhieuDichVu extends javax.swing.JFrame {
         soLC.setEnabled(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setText("Danh Sách Sản Phẩm");
+        jLabel1.setText("Danh Sách Dịch Vụ");
 
         themVaoHoaDon.setBackground(new java.awt.Color(0, 255, 0));
         themVaoHoaDon.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         themVaoHoaDon.setForeground(new java.awt.Color(255, 255, 255));
-        themVaoHoaDon.setText("Thêm Vào Hóa Đơn");
+        themVaoHoaDon.setText("Thêm Vào Phiếu DV");
         themVaoHoaDon.setEnabled(false);
         themVaoHoaDon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,7 +226,7 @@ public class TaoPhieuDichVu extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setText("Sản Phẩm Đã Chọn");
+        jLabel2.setText("Dịch Vụ Đã Chọn");
 
         chonLai.setBackground(new java.awt.Color(255, 102, 102));
         chonLai.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -279,9 +279,9 @@ public class TaoPhieuDichVu extends javax.swing.JFrame {
 
         abc.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         abc.setForeground(new java.awt.Color(255, 0, 51));
-        abc.setText("Tạo Hóa Đơn");
+        abc.setText("Tạo Phiếu Dịch Vụ");
 
-        jLabel17.setText("Mã hóa đơn");
+        jLabel17.setText("Mã dịch vụ");
 
         thanhToan.setBackground(new java.awt.Color(51, 51, 255));
         thanhToan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -362,10 +362,9 @@ public class TaoPhieuDichVu extends javax.swing.JFrame {
                                 .addComponent(abc))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(135, 135, 135)
+                                        .addGap(147, 147, 147)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                 .addComponent(thanhToan)
@@ -373,21 +372,24 @@ public class TaoPhieuDichVu extends javax.swing.JFrame {
                                             .addComponent(huyHoaDon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(97, 97, 97))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                .addComponent(jLabel14)
-                                                .addGap(32, 32, 32)
-                                                .addComponent(thanhTien, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
                                                 .addGap(1, 1, 1)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jLabel11)
-                                                    .addComponent(jLabel13))
-                                                .addGap(26, 26, 26)
+                                                    .addComponent(jLabel13)))
+                                            .addComponent(jLabel14))
+                                        .addGap(21, 21, 21)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(tongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(tongKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(tongKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(29, 29, 29))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(thanhTien)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jLabel12)
@@ -447,7 +449,7 @@ public class TaoPhieuDichVu extends javax.swing.JFrame {
                                     .addComponent(tenKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap(53, Short.MAX_VALUE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(abc)
                                 .addGap(12, 12, 12)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
