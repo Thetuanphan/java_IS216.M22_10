@@ -67,7 +67,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        quanLyDichVu.setText("Quản Lý Hóa Đơn");
+        quanLyDichVu.setText("Xem Báo Cáo");
         quanLyDichVu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 quanLyDichVuActionPerformed(evt);
@@ -141,7 +141,7 @@ public class Menu extends javax.swing.JFrame {
     private void quanLyDichVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLyDichVuActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        QuanLyPhieuDichVu.main(null);
+        QuanLyReport.main(null);
     }//GEN-LAST:event_quanLyDichVuActionPerformed
 
     /**

@@ -16,14 +16,6 @@ import java.sql.SQLException;
  */
 public class TKCaNhan {
     
-    public ResultSet getListTKCN() throws SQLException, ClassNotFoundException {
-        Connection conn = null;
-        conn = ConnectionUtils.getMyConnection();
-        String SQL = "SELECT MANV, TENNV, CHUCVU, GIOITINH, NGAYSINH, DIACHi, SDT, NGAYVAOLAM from TAIKHOAN where MANV = 1";
-        PreparedStatement ps = conn.prepareStatement(SQL);
-        ResultSet rs = ps.executeQuery();
-        return rs;
-    }
     
     public int updateTK(int maNV, String tenNV, String gioiTinh, String diaChi, String sdt, String MK) throws ClassNotFoundException, SQLException {
         int i = 0;

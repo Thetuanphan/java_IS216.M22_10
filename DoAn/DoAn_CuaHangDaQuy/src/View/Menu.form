@@ -109,7 +109,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="quanLyDichVu">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; H&#xf3;a &#x110;&#x1a1;n"/>
+        <Property name="text" type="java.lang.String" value="Xem B&#xe1;o C&#xe1;o"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quanLyDichVuActionPerformed"/>

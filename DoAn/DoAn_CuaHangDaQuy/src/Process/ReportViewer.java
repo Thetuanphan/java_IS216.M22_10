@@ -2,27 +2,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package View;
+package Process;
+
+import ConnectDB.OracleConnection;
+import java.awt.Container;
+import java.sql.SQLException;
+import java.util.HashMap;
+import javax.swing.JFrame;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JRViewer;
 
 /**
  *
  * @author thetu
  */
-
-import javax.swing.JFrame; 
-import java.awt.Container; 
-import java.sql.SQLException; 
-import java.util.HashMap; 
-import javax.swing.JFrame; 
-import javax.swing.JOptionPane; 
-import ConnectDB.OracleConnection; 
-import net.sf.jasperreports.engine.*; 
-import net.sf.jasperreports.view.*; 
-
-
-public class ReportViewer extends JFrame{ 
- 
- public ReportViewer(String fileName) throws SQLException 
+public class ReportViewer extends JFrame{
+    public ReportViewer(String fileName) throws SQLException 
  { 
  this(fileName,null); 
  } 
@@ -48,4 +48,3 @@ parameter,OracleConnection.getOracleConnection());
  setDefaultCloseOperation(DISPOSE_ON_CLOSE); 
  } 
 }
-
