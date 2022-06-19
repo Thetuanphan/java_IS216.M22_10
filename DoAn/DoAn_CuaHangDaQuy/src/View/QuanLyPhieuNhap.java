@@ -5,10 +5,14 @@
 package View;
 
 import ConnectDB.ConnectionUtils;
+import File.ReadWriteFile;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class QuanLyPhieuNhap extends javax.swing.JFrame {
 
+    int maPN = -1;
     DefaultTableModel tableQLNH = new DefaultTableModel();
     DefaultTableModel tableCTNSP = new DefaultTableModel();
 
@@ -34,8 +39,6 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
 
         tableQLNH = (DefaultTableModel) bang1.getModel();
         tableQLNH.setRowCount(0);
-        tableCTNSP = (DefaultTableModel) bang2.getModel();
-        tableCTNSP.setRowCount(0);
         try {
             Connection conn = null;
             conn = ConnectionUtils.getMyConnection();
@@ -48,17 +51,14 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
                 row[1] = rs.getString(2);
                 row[2] = rs.getString(3).substring(0, 10);
                 row[3] = rs.getString(4);
-
                 tableQLNH.addRow(row);
-
             }
+            bang1.setModel(tableQLNH);
         } catch (SQLException ex) {
             System.out.println("Xay ra loi");
         } catch (ClassNotFoundException cx) {
 
         }
-        bang1.setModel(tableQLNH);
-        bang2.setModel(tableCTNSP);
     }
 
     /**
@@ -73,13 +73,16 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         MP = new javax.swing.JTextField();
         AddReport = new javax.swing.JButton();
-        Xoa = new javax.swing.JButton();
+        xoa = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         bang1 = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        bang2 = new javax.swing.JTable();
         quayLai = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        bang2 = new javax.swing.JTable();
+        xuat = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,6 +94,9 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
             }
         });
 
+        AddReport.setBackground(new java.awt.Color(0, 0, 255));
+        AddReport.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        AddReport.setForeground(new java.awt.Color(255, 255, 255));
         AddReport.setText("Tạo phiếu nhập");
         AddReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,10 +104,13 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
             }
         });
 
-        Xoa.setText("Xóa");
-        Xoa.addActionListener(new java.awt.event.ActionListener() {
+        xoa.setBackground(new java.awt.Color(255, 0, 51));
+        xoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        xoa.setForeground(new java.awt.Color(255, 255, 255));
+        xoa.setText("Xóa");
+        xoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                XoaActionPerformed(evt);
+                xoaActionPerformed(evt);
             }
         });
 
@@ -123,19 +132,6 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(bang1);
 
-        bang2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Mã PN", "Mã SP", "Mã DT", "SL Nhập", "Đơn Giá Nhập", "Thành Tiền"
-            }
-        ));
-        jScrollPane2.setViewportView(bang2);
-
         quayLai.setBackground(new java.awt.Color(102, 102, 102));
         quayLai.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         quayLai.setForeground(new java.awt.Color(255, 255, 255));
@@ -150,58 +146,94 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 0, 51));
         jLabel2.setText("Quản Lý Phiếu Nhập");
 
+        bang2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Mã SP", "Mã DT", "SL Nhập", "Đơn Giá Nhập", "Thành Tiền"
+            }
+        ));
+        jScrollPane4.setViewportView(bang2);
+
+        xuat.setBackground(new java.awt.Color(51, 255, 51));
+        xuat.setForeground(new java.awt.Color(255, 255, 255));
+        xuat.setText("Xuất Phiếu Nhâp");
+        xuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                xuatActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setText("Danh Sách Phiếu Nhập");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setText("Chi Tiết Phiếu Nhập");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 58, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 711, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(121, 121, 121))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(quayLai)
+                                .addGap(169, 169, 169)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 1036, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(223, 223, 223)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(MP, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56)
+                        .addComponent(AddReport)
+                        .addGap(52, 52, 52)
+                        .addComponent(xuat)
+                        .addGap(58, 58, 58)
+                        .addComponent(xoa)))
+                .addContainerGap(29, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(MP, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(AddReport)
-                .addGap(49, 49, 49)
-                .addComponent(Xoa)
-                .addGap(191, 191, 191))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(quayLai)
-                .addGap(140, 140, 140)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(363, 363, 363))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(470, 470, 470))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(477, 477, 477))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(quayLai)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)))
+                .addGap(15, 15, 15)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(quayLai)
+                .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(MP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(AddReport)
-                    .addComponent(Xoa))
-                .addGap(27, 27, 27)
+                    .addComponent(xoa)
+                    .addComponent(xuat))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addGap(25, 25, 25)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
         );
 
         pack();
@@ -226,12 +258,25 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
         }        // TODO add your handling code here:
     }//GEN-LAST:event_AddReportActionPerformed
 
-    private void XoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XoaActionPerformed
+    private void xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaActionPerformed
         Connection conn = null;
         try {
-            // điều kiện mà makh dc r j tùm lum v chị makh trùng đc mầm mã kh mà trùng
-            // khúc thêm vô á, makh trùng vẫn ok ủa nó là khóa mà sao trùng chị tự tạo bảng à
-            //cop từ cái e gửi mà
+
+            conn = ConnectionUtils.getMyConnection();
+            String SQL1 = "DELETE FROM CTNSP "
+                    + "WHERE MAPN = ? ";
+            PreparedStatement ps1 = conn.prepareStatement(SQL1);
+            ps1.setString(1, bang1.getValueAt(bang1.getSelectedRow(), 0).toString());
+            ps1.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Xóa thành công !!!");
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            System.out.println("Xảy ra lỗi!");
+        } catch (ClassNotFoundException cx) {
+
+        }
+        try {
+
             conn = ConnectionUtils.getMyConnection();
             String SQL = "DELETE FROM PHIEUNHAP "
                     + "WHERE MAPN = ? ";
@@ -239,43 +284,52 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
             ps.setString(1, bang1.getValueAt(bang1.getSelectedRow(), 0).toString());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(this, "Xóa thành công !!!");
+            setListPN();
 
         } catch (SQLException ex) {
             System.out.println(ex);
             System.out.println("Xảy ra lỗi!");
         } catch (ClassNotFoundException cx) {
 
-        }           // TODO add your handling code here:
-    }//GEN-LAST:event_XoaActionPerformed
+        }
+    }//GEN-LAST:event_xoaActionPerformed
 
     private void bang1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bang1MouseClicked
-        try {
-            Connection conn = null;
-            conn = ConnectionUtils.getMyConnection();
-            String SQL = "SELECT * FROM CTNSP ORDER BY MaPN";
-            PreparedStatement ps = conn.prepareStatement(SQL);
-            ResultSet rs = ps.executeQuery();
-            String row[] = new String[6];
-            while (rs.next()) {
-                String MaSP = tableQLNH.getValueAt(bang1.getSelectedRow(), 0).toString();
-                row[0] = MaSP;
-                row[1] = rs.getString(2);
-                row[2] = rs.getString(3);
-                row[3] = rs.getString(4);
-                row[4] = rs.getString(5);
-                row[5] = rs.getString(6);
+        // TODO add your handling code here:
+        xoa.setEnabled(true);
+        int indexTB = bang1.getSelectedRow();
+        if (indexTB < tableQLNH.getRowCount() && indexTB >= 0) {
+            maPN = Integer.valueOf(tableQLNH.getValueAt(bang1.getSelectedRow(), 0).toString());
 
-                tableCTNSP.addRow(row);
+            try {
+                tableCTNSP = (DefaultTableModel) bang2.getModel();
+                tableCTNSP.setRowCount(0);
+                Connection conn = null;
+                conn = ConnectionUtils.getMyConnection();
+                String SQL = "SELECT * FROM CTNSP WHERE MAPN = ? ORDER BY MaSP";
+                System.out.print(maPN);
+                PreparedStatement ps = conn.prepareStatement(SQL);
+                ps.setInt(1, maPN);
+                ResultSet rs = ps.executeQuery();
+                String row[] = new String[5];
+                while (rs.next()) {
+                    row[0] = rs.getString(2);
+                    row[1] = rs.getString(3);
+                    row[2] = rs.getString(4);
+                    row[3] = rs.getString(5);
+                    row[4] = rs.getString(6);
+                    tableCTNSP.addRow(row);
+                }
+                bang2.setModel(tableCTNSP);
+            } catch (SQLException ex) {
+                System.out.println("Xay ra loi");
+            } catch (ClassNotFoundException cx) {
 
             }
-        } catch (SQLException ex) {
-            System.out.println("Xay ra loi");
-        } catch (ClassNotFoundException cx) {
+            MP.setText(bang1.getValueAt(bang1.getSelectedRow(), 0).toString());
 
         }
-        MP.setText(bang1.getValueAt(bang1.getSelectedRow(), 0).toString());
 
-        bang2.setModel(tableCTNSP);
     }//GEN-LAST:event_bang1MouseClicked
 
     private void MPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MPActionPerformed
@@ -287,6 +341,18 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
         this.dispose();
         Menu.main(null);
     }//GEN-LAST:event_quayLaiActionPerformed
+
+    private void xuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xuatActionPerformed
+        // TODO add your handling code here:
+        ReadWriteFile rw = new ReadWriteFile();
+        try {
+            rw.saveMaHD(MP.getText());
+        } catch (IOException ex) {
+            Logger.getLogger(QuanLyHoaDon.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
+        XuatPhieuNhap.main(null);
+    }//GEN-LAST:event_xuatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -327,13 +393,16 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddReport;
     private javax.swing.JTextField MP;
-    private javax.swing.JButton Xoa;
     private javax.swing.JTable bang1;
     private javax.swing.JTable bang2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton quayLai;
+    private javax.swing.JButton xoa;
+    private javax.swing.JButton xuat;
     // End of variables declaration//GEN-END:variables
 }
