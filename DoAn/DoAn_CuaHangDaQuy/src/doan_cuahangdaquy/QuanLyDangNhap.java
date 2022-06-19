@@ -122,6 +122,8 @@ public class QuanLyDangNhap extends javax.swing.JFrame {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
+                this.setVisible(false);
+                new MenuQuanLy().setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, "Sai tên TK hoặc MK");
             }

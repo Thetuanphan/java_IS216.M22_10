@@ -39,6 +39,7 @@ public class NhanVienDangNhap extends javax.swing.JFrame {
         jTextUsernameNV = new javax.swing.JTextField();
         jPasswordNV = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
+        quaylai = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,6 +58,13 @@ public class NhanVienDangNhap extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        quaylai.setText("Quay lại");
+        quaylai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quaylaiActionPerformed(evt);
             }
         });
 
@@ -79,7 +87,9 @@ public class NhanVienDangNhap extends javax.swing.JFrame {
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(132, 132, 132)
+                        .addGap(15, 15, 15)
+                        .addComponent(quaylai)
+                        .addGap(42, 42, 42)
                         .addComponent(jButton1)))
                 .addContainerGap(172, Short.MAX_VALUE))
         );
@@ -97,7 +107,9 @@ public class NhanVienDangNhap extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPasswordNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(quaylai))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
@@ -118,8 +130,12 @@ public class NhanVienDangNhap extends javax.swing.JFrame {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
+                this.setVisible(false);
+                new MenuNhanVien().setVisible(true);
+
             } else {
                 JOptionPane.showMessageDialog(this, "Sai tên TK hoặc MK");
+                
             }
 
         } catch (SQLException ex) {
@@ -128,6 +144,12 @@ public class NhanVienDangNhap extends javax.swing.JFrame {
             Logger.getLogger(QuanLyDangNhap.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void quaylaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quaylaiActionPerformed
+this.setVisible(false);
+new TrangDangNhap().setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_quaylaiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,5 +194,6 @@ public class NhanVienDangNhap extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPasswordField jPasswordNV;
     private javax.swing.JTextField jTextUsernameNV;
+    private javax.swing.JButton quaylai;
     // End of variables declaration//GEN-END:variables
 }
