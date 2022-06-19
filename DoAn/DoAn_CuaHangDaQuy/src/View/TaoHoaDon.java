@@ -705,8 +705,8 @@ private void guiHoaDonHTML(){
                         .addComponent(jLabel3))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -775,26 +775,9 @@ private void guiHoaDonHTML(){
             SPDC[3] = DSSP.getValueAt(bang2.getSelectedRow(), 3).toString();
             SPDC[4] = DSSP.getValueAt(bang2.getSelectedRow(), 4).toString();
             SPDC[5] = DSSP.getValueAt(bang2.getSelectedRow(), 5).toString();
-//        int temp = Integer.parseInt(soL) * Integer.parseInt(donG);
-//        SPDC[6] = String.valueOf(temp);
+
         }
-//        DefaultTableModel tableModelChuyen, tableModelNhan = new DefaultTableModel();
-//        tableModelChuyen = (DefaultTableModel) bang2.getModel();
-//        String maSP = tableModelChuyen.getValueAt(bang2.getSelectedRow(), 0).toString();
-//        String tenSP = tableModelChuyen.getValueAt(bang2.getSelectedRow(), 1).toString();
-//        String loaiSP = tableModelChuyen.getValueAt(bang2.getSelectedRow(), 2).toString();
-//        String soL = "1";
-//        String donV = tableModelChuyen.getValueAt(bang2.getSelectedRow(), 4).toString();
-//        String donG = tableModelChuyen.getValueAt(bang2.getSelectedRow(), 5).toString();
-//        int temp = Integer.parseInt(soL) * Integer.parseInt(donG);
-//        String thanhT = String.valueOf(temp);
-//
-//        tableModelNhan = (DefaultTableModel) bang4.getModel();
-//        tableModelNhan.addRow(new Object[]{maSP, tenSP, loaiSP, soL, donV, donG, thanhT});
-//        int indexTB = bang2.getSelectedRow();
-//        if (indexTB < DSSP.getRowCount() && indexTB >= 0) {
-//            DSSP.removeRow(indexTB);
-//        }
+
 
     }//GEN-LAST:event_bang2MouseClicked
 

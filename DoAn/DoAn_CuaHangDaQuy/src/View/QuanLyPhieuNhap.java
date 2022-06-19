@@ -31,11 +31,11 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
     }
 
     public void setListPN() {
-        String tieuDe[] = {"MaPN", "MANV", "NGAYTAO", "TONGSLSP"};
-        String tieuDe2[] = {"MaPN", "MASP", "MADT", "SLN", "DONGIA", "THANHTIEN"};
-        tableQLNH.setColumnIdentifiers(tieuDe);
-        tableCTNSP.setColumnIdentifiers(tieuDe2);
 
+        tableQLNH = (DefaultTableModel) bang1.getModel();
+        tableQLNH.setRowCount(0);
+        tableCTNSP = (DefaultTableModel) bang2.getModel();
+        tableCTNSP.setRowCount(0);
         try {
             Connection conn = null;
             conn = ConnectionUtils.getMyConnection();
@@ -46,7 +46,7 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
             while (rs.next()) {
                 row[0] = rs.getString(1);
                 row[1] = rs.getString(2);
-                row[2] = rs.getString(3);
+                row[2] = rs.getString(3).substring(0, 10);
                 row[3] = rs.getString(4);
 
                 tableQLNH.addRow(row);
@@ -78,6 +78,8 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
         bang1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         bang2 = new javax.swing.JTable();
+        quayLai = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,7 +113,7 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã PN", "Mã NV", "Ngày Tạo", "Số Lượng SP"
             }
         ));
         bang1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -123,53 +125,83 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
 
         bang2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã PN", "Mã SP", "Mã DT", "SL Nhập", "Đơn Giá Nhập", "Thành Tiền"
             }
         ));
         jScrollPane2.setViewportView(bang2);
+
+        quayLai.setBackground(new java.awt.Color(102, 102, 102));
+        quayLai.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        quayLai.setForeground(new java.awt.Color(255, 255, 255));
+        quayLai.setText("Quay Lại");
+        quayLai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quayLaiActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel2.setText("Quản Lý Phiếu Nhập");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 58, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(MP, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(AddReport)
-                        .addGap(49, 49, 49)
-                        .addComponent(Xoa))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
-                .addContainerGap(46, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 711, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(121, 121, 121))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(MP, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(AddReport)
+                .addGap(49, 49, 49)
+                .addComponent(Xoa)
+                .addGap(191, 191, 191))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(quayLai)
+                .addGap(140, 140, 140)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(quayLai)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(MP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(AddReport)
                     .addComponent(Xoa))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(34, 34, 34)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
 
         pack();
@@ -184,8 +216,8 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
             ps.setInt(1, 3);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(this, "Thêm thành công !!!");
-//            this.dispose();
-//            ChonSanPhamNhap.main(null);
+            this.dispose();
+            TaoPhieuNhap.main(null);
         } catch (SQLException ex) {
             System.out.println(ex);
             System.out.println("Xảy ra lỗi!");
@@ -244,13 +276,17 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
         MP.setText(bang1.getValueAt(bang1.getSelectedRow(), 0).toString());
 
         bang2.setModel(tableCTNSP);
-
-        setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_bang1MouseClicked
 
     private void MPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MPActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_MPActionPerformed
+
+    private void quayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quayLaiActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        Menu.main(null);
+    }//GEN-LAST:event_quayLaiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -295,7 +331,9 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
     private javax.swing.JTable bang1;
     private javax.swing.JTable bang2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton quayLai;
     // End of variables declaration//GEN-END:variables
 }
