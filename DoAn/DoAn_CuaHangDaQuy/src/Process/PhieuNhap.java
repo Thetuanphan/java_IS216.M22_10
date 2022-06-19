@@ -7,6 +7,7 @@ package Process;
 import ConnectDB.ConnectionUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -19,7 +20,7 @@ public class PhieuNhap {
         int i = 0;
         Connection conn = null;
         conn = ConnectionUtils.getMyConnection();
-        String SQL = "insert into CTHD values (?, ?, ?, ?, ?, ?)";
+        String SQL = "insert into CTNSP values (?, ?, ?, ?, ?, ?)";
 
         PreparedStatement ps = conn.prepareStatement(SQL);
         ps.setInt(1, maPN);
@@ -36,7 +37,15 @@ public class PhieuNhap {
         i = ps1.executeUpdate();
         return i;
     }
-
+    public ResultSet getPN(int maPN) throws SQLException, ClassNotFoundException {
+        Connection conn = null;
+        conn = ConnectionUtils.getMyConnection();
+        String SQL = "SELECT * FROM PHIEUNHAP WHERE MAPN = ?";
+        PreparedStatement ps = conn.prepareStatement(SQL);
+        ps.setInt(1, maPN);
+        ResultSet rs = ps.executeQuery();
+        return rs;
+    }
     public int updateHD(int maHD, int tongTien) throws ClassNotFoundException, SQLException {
         int i = 0;
         Connection conn = null;

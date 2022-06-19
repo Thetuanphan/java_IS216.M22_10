@@ -301,6 +301,12 @@ public class TaoPhieuNhap extends javax.swing.JFrame {
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 821, Short.MAX_VALUE)
                             .addComponent(jScrollPane2))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(huy)
+                                    .addComponent(taophieunhap))
+                                .addGap(118, 118, 118))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -333,13 +339,7 @@ public class TaoPhieuNhap extends javax.swing.JFrame {
                                         .addComponent(jLabel3)
                                         .addGap(18, 18, 18)
                                         .addComponent(tongCong)))
-                                .addGap(39, 39, 39))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(huy)
-                                    .addComponent(taophieunhap))
-                                .addGap(118, 118, 118))))))
+                                .addGap(39, 39, 39))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -368,7 +368,9 @@ public class TaoPhieuNhap extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(52, 52, 52)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(chonLai))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -387,8 +389,6 @@ public class TaoPhieuNhap extends javax.swing.JFrame {
                         .addComponent(taophieunhap)
                         .addGap(18, 18, 18)
                         .addComponent(huy)))
-                .addGap(29, 29, 29)
-                .addComponent(chonLai)
                 .addGap(413, 413, 413))
         );
 
@@ -503,7 +503,6 @@ public class TaoPhieuNhap extends javax.swing.JFrame {
             DSSP.removeRow(indexTB);
         }
         soLuong.setText("1");
-        donGiaNhap.setText("");
         chonLai.setEnabled(true);
         taophieunhap.setEnabled(true);
     }//GEN-LAST:event_themVaoPhieuNhapActionPerformed
@@ -524,6 +523,24 @@ public class TaoPhieuNhap extends javax.swing.JFrame {
 
     private void huyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_huyActionPerformed
         // TODO add your handling code here:
+        Connection conn = null;
+        try {
+
+            conn = ConnectionUtils.getMyConnection();
+            String SQL = "DELETE FROM PHIEUNHAP "
+                    + "WHERE MAPN = ? ";
+            PreparedStatement ps = conn.prepareStatement(SQL);
+            ps.setInt(1, maPN);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Xóa thành công !!!");
+            this.dispose();
+            QuanLyPhieuNhap.main(null);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            System.out.println("Xảy ra lỗi!");
+        } catch (ClassNotFoundException cx) {
+
+        }
     }//GEN-LAST:event_huyActionPerformed
 
     /**
