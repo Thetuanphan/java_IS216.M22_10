@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DoanhThu" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cb321cba-13ac-47bf-abe6-ad12de9e357b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[select * from hoadon]]>
+	</queryString>
+	<field name="NGAYTAOHD" class="java.sql.Timestamp"/>
+	<field name="THANHTIEN" class="java.math.BigDecimal"/>
+	<group name="NGAYTAOHD">
+		<groupExpression><![CDATA[$F{NGAYTAOHD}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="71" y="2" width="100" height="20" uuid="58a86509-d0d4-4ee4-b5a3-02cb9e0764b8"/>
+				<text><![CDATA[NGAYTAOHD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="202" y="2" width="100" height="20" uuid="f803e475-9280-4894-a6bb-692528d22ac3"/>
+				<text><![CDATA[THANHTIEN]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="202" y="5" width="100" height="20" uuid="9074c61d-6e93-4635-a5ec-e1310ad327ac"/>
+				<textFieldExpression><![CDATA[$F{THANHTIEN}]]></textFieldExpression>
+			</textField>
+			<elementGroup>
+				<textField>
+					<reportElement x="71" y="15" width="100" height="20" uuid="ce2c60c9-446e-4421-858a-4a6408b0666e"/>
+					<textFieldExpression><![CDATA[$F{NGAYTAOHD}]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
