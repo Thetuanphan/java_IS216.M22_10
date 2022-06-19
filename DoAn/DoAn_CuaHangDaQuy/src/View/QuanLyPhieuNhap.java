@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 public class QuanLyPhieuNhap extends javax.swing.JFrame {
 
     int maPN = -1;
+    int maNV = -1;
     DefaultTableModel tableQLNH = new DefaultTableModel();
     DefaultTableModel tableCTNSP = new DefaultTableModel();
 
@@ -34,7 +35,10 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
         setListPN();
         setVisible(true);
     }
-
+    public void setMaNV() throws IOException{
+        ReadWriteFile rw = new ReadWriteFile();
+        maNV = Integer.valueOf(rw.readMaNV()); 
+    }
     public void setListPN() {
 
         tableQLNH = (DefaultTableModel) bang1.getModel();
@@ -245,7 +249,7 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
             conn = ConnectionUtils.getMyConnection();
             String SQL = "INSERT INTO PHIEUNHAP(MAPN, MANV, NGAYTAOPN, TONGSLSP) VALUES(mapn_seq.nextval, ?, TO_DATE(CURRENT_DATE, 'DD-MM-YYYY HH24:MI:SS'),0)";
             PreparedStatement ps = conn.prepareStatement(SQL);
-            ps.setInt(1, 3);
+            ps.setInt(1, maNV);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(this, "Thêm thành công !!!");
             this.dispose();

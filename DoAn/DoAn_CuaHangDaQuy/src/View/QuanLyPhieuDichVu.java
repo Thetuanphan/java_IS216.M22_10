@@ -304,7 +304,7 @@ public class QuanLyPhieuDichVu extends javax.swing.JFrame {
 
         try {
             PhieuDichVu pdv = new PhieuDichVu();
-            int check = pdv.addPDV(1);
+            int check = pdv.addPDV(maNV);
             if (check == 0) {
                 JOptionPane.showMessageDialog(this, "Tạo phiếu dịch vụ thất bại");
                 return;

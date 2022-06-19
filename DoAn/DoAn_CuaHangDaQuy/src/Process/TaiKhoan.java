@@ -5,6 +5,8 @@
 package Process;
 
 import ConnectDB.ConnectionUtils;
+import File.ReadWriteFile;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,7 +39,20 @@ public class TaiKhoan {
             return 1;
         }
     }
-    
+    public int checkDN(String tenTK, String MK) throws SQLException, ClassNotFoundException {
+        Connection conn = null;
+        conn = ConnectionUtils.getMyConnection();
+        String SQL = "SELECT * FROM TAIKHOAN where TENTK = ? AND MATKHAU = ?";
+        PreparedStatement ps = conn.prepareStatement(SQL);
+        ps.setString(1, tenTK);
+        ps.setString(2, MK);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            return Integer.valueOf(rs.getString(1));
+        } else {
+            return -1;
+        }
+    }
     public int addTK(int maNV, String tenTK, String MK) throws ClassNotFoundException, SQLException {
         int i = 0;
         Connection conn = null;
@@ -74,4 +89,5 @@ public class TaiKhoan {
         i = ps.executeUpdate();
         return i;
     }
+
 }

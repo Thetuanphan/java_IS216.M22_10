@@ -33,15 +33,15 @@ public class ReadWriteFile {
         System.out.println(maHD);
         return maHD;
     }
-    public void saveMaNV(String maHD) throws FileNotFoundException, IOException {
-        try ( FileOutputStream output = new FileOutputStream("D:\\HocTap\\HK1\\Java\\DoAn\\java_IS216.M22_10\\DoAn\\DoAn_CuaHangDaQuy\\src\\File\\MaHD.txt")) {
-            output.write(maHD.getBytes());
+    public void saveMaNV(String maNV) throws FileNotFoundException, IOException {
+        try ( FileOutputStream output = new FileOutputStream("D:\\HocTap\\HK1\\Java\\DoAn\\java_IS216.M22_10\\DoAn\\DoAn_CuaHangDaQuy\\src\\File\\MaNV.txt")) {
+            output.write(maNV.getBytes());
         }
     }
     public String readMaNV() throws IOException {
         String maHD = "";
         try ( // Đọc từ file rồi ghi vào 1 biến String
-                 FileInputStream input = new FileInputStream("C:\\Users\\thetu\\Documents\\qlda\\java_IS216.M22_10\\DoAn\\DoAn_CuaHangDaQuy\\src\\File\\MaNV.txt")) {
+                 FileInputStream input = new FileInputStream("D:\\HocTap\\HK1\\Java\\DoAn\\java_IS216.M22_10\\DoAn\\DoAn_CuaHangDaQuy\\src\\File\\MaNV.txt")) {
             int i = 0;
             while ((i = input.read()) != -1) {
                 maHD += (char) i;
@@ -50,4 +50,6 @@ public class ReadWriteFile {
         System.out.println(maHD);
         return maHD;
     }
+    
+    
 }

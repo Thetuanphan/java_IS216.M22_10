@@ -5,10 +5,15 @@
 package View;
 
 import ConnectDB.ConnectionUtils;
+import File.ReadWriteFile;
+import Process.TaiKhoan;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -35,9 +40,9 @@ public class DangNhap extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        dangNhap = new javax.swing.JTextField();
+        tenDangNhap = new javax.swing.JTextField();
         password = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        dangNhap = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -46,13 +51,13 @@ public class DangNhap extends javax.swing.JFrame {
 
         jLabel2.setText("Mật khẩu");
 
-        jButton1.setBackground(new java.awt.Color(0, 51, 255));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Đăng Nhập");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        dangNhap.setBackground(new java.awt.Color(0, 51, 255));
+        dangNhap.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        dangNhap.setForeground(new java.awt.Color(255, 255, 255));
+        dangNhap.setText("Đăng Nhập");
+        dangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                dangNhapActionPerformed(evt);
             }
         });
 
@@ -75,12 +80,12 @@ public class DangNhap extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(dangNhap)
+                    .addComponent(tenDangNhap)
                     .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(84, 84, 84))
             .addGroup(layout.createSequentialGroup()
                 .addGap(143, 143, 143)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -95,47 +100,44 @@ public class DangNhap extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(dangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(dangNhap)
                 .addGap(62, 62, 62))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void dangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dangNhapActionPerformed
         // TODO add your handling code here:
-        String userName = dangNhap.getText();
+        String userName = tenDangNhap.getText();
         String matKhau = password.getText();
-        
-        try {
-               Connection conn = null;
-            conn = ConnectionUtils.getMyConnection();
-            String SQLKT = "SELECT UserName_NV from USER_NV WHERE UserName_NV = ?";
-            PreparedStatement pskt = conn.prepareStatement(SQLKT);
-            pskt.setString(1, userName);
-            ResultSet rs = pskt.executeQuery();
-            if (rs.next()) {
-                JOptionPane.showMessageDialog(this, "Tài khoản đã tồn tại !!!");
-            } else {
-                String SQL = "INSERT INTO USER_NV VALUES(?, ?)";
-                PreparedStatement ps = conn.prepareStatement(SQL);
-                ps.setString(1, userName);
-                ps.setString(2, matKhau);
-                ps.executeUpdate();
-                JOptionPane.showMessageDialog(this, "Đăng ký thành công !!!");
-            }
-            conn.close();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-            System.out.println("Xảy ra lỗi!");
-        } catch (ClassNotFoundException cx) {
-
+        if (userName.equals("") || matKhau.equals("")) {
+            JOptionPane.showMessageDialog(this, "Không được để trống !!!");
+            return;
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+        try {
+            TaiKhoan tk = new TaiKhoan();
+            int check = tk.checkDN(userName, matKhau);
+            if (check == -1) {
+                JOptionPane.showMessageDialog(this, "Tên đăng nhập hoặc Mật khuẩu không chính xác !!!");
+                return;
+            }
+            JOptionPane.showMessageDialog(this, "Đăng Nhập Thành Công !!!");
+            ReadWriteFile rw = new ReadWriteFile();
+            rw.saveMaNV(String.valueOf(check));
+            this.dispose();
+            Menu.main(null);
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, "Lỗi kết nối  !!!");
+        } catch (IOException ex) {
+            Logger.getLogger(DangNhap.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_dangNhapActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,11 +182,11 @@ public class DangNhap extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField dangNhap;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton dangNhap;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPasswordField password;
+    private javax.swing.JTextField tenDangNhap;
     // End of variables declaration//GEN-END:variables
 }
