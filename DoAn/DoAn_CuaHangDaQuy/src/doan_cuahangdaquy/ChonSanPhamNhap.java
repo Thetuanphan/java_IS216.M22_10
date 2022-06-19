@@ -130,7 +130,7 @@ public class ChonSanPhamNhap extends javax.swing.JFrame {
         SoLuong = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        them = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         TongCong = new javax.swing.JTextField();
         quaylai = new javax.swing.JButton();
@@ -178,10 +178,10 @@ public class ChonSanPhamNhap extends javax.swing.JFrame {
 
         jLabel2.setText("Số lượng");
 
-        jButton1.setText("thêm");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        them.setText("thêm");
+        them.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                themActionPerformed(evt);
             }
         });
 
@@ -263,7 +263,7 @@ public class ChonSanPhamNhap extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(47, 47, 47)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1)
+                                    .addComponent(them)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jLabel2)
                                         .addComponent(jLabel1)
@@ -298,7 +298,7 @@ public class ChonSanPhamNhap extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(SoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
+                        .addComponent(them))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,7 +335,7 @@ public class ChonSanPhamNhap extends javax.swing.JFrame {
 
     }//GEN-LAST:event_Bang1MouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themActionPerformed
         Connection conn = null;
         try {
             DefaultTableModel tableModelNhan = new DefaultTableModel();
@@ -359,7 +359,7 @@ public class ChonSanPhamNhap extends javax.swing.JFrame {
         }
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_themActionPerformed
 
     private void TongCongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TongCongActionPerformed
 
@@ -393,7 +393,7 @@ public class ChonSanPhamNhap extends javax.swing.JFrame {
 
             ps.setString(1, maPhieuNhap.getText());
             ps.setString(2, MaSP);
-            ps.setString(3, "1");
+            ps.setString(3, MaDT);
             ps.setString(4, SLN);
             ps.setString(5, DonGia);
             ps.setString(6, ThanhTien);
@@ -450,7 +450,6 @@ public class ChonSanPhamNhap extends javax.swing.JFrame {
     private javax.swing.JTextField SoLuong;
     private javax.swing.JTextField TongCong;
     private javax.swing.JTable bang3;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -462,5 +461,6 @@ public class ChonSanPhamNhap extends javax.swing.JFrame {
     private javax.swing.JLabel maPhieuNhap;
     private javax.swing.JButton quaylai;
     private javax.swing.JButton taophieunhap;
+    private javax.swing.JButton them;
     // End of variables declaration//GEN-END:variables
 }
