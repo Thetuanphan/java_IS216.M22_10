@@ -4,6 +4,17 @@
  */
 package View;
 
+import ConnectDB.ConnectionUtils;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Hashtable;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
+
 /**
  *
  * @author thetu
@@ -16,7 +27,34 @@ public class QuanLyReport extends javax.swing.JFrame {
     public QuanLyReport() {
         initComponents();
     }
+    
+    private void getInputTK() throws SQLException, JRException{
+        Hashtable map = new Hashtable();
+        JasperReport report = JasperCompileManager.compileReport("src\\View\\demo.jrxml");
 
+        //map.put("PARA_MA", ma);
+        try {
+            Connection con = ConnectionUtils.getMyConnection();
+            JasperPrint p = JasperFillManager.fillReport(report, map, con);
+            JasperViewer.viewReport(p, false);
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    private void getInputDT() throws SQLException, JRException{
+        Hashtable map = new Hashtable();
+        JasperReport report = JasperCompileManager.compileReport("src\\View\\demo.jrxml");
+
+        //map.put("PARA_MA", ma);
+        try {
+            Connection con = ConnectionUtils.getMyConnection();
+            JasperPrint p = JasperFillManager.fillReport(report, map, con);
+            JasperViewer.viewReport(p, false);
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -130,6 +168,8 @@ public class QuanLyReport extends javax.swing.JFrame {
 
     private void btHD1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHD1ActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        ReportPhieuNhap.main(null);
     }//GEN-LAST:event_btHD1ActionPerformed
 
     private void btHD2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHD2ActionPerformed
@@ -140,10 +180,21 @@ public class QuanLyReport extends javax.swing.JFrame {
 
     private void btHD3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHD3ActionPerformed
         // TODO add your handling code here:
+
+        try {
+            getInputTK();
+        } catch(SQLException | JRException ex){
+            System.out.println(ex);
+        }
     }//GEN-LAST:event_btHD3ActionPerformed
 
     private void btHD4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHD4ActionPerformed
         // TODO add your handling code here:
+        try {
+            getInputDT();
+        } catch(SQLException | JRException ex){
+            System.out.println(ex);
+        }
     }//GEN-LAST:event_btHD4ActionPerformed
 
     private void quayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quayLaiActionPerformed
