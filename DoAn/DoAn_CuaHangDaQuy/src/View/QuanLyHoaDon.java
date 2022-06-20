@@ -31,7 +31,7 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
     public QuanLyHoaDon() throws SQLException, ClassNotFoundException, IOException {
         initComponents();
         setListHD();
-        setMaNV();
+        //setMaNV();
     }
 
     private void setListHD() throws SQLException, ClassNotFoundException {

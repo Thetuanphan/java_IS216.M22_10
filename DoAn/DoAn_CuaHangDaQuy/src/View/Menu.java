@@ -59,7 +59,6 @@ public class Menu extends javax.swing.JFrame {
         quanLyCaNhan = new javax.swing.JButton();
         quanLyHoaDon2 = new javax.swing.JButton();
         quanLySanPham2 = new javax.swing.JButton();
-        quanLyLoaiSanPham2 = new javax.swing.JButton();
         quanLyKhuyenMai2 = new javax.swing.JButton();
         dangXuat = new javax.swing.JButton();
 
@@ -153,13 +152,6 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        quanLyLoaiSanPham2.setText("Quản Lý Report");
-        quanLyLoaiSanPham2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quanLyLoaiSanPham2ActionPerformed(evt);
-            }
-        });
-
         quanLyKhuyenMai2.setText("Quản Lý Tài Khản");
         quanLyKhuyenMai2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -212,7 +204,6 @@ public class Menu extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(dangXuat)
-                            .addComponent(quanLyLoaiSanPham2)
                             .addComponent(quanLySanPham2)
                             .addComponent(quanLyKhuyenMai2))
                         .addGap(82, 82, 82))))
@@ -226,9 +217,7 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(quanLyHoaDon2)
                         .addGap(29, 29, 29)
                         .addComponent(quanLySanPham2)
-                        .addGap(27, 27, 27)
-                        .addComponent(quanLyLoaiSanPham2)
-                        .addGap(83, 83, 83)
+                        .addGap(135, 135, 135)
                         .addComponent(dangXuat))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -294,38 +283,50 @@ public class Menu extends javax.swing.JFrame {
 
     private void quanLyDichVu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLyDichVu1ActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        QuanLyNhanVien.main(null);
     }//GEN-LAST:event_quanLyDichVu1ActionPerformed
 
     private void quanLyKhuyenMai1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLyKhuyenMai1ActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        QuanLyKhachHang.main(null);
     }//GEN-LAST:event_quanLyKhuyenMai1ActionPerformed
 
     private void quanLyLoaiSanPham1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLyLoaiSanPham1ActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        QuanLyDoiTac.main(null);
     }//GEN-LAST:event_quanLyLoaiSanPham1ActionPerformed
 
     private void quanLySanPham1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLySanPham1ActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        QuanLyDichVu.main(null);
     }//GEN-LAST:event_quanLySanPham1ActionPerformed
 
     private void quanLyCaNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLyCaNhanActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        QuanLyCaNhan.main(null);
     }//GEN-LAST:event_quanLyCaNhanActionPerformed
 
     private void quanLyHoaDon2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLyHoaDon2ActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        QuanLyPhieuDichVu.main(null);
     }//GEN-LAST:event_quanLyHoaDon2ActionPerformed
 
     private void quanLySanPham2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLySanPham2ActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        QuanLyPhieuNhap.main(null);
     }//GEN-LAST:event_quanLySanPham2ActionPerformed
-
-    private void quanLyLoaiSanPham2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLyLoaiSanPham2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_quanLyLoaiSanPham2ActionPerformed
 
     private void quanLyKhuyenMai2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLyKhuyenMai2ActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        QuanLyTaiKhoan.main(null);
     }//GEN-LAST:event_quanLyKhuyenMai2ActionPerformed
 
     private void dangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dangXuatActionPerformed
@@ -397,7 +398,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton quanLyKhuyenMai2;
     private javax.swing.JButton quanLyLoaiSanPham;
     private javax.swing.JButton quanLyLoaiSanPham1;
-    private javax.swing.JButton quanLyLoaiSanPham2;
     private javax.swing.JButton quanLySanPham;
     private javax.swing.JButton quanLySanPham1;
     private javax.swing.JButton quanLySanPham2;

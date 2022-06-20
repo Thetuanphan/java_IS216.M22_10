@@ -63,9 +63,9 @@ public class ReportDichVu extends javax.swing.JFrame {
     
     private void getInput(String ma) throws SQLException, JRException{
         Hashtable map = new Hashtable();
-        JasperReport report = JasperCompileManager.compileReport("src\\View\\demo.jrxml");
+        JasperReport report = JasperCompileManager.compileReport("src\\View\\DichVu.jrxml");
 
-        map.put("PARA_MA", ma);
+        map.put("PARA_MAPDV", ma);
         try {
             Connection con = ConnectionUtils.getMyConnection();
             JasperPrint p = JasperFillManager.fillReport(report, map, con);

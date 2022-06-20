@@ -55,6 +55,20 @@ public class QuanLyReport extends javax.swing.JFrame {
             System.out.println(ex);
         }
     }
+    
+    private void getInputTKho() throws SQLException, JRException{
+        Hashtable map = new Hashtable();
+        JasperReport report = JasperCompileManager.compileReport("src\\View\\TonKho.jrxml");
+
+        //map.put("PARA_MA", ma);
+        try {
+            Connection con = ConnectionUtils.getMyConnection();
+            JasperPrint p = JasperFillManager.fillReport(report, map, con);
+            JasperViewer.viewReport(p, false);
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -182,7 +196,7 @@ public class QuanLyReport extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         try {
-            getInputTK();
+            getInputTKho();
         } catch(SQLException | JRException ex){
             System.out.println(ex);
         }

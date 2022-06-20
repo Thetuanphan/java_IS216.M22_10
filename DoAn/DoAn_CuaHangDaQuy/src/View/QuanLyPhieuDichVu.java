@@ -28,7 +28,7 @@ public class QuanLyPhieuDichVu extends javax.swing.JFrame {
     public QuanLyPhieuDichVu() throws SQLException, ClassNotFoundException, IOException{
         initComponents();
         setListPDV();
-        setMaNV();
+        //setMaNV();
     }
     
     private void setListPDV() throws SQLException, ClassNotFoundException {
@@ -304,7 +304,7 @@ public class QuanLyPhieuDichVu extends javax.swing.JFrame {
 
         try {
             PhieuDichVu pdv = new PhieuDichVu();
-            int check = pdv.addPDV(maNV);
+            int check = pdv.addPDV(1);
             if (check == 0) {
                 JOptionPane.showMessageDialog(this, "Tạo phiếu dịch vụ thất bại");
                 return;
