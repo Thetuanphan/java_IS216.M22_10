@@ -44,7 +44,7 @@ public class QuanLyReport extends javax.swing.JFrame {
     
     private void getInputDT() throws SQLException, JRException{
         Hashtable map = new Hashtable();
-        JasperReport report = JasperCompileManager.compileReport("src\\View\\demo.jrxml");
+        JasperReport report = JasperCompileManager.compileReport("src\\View\\DoanhThu.jrxml");
 
         //map.put("PARA_MA", ma);
         try {

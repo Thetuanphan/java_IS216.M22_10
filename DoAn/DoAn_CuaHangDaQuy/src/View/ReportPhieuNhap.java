@@ -219,7 +219,7 @@ public class ReportPhieuNhap extends javax.swing.JFrame {
     private void quayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quayLaiActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        Menu.main(null);
+        QuanLyReport.main(null);
     }//GEN-LAST:event_quayLaiActionPerformed
 
     private void btHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHDActionPerformed
