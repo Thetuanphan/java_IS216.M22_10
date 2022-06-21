@@ -49,6 +49,7 @@ public class QuanLyDichVu extends javax.swing.JFrame {
         btXoa = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         btSua = new javax.swing.JButton();
+        quayLai = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,6 +104,16 @@ public class QuanLyDichVu extends javax.swing.JFrame {
             }
         });
 
+        quayLai.setBackground(new java.awt.Color(102, 102, 102));
+        quayLai.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        quayLai.setForeground(new java.awt.Color(255, 255, 255));
+        quayLai.setText("Quay Lại");
+        quayLai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quayLaiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -133,15 +144,19 @@ public class QuanLyDichVu extends javax.swing.JFrame {
                         .addGap(212, 212, 212)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(237, 237, 237)
+                        .addContainerGap()
+                        .addComponent(quayLai)
+                        .addGap(132, 132, 132)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel5)
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(quayLai))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -159,7 +174,7 @@ public class QuanLyDichVu extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
@@ -296,6 +311,12 @@ public class QuanLyDichVu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btXoaActionPerformed
 
+    private void quayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quayLaiActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        Menu.main(null);
+    }//GEN-LAST:event_quayLaiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -340,6 +361,7 @@ public class QuanLyDichVu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton quayLai;
     private javax.swing.JTable tbDV;
     private javax.swing.JFormattedTextField tenDichVu;
     private javax.swing.JFormattedTextField tienDichVu;
