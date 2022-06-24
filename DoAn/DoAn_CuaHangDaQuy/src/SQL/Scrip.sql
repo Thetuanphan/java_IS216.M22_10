@@ -348,4 +348,49 @@ INSERT INTO CTHD VALUES(4,4,6);
 INSERT INTO CTHD VALUES(5,5,8);
 
 
+
+CREATE OR REPLACE TRIGGER TRIGGER_CUS_REVENUE_increased
+AFTER INSERT OR UPDATE OR DELETE ON HOADON
+FOR EACH ROW
+BEGIN
+    IF(INSERTING) THEN
+        UPDATE KHACHHANG
+        SET DIEM = (DIEM + :NEW.THANHTIEN)
+        WHERE MAKH = :new.MAKH;
+    END IF; 
+    IF(UPDATING) THEN
+        UPDATE KHACHHANG
+        SET DIEM = (DIEM + (:NEW.THANHTIEN - :old.THANHTIEN))
+        WHERE MAKH = :new.MAKH;
+    END IF; 
+    IF(DELETING) THEN
+        UPDATE KHACHHANG
+        SET DIEM = (DIEM - :old.THANHTIEN)
+        WHERE MAKH = :old.MAKH;   
+    END IF;  
+END;
+
+CREATE OR REPLACE TRIGGER TRIGGER_CUS_TYPE_OLD
+BEFORE UPDATE ON KHACHHANG
+FOR EACH ROW
+BEGIN  
+    IF (:new.DIEM <= 5000000)
+    THEN
+        :new.LOAI := 'M?i';
+    END IF;
+    IF (:new.DIEM > 5000000 and :new.DIEM <= 15000000)
+    THEN
+        :new.LOAI := 'Ti?m Nãng';
+    END IF;
+    IF (:new.DIEM > 15000000 and :new.DIEM <= 30000000)
+    THEN
+        :new.LOAI := 'Thân Thi?t';
+    END IF;
+    IF (:new.DIEM > 30000000)
+    THEN
+        :new.LOAI := 'VIP';
+    END IF;
+END;
+
+
 commit;

@@ -88,6 +88,7 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         bang2 = new javax.swing.JTable();
+        quanLyKhachHang = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản Lý Hóa Đơn");
@@ -213,18 +214,31 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
             bang2.getColumnModel().getColumn(6).setMaxWidth(110);
         }
 
+        quanLyKhachHang.setBackground(new java.awt.Color(102, 51, 0));
+        quanLyKhachHang.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        quanLyKhachHang.setForeground(new java.awt.Color(255, 255, 255));
+        quanLyKhachHang.setText("Quản Lý Khách Hàng");
+        quanLyKhachHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quanLyKhachHangActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(230, 230, 230)
+                .addGap(317, 317, 317)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(332, 332, 332))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(quayLai))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(660, 660, 660)
                         .addComponent(jLabel2))
@@ -238,14 +252,13 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
                         .addGap(60, 60, 60)
                         .addComponent(xoa)
                         .addGap(32, 32, 32)
-                        .addComponent(TaoHD))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(quayLai)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(TaoHD)
+                        .addGap(18, 18, 18)
+                        .addComponent(quanLyKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(249, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 766, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 839, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
@@ -263,7 +276,8 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
                     .addComponent(xoa)
                     .addComponent(gui)
                     .addComponent(TaoHD)
-                    .addComponent(maHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(maHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(quanLyKhachHang))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -402,6 +416,12 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
         Menu.main(null);
     }//GEN-LAST:event_quayLaiActionPerformed
 
+    private void quanLyKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLyKhachHangActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        QuanLyKhachHang.main(null);
+    }//GEN-LAST:event_quanLyKhachHangActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -459,6 +479,7 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JFormattedTextField maHoaDon;
+    private javax.swing.JButton quanLyKhachHang;
     private javax.swing.JButton quayLai;
     private javax.swing.JButton xoa;
     // End of variables declaration//GEN-END:variables

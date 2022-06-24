@@ -17,6 +17,7 @@ import java.sql.SQLException;
  * @author thetu
  */
 public class TaiKhoan {
+
     public ResultSet getListTK() throws SQLException, ClassNotFoundException {
         Connection conn = null;
         conn = ConnectionUtils.getMyConnection();
@@ -25,6 +26,21 @@ public class TaiKhoan {
         ResultSet rs = ps.executeQuery();
         return rs;
     }
+
+    public String getRoll(int maNV) throws SQLException, ClassNotFoundException {
+        String roll ="";
+        Connection conn = null;
+        conn = ConnectionUtils.getMyConnection();
+        String SQL = "SELECT CHUCVU  from NHANVIEN where MANV = ?";
+        PreparedStatement ps = conn.prepareStatement(SQL);
+        ps.setInt(1, maNV);
+        ResultSet rs = ps.executeQuery();
+        if(rs.next()){
+            roll = rs.getString(1);
+        }
+        return roll;
+    }
+
     public ResultSet getListMaNV() throws SQLException, ClassNotFoundException {
         Connection conn = null;
         conn = ConnectionUtils.getMyConnection();
@@ -33,6 +49,7 @@ public class TaiKhoan {
         ResultSet rs = ps.executeQuery();
         return rs;
     }
+
     public int checkTK(String tenTK) throws SQLException, ClassNotFoundException {
         Connection conn = null;
         conn = ConnectionUtils.getMyConnection();
@@ -46,6 +63,7 @@ public class TaiKhoan {
             return 1;
         }
     }
+
     public int checkDN(String tenTK, String MK) throws SQLException, ClassNotFoundException {
         Connection conn = null;
         conn = ConnectionUtils.getMyConnection();
@@ -60,6 +78,7 @@ public class TaiKhoan {
             return -1;
         }
     }
+
     public int addTK(int maNV, String tenTK, String MK) throws ClassNotFoundException, SQLException {
         int i = 0;
         Connection conn = null;
