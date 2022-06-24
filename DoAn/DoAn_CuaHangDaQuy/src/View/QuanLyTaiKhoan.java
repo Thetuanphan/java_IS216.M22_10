@@ -62,6 +62,11 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         quayLai.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         quayLai.setForeground(new java.awt.Color(255, 255, 255));
         quayLai.setText("Quay Lại");
+        quayLai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quayLaiActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Danh Sách Tài Khoản");
@@ -382,6 +387,10 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
             System.out.println(maNV);
         }
     }//GEN-LAST:event_tbTKMouseClicked
+
+    private void quayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quayLaiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_quayLaiActionPerformed
 
     /**
      * @param args the command line arguments

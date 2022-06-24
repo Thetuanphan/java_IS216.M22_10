@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PDichVu" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a87a8863-de66-4227-bfe9-78cd540df2f2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="PARA_MADV" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select * from phieudv pdv, dichvu dv, ctdv ct, nhanvien nv, khachhang kh where pdv.mapdv = ct.mapdv and pdv.manv = nv.manv and pdv.makh = kh.makh and ct.madv = dv.madv and pdv.mapdv = $P{PARA_MADV}]]>
+	</queryString>
+	<field name="MAPDV" class="java.math.BigDecimal"/>
+	<field name="MANV" class="java.math.BigDecimal"/>
+	<field name="MAKH" class="java.math.BigDecimal"/>
+	<field name="NGAYTAOPDV" class="java.sql.Timestamp"/>
+	<field name="TONGSLDV" class="java.math.BigDecimal"/>
+	<field name="TONGTIEN" class="java.math.BigDecimal"/>
+	<field name="TRATRUOC" class="java.math.BigDecimal"/>
+	<field name="THANHTIEN" class="java.math.BigDecimal"/>
+	<field name="MADV" class="java.math.BigDecimal"/>
+	<field name="TENDV" class="java.lang.String"/>
+	<field name="TIENDV" class="java.math.BigDecimal"/>
+	<field name="SLDV" class="java.math.BigDecimal"/>
+	<field name="TENNV" class="java.lang.String"/>
+	<field name="CHUCVU" class="java.lang.String"/>
+	<field name="GIOITINH" class="java.lang.String"/>
+	<field name="NGAYSINH" class="java.sql.Timestamp"/>
+	<field name="DIACHI" class="java.lang.String"/>
+	<field name="SDT" class="java.math.BigDecimal"/>
+	<field name="NGAYVAOLAM" class="java.sql.Timestamp"/>
+	<field name="TENKH" class="java.lang.String"/>
+	<field name="EMAIL" class="java.lang.String"/>
+	<field name="DIEM" class="java.math.BigDecimal"/>
+	<field name="LOAI" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="262">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="281" backcolor="#006699" uuid="474b4155-2451-4020-8975-94314f749e38"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="581d6e91-20b7-4ea6-9a91-ad2687a95bb9"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[PHIẾU DV]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="293" y="83" width="66" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="54e34386-6efa-45db-8233-7e2b83b26c0f"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[MAPDV]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="371" y="83" width="39" height="20" uuid="11f08479-bd87-4b7b-bd9a-f7ad98c1bf24"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{MAPDV}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="423" y="83" width="52" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="2ef298f9-07de-4e8b-96aa-75b289ee2de6"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[MANV]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="488" y="83" width="39" height="20" uuid="b97473ab-94e4-492a-ad9b-eab1fe00a41e"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{MANV}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="293" y="119" width="66" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="5e437701-fb0c-4a53-9979-9b7d24135e7f"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[MAKH]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="371" y="119" width="39" height="20" uuid="437d5e36-1acb-4a9f-b67a-2dc0f1ec4f80"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{MAKH}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="20" y="83" width="117" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="5047aa13-0e05-4231-8b53-d4e03b99f5ae"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[NGAYTAOPDV]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="148" y="83" width="131" height="20" uuid="3282cd9e-ed8b-48aa-8fde-d1da27b96b7e"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{NGAYTAOPDV}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="20" y="119" width="117" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="fbdd1cde-93ac-4323-b537-a9d4db5d9eff"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TONGSLDV]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="148" y="119" width="131" height="20" uuid="457d06ba-f53a-48fb-aade-913a4916c673"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TONGSLDV}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="293" y="160" width="91" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="7094f0ed-63fc-4f83-af3b-72fa1737e5ca"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TONGTIEN]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="400" y="160" width="135" height="20" uuid="84fb36c1-6e65-46db-9dee-f2c738294658"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TONGTIEN}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="293" y="198" width="91" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="e7fa4acd-6bca-4059-80c1-ccfe8d092e1c"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TRATRUOC]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="400" y="198" width="135" height="20" uuid="56342a04-8238-457a-a3be-4078e4729f8f"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TRATRUOC}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="293" y="236" width="91" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="d64fbaaa-1c35-461b-aa2e-0bbb5887d3cd"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[THANHTIEN]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="400" y="236" width="135" height="20" uuid="d01a2061-9007-4682-a49d-3af6c3ab6bf4"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{THANHTIEN}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="20" y="160" width="117" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="b0305cf5-d7d9-4af0-aa84-37751fbca370"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TENNV]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="148" y="160" width="131" height="20" uuid="2fa30568-e49c-4745-a0da-260bf40b37bf"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TENNV}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="20" y="198" width="117" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="f5cd2c48-3a9c-45fd-81b2-752ff9dced6d"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TENKH]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="148" y="198" width="131" height="20" uuid="e11408c0-b8d2-41d7-9eb3-333eb0ea5095"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TENKH}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="38640947-2f07-4dce-a815-fe315e711c4a"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="68" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="619762f3-7f20-4ec2-b7bb-b8ac10c05192"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MADV]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="68" y="0" width="271" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="cecdddb9-4db8-4198-81f1-db011fecc4b3"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TENDV]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="339" y="0" width="142" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="e848dfd0-5d0d-4115-a3dd-77c67844c777"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TIENDV]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="481" y="0" width="74" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="cd064a9e-afaa-400b-8912-e80a6b1dc2fa"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SLDV]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="31752595-2ce4-4587-9a7c-5df26689371f"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="68" height="20" uuid="45a758ac-d2e3-42d1-97b9-f8108500d9b2"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MADV}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="68" y="0" width="271" height="20" uuid="d0b41ceb-4d95-40c7-9b95-7cebb72b020c"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TENDV}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="339" y="0" width="142" height="20" uuid="9b3518b5-cff1-449b-9b01-d0b25c58ac1c"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIENDV}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="481" y="0" width="74" height="20" uuid="c41d8482-c505-49b8-84aa-536f7066f7c0"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SLDV}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="7c0f5ea5-3e72-4e6e-a3f2-b177f1251448"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="e391623d-2a3d-49f3-9857-c4c30851ddca"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="ce368ae5-6646-41b1-815c-32a971386312"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
