@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -54,7 +55,8 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
             while (rs.next()) {
                 row[0] = rs.getString(1);
                 row[1] = rs.getString(2);
-                row[2] = rs.getString(3).substring(0, 10);
+                Date ngayT = rs.getDate(3);
+                row[2] = String.format("%td-%<tm-%<tY", ngayT);
                 row[3] = rs.getString(4);
                 tableQLNH.addRow(row);
             }

@@ -51,7 +51,8 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
                 row[4] = rs.getString(5);
                 row[5] = rs.getString(6);
                 row[6] = rs.getString(7);
-                row[7] = rs.getString(8).substring(0, 10);
+                Date ngayS = rs.getDate(8);
+                row[7] = String.format("%td-%<tm-%<tY", ngayS);
                 tableQLKH.addRow(row);
             }
             bang1.setModel(tableQLKH);
@@ -86,7 +87,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         bXoa = new javax.swing.JButton();
         MKH = new javax.swing.JTextField();
-        loai = new javax.swing.JComboBox<>();
+        loaiKH = new javax.swing.JComboBox<>();
         TKH = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -122,6 +123,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Ngày sinh");
 
+        bang1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         bang1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
@@ -188,7 +190,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
 
         MKH.setEditable(false);
 
-        loai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "VIP", "Thân Thiết", "Tiềm Năng", "Thường" }));
+        loaiKH.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "VIP", "Thân Thiết", "Tiềm Năng", "Mới" }));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 0));
@@ -224,10 +226,23 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(61, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(306, 306, 306)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(541, 541, 541))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(bthem)
+                        .addGap(151, 151, 151)
+                        .addComponent(bXoa)
+                        .addGap(154, 154, 154)
+                        .addComponent(bSua)
+                        .addGap(341, 341, 341))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
@@ -241,7 +256,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(diem, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(loai, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(loaiKH, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(MKH, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -272,41 +287,25 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(TKH)
-                                    .addComponent(GT, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 143, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(472, 472, 472))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(quayLai)
-                                .addGap(368, 368, 368)
-                                .addComponent(jLabel2)))))
-                .addGap(69, 69, 69))
+                                    .addComponent(GT, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(182, 182, 182))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(bthem)
-                        .addGap(151, 151, 151)
-                        .addComponent(bXoa)
-                        .addGap(154, 154, 154)
-                        .addComponent(bSua)
-                        .addGap(341, 341, 341))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56))))
+                .addGap(19, 19, 19)
+                .addComponent(quayLai)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(443, 443, 443))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(quayLai))
-                .addGap(18, 18, 18)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(quayLai)))
+                .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -316,8 +315,9 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(GT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel6)
+                                .addComponent(GT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(SDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel8)))
@@ -331,7 +331,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(loai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(loaiKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -346,7 +346,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 56, Short.MAX_VALUE))
+                .addGap(0, 62, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -365,6 +365,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
 
     private void bang1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bang1MouseClicked
         int Index = bang1.getSelectedRow();
+        bSua.setEnabled(true);
         if (Index < tableQLKH.getRowCount() && Index >= 0) {
             maKH = Integer.valueOf(tableQLKH.getValueAt(Index, 0).toString());
             MKH.setText(tableQLKH.getValueAt(Index, 0).toString());
@@ -380,7 +381,15 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
             } else {
                 GT.setSelectedIndex(2);
             }
-
+            if (tableQLKH.getValueAt(Index, 6).toString().equals("VIP")) {
+                loaiKH.setSelectedIndex(0);
+            } else if (tableQLKH.getValueAt(Index, 6).toString().equals("Thân Thiết")) {
+                loaiKH.setSelectedIndex(1);
+            } else if (tableQLKH.getValueAt(Index, 6).toString().equals("Tiềm Năng")) {
+                loaiKH.setSelectedIndex(2);
+            } else if (tableQLKH.getValueAt(Index, 6).toString().equals("Mới")) {
+                loaiKH.setSelectedIndex(3);
+            } 
         }        // TODO add your handling code here:
     }//GEN-LAST:event_bang1MouseClicked
 
@@ -394,7 +403,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         String mail = email.getText();
         String sdt = SDT.getText();
         String di = diem.getText();
-        String lo = loai.getSelectedItem().toString();
+        String lo = loaiKH.getSelectedItem().toString();
         String namS = NS.getText();
         if (tenKH.equals("") || mail.equals("") || sdt.equals("") || di.equals("") || namS.equals("")) {
             JOptionPane.showMessageDialog(this, "Không được để trống !!!");
@@ -463,7 +472,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         // TODO add your handling code here:
         int Index = bang1.getSelectedRow();
         if (!(Index < tableQLKH.getRowCount() && Index >= 0)) {
-            JOptionPane.showMessageDialog(this, "Chọn loại khuyến mãi cần sửa !!!");
+            JOptionPane.showMessageDialog(this, "Chọn khách cần sửa !!!");
             return;
         }
 
@@ -472,7 +481,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         String mail = email.getText();
         String sdt = SDT.getText();
         String di = diem.getText();
-        String lo = loai.getSelectedItem().toString();
+        String lo = loaiKH.getSelectedItem().toString();
         String namS = NS.getText();
         if (tenKH.equals("") || mail.equals("") || sdt.equals("") || di.equals("") || namS.equals("")) {
             JOptionPane.showMessageDialog(this, "Không được để trống !!!");
@@ -574,7 +583,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox<String> loai;
+    private javax.swing.JComboBox<String> loaiKH;
     private javax.swing.JButton quayLai;
     // End of variables declaration//GEN-END:variables
 }

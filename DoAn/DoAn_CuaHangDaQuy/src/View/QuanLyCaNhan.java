@@ -5,11 +5,15 @@
 package View;
 
 import ConnectDB.ConnectionUtils;
+import File.ReadWriteFile;
 import Process.TKCaNhan;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,15 +22,21 @@ import javax.swing.table.DefaultTableModel;
  * @author thetu
  */
 public class QuanLyCaNhan extends javax.swing.JFrame {
-
+    int maNV = -1;
     /**
      * Creates new form QuanLyCaNhan
      */
-    public QuanLyCaNhan() {
+    public QuanLyCaNhan() throws IOException {
         initComponents();
+        setMaNV();
     }
     
-  
+      public void setMaNV() throws IOException {
+        ReadWriteFile rw = new ReadWriteFile();
+        String temp = rw.readMaNV();
+        maNV = Integer.valueOf(temp);
+        System.out.println(maNV);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -63,7 +73,7 @@ public class QuanLyCaNhan extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel5.setText("Quản Lý Tài Khoản");
+        jLabel5.setText("Quản Lý Cá Nhân");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Mật khẩu");
@@ -142,9 +152,11 @@ public class QuanLyCaNhan extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        String MKN = MK.getText();
+        String XMK = XNMK.getText();
         
         
-        if (XNMK.equals(MK) == false){
+        if (MKN.equals(XMK) == false){
             JOptionPane.showMessageDialog(this, "Xác nhận mật khẩu không trùng khớp !!!");
             return;
         }
@@ -167,7 +179,8 @@ public class QuanLyCaNhan extends javax.swing.JFrame {
             String SQL = "update TAIKHOAN set MATKHAU = ? where MANV = ?";
             PreparedStatement ps1 = conn.prepareStatement(SQL);
             ps1.setString(1, MK.getText());
-            ps1.setInt(2, 1);
+            ps1.setInt(2, maNV);
+            ps1.executeUpdate();
             JOptionPane.showMessageDialog(this, "Sửa thành công !!!");
             
         } catch (SQLException | ClassNotFoundException ex) {
@@ -211,7 +224,11 @@ public class QuanLyCaNhan extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new QuanLyCaNhan().setVisible(true);
+                try {
+                    new QuanLyCaNhan().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(QuanLyCaNhan.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

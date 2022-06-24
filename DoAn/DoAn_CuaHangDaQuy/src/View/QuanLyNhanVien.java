@@ -266,16 +266,16 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1296, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(617, 617, 617)
-                                .addComponent(jLabel10))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(282, 282, 282)
-                                .addComponent(them)
-                                .addGap(129, 129, 129)
-                                .addComponent(xoa)
-                                .addGap(134, 134, 134)
-                                .addComponent(sua)
-                                .addGap(51, 51, 51)))))
+                                .addComponent(jLabel10)))))
                 .addContainerGap(53, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(them)
+                .addGap(129, 129, 129)
+                .addComponent(xoa)
+                .addGap(134, 134, 134)
+                .addComponent(sua)
+                .addGap(413, 413, 413))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -376,7 +376,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             NVL.setText(tableQLNV.getValueAt(Index, 7).toString());
             sua.setEnabled(true);
             xoa.setEnabled(true);
-            them.setEnabled(false);
+            them.setEnabled(true);
         }        // TODO add your handling code here:
     }//GEN-LAST:event_bang1MouseClicked
 
@@ -444,7 +444,6 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     }//GEN-LAST:event_themActionPerformed
 
     private void xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaActionPerformed
-        // TODO add your handling code here:
         Connection conn = null;
         try {
 

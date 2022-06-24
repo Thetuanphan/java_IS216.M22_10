@@ -4,9 +4,15 @@
  */
 package View;
 
+import File.ReadWriteFile;
 import Process.TaiKhoan;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,14 +22,36 @@ import javax.swing.table.DefaultTableModel;
  */
 public class QuanLyTaiKhoan extends javax.swing.JFrame {
 
+    ArrayList<String> listMaNV = null;
     DefaultTableModel DSTK = new DefaultTableModel();
     int maNV = -1;
+    int maNVC = -1;
+
     /**
      * Creates new form QuanLyTaiKhoan
      */
-    public QuanLyTaiKhoan() {
+    public QuanLyTaiKhoan() throws SQLException, ClassNotFoundException, IOException {
         initComponents();
         setListTK();
+        setListMaNV();
+        setMaNV();
+    }
+
+    public void setMaNV() throws IOException {
+        ReadWriteFile rw = new ReadWriteFile();
+        String temp = rw.readMaNV();
+        maNVC = Integer.valueOf(temp);
+        System.out.println(maNVC);
+    }
+
+    public void setListMaNV() throws SQLException, ClassNotFoundException {
+        TaiKhoan tk = new TaiKhoan();
+        ResultSet rs = tk.getListMaNV();
+        ArrayList<String> listMaNV = new ArrayList<String>();
+        while (rs.next()) {
+            listMaNV.add(rs.getString(1));
+        }
+        maNhanVien.setModel(new DefaultComboBoxModel(listMaNV.toArray()));
     }
 
     /**
@@ -43,7 +71,6 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         btSua = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbTK = new javax.swing.JTable();
-        maNhanVien = new javax.swing.JFormattedTextField();
         tenTaiKhoan = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -138,6 +165,8 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("Xác nhận MK");
 
+        maNhanVien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -160,8 +189,8 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
                                 .addComponent(jLabel1))
                             .addGap(64, 64, 64)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(maNhanVien)
-                                .addComponent(tenTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(tenTaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                                .addComponent(maNhanVien, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGap(70, 70, 70)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel8)
@@ -260,6 +289,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
     }
     private void btThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThemActionPerformed
         // TODO add your handling code here:
+        int maNVT = Integer.valueOf(maNhanVien.getSelectedItem().toString());
         String tenTK = tenTaiKhoan.getText();
         String MK = matKhau.getText();
         String XNMK = xnMatKhau.getText();
@@ -268,12 +298,12 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Không được để trống !!!");
             return;
         }
-        
-        if (XNMK.equals(MK) == false){
+
+        if (XNMK.equals(MK) == false) {
             JOptionPane.showMessageDialog(this, "Xác nhận mật khẩu không trùng khớp !!!");
             return;
         }
-        
+
         int ret = 0;
         ret = JOptionPane.showConfirmDialog(null, "Bạn có muốn Thêm", "Thêm", JOptionPane.YES_NO_OPTION);
         if (!(ret == JOptionPane.YES_OPTION)) {
@@ -281,7 +311,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         }
         try {
             TaiKhoan tk = new TaiKhoan();
-            int check = tk.checkTK(Integer.valueOf(maNV));
+            int check = tk.checkTK(tenTK);
             if (check == 0) {
                 JOptionPane.showMessageDialog(this, "Nhân viên đã tồn tại tài khoản !!!");
                 return;
@@ -289,20 +319,23 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
 
             //int maLSP = Integer.valueOf(listMaLSP.get(loaiSanPham.getSelectedIndex()));
             //int intSL = Integer.valueOf(SL);
-            int intmaNV = Integer.valueOf(maNV);
-            int rs = tk.addTK(intmaNV, tenTK, MK);
+            int rs = tk.addTK(maNVT, tenTK, MK);
             setListTK();
             JOptionPane.showMessageDialog(this, "Thêm thành công !!!");
             tenTaiKhoan.setText("");
             matKhau.setText("");
-            maNhanVien.setText("");
         } catch (SQLException | ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(this, "Thêm thất bại !!!" + ex.getMessage());
+            JOptionPane.showMessageDialog(this, "Nhân viên đã có tài khoản");
         }
     }//GEN-LAST:event_btThemActionPerformed
 
     private void btXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoaActionPerformed
         // TODO add your handling code here:
+        System.out.print( maNV +"+" + maNVC);
+        if (maNV == maNVC) {
+            JOptionPane.showMessageDialog(this, "Không thể xóa bản thân bạn !!!");
+            return;
+        }
         int Index = tbTK.getSelectedRow();
         if (!(Index < DSTK.getRowCount() && Index >= 0)) {
             JOptionPane.showMessageDialog(this, "Chọn tài khoàn cần xóa !!!");
@@ -321,7 +354,6 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
             int rs = tk.remoteTK(maNV);
             setListTK();
             JOptionPane.showMessageDialog(this, "Xóa thành công !!!");
-            maNhanVien.setText("");
             tenTaiKhoan.setText("");
             matKhau.setText("");
         } catch (SQLException | ClassNotFoundException ex) {
@@ -334,14 +366,14 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         String tenTK = tenTaiKhoan.getText();
         String MK = matKhau.getText();
         String XNMK = xnMatKhau.getText();
-        String maNV = maNhanVien.getText();
+        String maNV = maNhanVien.getSelectedItem().toString();
         int Index = tbTK.getSelectedRow();
         if (!(Index < DSTK.getRowCount() && Index >= 0)) {
             JOptionPane.showMessageDialog(this, "Chọn tài khoản cần sửa !!!");
             return;
         }
-        
-        if (XNMK.equals(MK) == false){
+
+        if (XNMK.equals(MK) == false) {
             JOptionPane.showMessageDialog(this, "Xác nhận mật khẩu không trùng khớp !!!");
             return;
         }
@@ -365,13 +397,12 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
             int rs = tk.updateTK(intmaNV, tenTK, MK);
             setListTK();
             JOptionPane.showMessageDialog(this, "Sửa thành công !!!");
-            maNhanVien.setText("");
             tenTaiKhoan.setText("");
             matKhau.setText("");
         } catch (SQLException | ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(this, "Sửa thất bại !!!");
         }
-        
+
     }//GEN-LAST:event_btSuaActionPerformed
 
     private void tbTKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbTKMouseClicked
@@ -381,12 +412,18 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         btSua.setEnabled(true);
         int Index = tbTK.getSelectedRow();
         if (Index < DSTK.getRowCount() && Index >= 0) {
+            maNhanVien.setSelectedIndex(Integer.valueOf(DSTK.getValueAt(Index, 0).toString())-1);
             maNV = Integer.valueOf(DSTK.getValueAt(Index, 0).toString());
             tenTaiKhoan.setText(DSTK.getValueAt(Index, 1).toString());
+            xnMatKhau.setText(DSTK.getValueAt(Index, 2).toString());
             matKhau.setText(DSTK.getValueAt(Index, 2).toString());
             System.out.println(maNV);
         }
     }//GEN-LAST:event_tbTKMouseClicked
+
+    private void maNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maNhanVienActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_maNhanVienActionPerformed
 
     private void quayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quayLaiActionPerformed
         // TODO add your handling code here:
@@ -422,7 +459,15 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new QuanLyTaiKhoan().setVisible(true);
+                try {
+                    new QuanLyTaiKhoan().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(QuanLyTaiKhoan.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(QuanLyTaiKhoan.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(QuanLyTaiKhoan.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -439,7 +484,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JFormattedTextField maNhanVien;
+    private javax.swing.JComboBox<String> maNhanVien;
     private javax.swing.JFormattedTextField matKhau;
     private javax.swing.JButton quayLai;
     private javax.swing.JTable tbTK;

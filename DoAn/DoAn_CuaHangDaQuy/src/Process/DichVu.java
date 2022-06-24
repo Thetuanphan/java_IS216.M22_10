@@ -67,9 +67,9 @@ public class DichVu {
         conn = ConnectionUtils.getMyConnection();
         String SQL = "update DICHVU set TENDV = ?, tienDV = ? where MADV = ?";
         PreparedStatement ps = conn.prepareStatement(SQL);
-        ps.setInt(1, maDV);
-        ps.setString(2, tenDV);
-        ps.setInt(3, tienDV);
+        ps.setString(1, tenDV);
+        ps.setInt(2, tienDV);
+        ps.setInt(3, maDV);
         i = ps.executeUpdate();
         return i;
     }

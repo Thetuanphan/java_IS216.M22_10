@@ -413,11 +413,6 @@ private void setListKM() throws SQLException, ClassNotFoundException {
         try {
             System.out.println(maKM);
             KhuyenMai km = new KhuyenMai();
-            int check = km.checkLoaiKM(loaiKM);
-            if (check == 0) {
-                JOptionPane.showMessageDialog(this, "Loại khuyến mãi đã tồn tại !!!");
-                return;
-            }
             int intTiLG = Integer.valueOf(tiLG);
             int intTienG = Integer.valueOf(tienG);
             int rs = km.updateKM(maKM, loaiKM, intTiLG, intTienG);
