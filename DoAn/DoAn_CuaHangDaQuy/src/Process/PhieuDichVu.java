@@ -40,8 +40,8 @@ public class PhieuDichVu {
         int i = 0;
         Connection conn = null;
         conn = ConnectionUtils.getMyConnection();
-        String SQL = "INSERT INTO PHIEUDV (MANV, MAKH, NGAYTAOPDV, TONGSLDV, TONGTIEN, TRATRUOC, THANHTIEN) "
-                + "VALUES (?, '1', TO_DATE(CURRENT_DATE, 'DD-MM-YYYY HH24:MI:SS'), '0', '0', '0', '0')";
+        String SQL = "INSERT INTO PHIEUDV (MANV, MAKH, NGAYTAOPDV, TONGSLDV, TONGTIEN, TRATRUOC, THANHTIEN, TINHTRANG) "
+                + "VALUES (?, '1', TO_DATE(CURRENT_DATE, 'DD-MM-YYYY HH24:MI:SS'), '0', '0', '0', '0', 'CHƯA THANH TOÁN')";
         PreparedStatement ps = conn.prepareStatement(SQL);
         ps.setInt(1, maNV);
         i = ps.executeUpdate();
