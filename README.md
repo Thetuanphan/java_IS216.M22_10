@@ -46,5 +46,8 @@
 
 ## ĐỒ ÁN CUỐI KỲ
 -  Quản lý cửa hàng đá quý
--  <a href="https://ibb.co/KWtqJM0"><img src="https://i.ibb.co/WfryLbx/Screenshot-2022-06-25-044511.png" alt="Screenshot-2022-06-25-044511" border="0"></a>
+<p align="center">
+  <a href="https://ibb.co/KWtqJM0"><img src="https://i.ibb.co/WfryLbx/Screenshot-2022-06-25-044511.png" alt="Screenshot-2022-06-25-044511" border="0"></a>
+</p>
+
 
