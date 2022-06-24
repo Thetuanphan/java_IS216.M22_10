@@ -58,7 +58,7 @@ public class QuanLyReport extends javax.swing.JFrame {
     
     private void getInputTKho() throws SQLException, JRException{
         Hashtable map = new Hashtable();
-        JasperReport report = JasperCompileManager.compileReport("src\\View\\TonKho.jrxml");
+        JasperReport report = JasperCompileManager.compileReport("src\\View\\TonKho1.jrxml");
 
         //map.put("PARA_MA", ma);
         try {
@@ -214,7 +214,7 @@ public class QuanLyReport extends javax.swing.JFrame {
     private void btHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHDActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        ReportHoaDon.main(null);
+        ReportHoaDon1.main(null);
 
     }//GEN-LAST:event_btHDActionPerformed
 

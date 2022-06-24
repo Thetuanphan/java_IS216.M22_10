@@ -71,8 +71,10 @@ public class ReportPhieuNhap extends javax.swing.JFrame {
     private void getInput(String ma) throws SQLException, JRException{
         Hashtable map = new Hashtable();
         JasperReport report = JasperCompileManager.compileReport("src\\View\\PhieuNhap.jrxml");
+        
+        
+        map.put("PARA_MAPN", ma);
 
-        map.put("PARA_MADV", ma);
         try {
             Connection con = ConnectionUtils.getMyConnection();
             JasperPrint p = JasperFillManager.fillReport(report, map, con);
@@ -263,6 +265,8 @@ public class ReportPhieuNhap extends javax.swing.JFrame {
     private void btHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHDActionPerformed
         // TODO add your handling code here:
         String ma = MP.getText();
+        
+        
 
         try {
             getInput(ma);
