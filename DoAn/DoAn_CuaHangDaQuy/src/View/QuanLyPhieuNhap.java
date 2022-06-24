@@ -30,9 +30,10 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
     /**
      * Creates new form QuanLyNhapHang1
      */
-    public QuanLyPhieuNhap() {
+    public QuanLyPhieuNhap() throws IOException {
         initComponents();
         setListPN();
+        setMaNV();
         setVisible(true);
     }
     public void setMaNV() throws IOException{
@@ -246,8 +247,9 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
     private void AddReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddReportActionPerformed
         Connection conn = null;
         try {
+            System.out.println("Ma nv: " + maNV);
             conn = ConnectionUtils.getMyConnection();
-            String SQL = "INSERT INTO PHIEUNHAP(MAPN, MANV, NGAYTAOPN, TONGSLSP) VALUES(mapn_seq.nextval, ?, TO_DATE(CURRENT_DATE, 'DD-MM-YYYY HH24:MI:SS'),0)";
+            String SQL = "INSERT INTO PHIEUNHAP(MANV, NGAYTAOPN, TONGSLSP) VALUES(?, TO_DATE(CURRENT_DATE, 'DD-MM-YYYY HH24:MI:SS'),0)";
             PreparedStatement ps = conn.prepareStatement(SQL);
             ps.setInt(1, maNV);
             ps.executeUpdate();
@@ -256,7 +258,7 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
             TaoPhieuNhap.main(null);
         } catch (SQLException ex) {
             System.out.println(ex);
-            System.out.println("Xảy ra lỗi!");
+            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra !!!");
         } catch (ClassNotFoundException cx) {
 
         }        // TODO add your handling code here:
@@ -389,7 +391,11 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new QuanLyPhieuNhap().setVisible(true);
+                try {
+                    new QuanLyPhieuNhap().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(QuanLyPhieuNhap.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

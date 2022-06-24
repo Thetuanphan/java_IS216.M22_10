@@ -6,7 +6,7 @@ package View;
 
 import File.ReadWriteFile;
 import Process.HoaDon;
-import Process.KhuyenMai;
+
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -288,7 +288,7 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
                 row[3] = rs.getString(4);
                 row[4] = rs.getString(5);
                 row[5] = rs.getString(6);
-                float temp = Integer.valueOf(row[3]) * Integer.valueOf(row[5]);
+                int temp = Integer.valueOf(row[3]) * Integer.valueOf(row[5]);
                 row[6] = String.valueOf(temp);
                 DSCTHD.addRow(row);
             }

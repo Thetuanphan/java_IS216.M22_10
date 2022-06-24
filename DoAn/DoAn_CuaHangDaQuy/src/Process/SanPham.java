@@ -52,7 +52,7 @@ public class SanPham {
         int i = 0;
         Connection conn = null;
         conn = ConnectionUtils.getMyConnection();
-        String SQL = "insert into SANPHAM values (masp_seq.nextval, ?, ?, ?, ?, ?)";
+        String SQL = "insert into SANPHAM (MALSP, TENSP, SLTON, DVT, DONGIA) values (?, ?, ?, ?, ?)";
         PreparedStatement ps = conn.prepareStatement(SQL);
         ps.setInt(1, maLSP);
         ps.setString(2, tenSP);

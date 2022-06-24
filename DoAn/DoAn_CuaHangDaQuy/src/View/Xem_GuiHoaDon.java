@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -83,58 +84,58 @@ public class Xem_GuiHoaDon extends javax.swing.JFrame {
         }
     }
 
-private void guiHoaDonHTML(){
-            String body = "<div  style='text-align:center;'> <img style='width:75%;height:50%;' src='https://www.marry.vn/wp-content/uploads/2016/04/29/hinh-dang-kim-cuong.jpg' alt='Italian Trulli'> <h1 style='color:red;'>Hóa Đơn Mua Hàng</h1> <p>Xin chào khách hàng: <b>" 
-                    + tenKhachHang.getText() 
-                    + "</b> </p> <p>Bạn đã mua hàng tại Cửa hàng Đá quý ABC lúc: "
-                    + java.time.LocalDate.now() + " " +java.time.LocalTime.now() 
-                    + "</p> <h2>Mã hóa đơn: <b style='color:blue;'>" 
-                    + maHoaDon.getText() 
-                    + "</b></h2> <table style='  font-family: arial, sans-serif; border-collapse: collapse; width: 100%;'> <tbody> <tr style='background-color: #D6EEEE;'> <td><b>Tên sản phẩm</b></td> <td><b>Số lượng</b></td> <td><b>Đơn vị</b></td> <td><b>Đơn giá</b></td> </tr> ";
+    private void guiHoaDonHTML() throws AddressException, UnsupportedEncodingException {
+        String body = "<div  style='text-align:center;'> <img style='width:75%;height:50%;' src='https://www.marry.vn/wp-content/uploads/2016/04/29/hinh-dang-kim-cuong.jpg' alt='Italian Trulli'> <h1 style='color:red;'>Hóa Đơn Mua Hàng</h1> <p>Xin chào khách hàng: <b>"
+                + tenKhachHang.getText()
+                + "</b> </p> <p>Bạn đã mua hàng tại Cửa hàng Đá quý ABC lúc: "
+                + java.time.LocalDate.now() + " " + java.time.LocalTime.now()
+                + "</p> <h2>Mã hóa đơn: <b style='color:blue;'>"
+                + maHoaDon.getText()
+                + "</b></h2> <table style='  font-family: arial, sans-serif; border-collapse: collapse; width: 100%;'> <tbody> <tr style='background-color: #D6EEEE;'> <td><b>Tên sản phẩm</b></td> <td><b>Số lượng</b></td> <td><b>Đơn vị</b></td> <td><b>Đơn giá</b></td> </tr> ";
         boolean check = true;
         for (int i = 0; i < DSCTHD.getRowCount(); i++) {
-                if(check){
-                body += "<tr> <td>" 
-                        + DSCTHD.getValueAt(i, 1).toString() 
+            if (check) {
+                body += "<tr> <td>"
+                        + DSCTHD.getValueAt(i, 1).toString()
                         + "</td> <td>"
-                        + DSCTHD.getValueAt(i, 3).toString() 
+                        + DSCTHD.getValueAt(i, 3).toString()
                         + "</td> <td>"
-                        + DSCTHD.getValueAt(i, 4).toString() 
+                        + DSCTHD.getValueAt(i, 4).toString()
                         + "</td> <td>"
-                        + DSCTHD.getValueAt(i, 6).toString() 
+                        + DSCTHD.getValueAt(i, 6).toString()
                         + "</td> </tr>";
                 check = false;
-                }
-                else{
-                body += "<tr style='background-color: #D6EEEE;'> <td>" 
-                        + DSCTHD.getValueAt(i, 1).toString() 
+            } else {
+                body += "<tr style='background-color: #D6EEEE;'> <td>"
+                        + DSCTHD.getValueAt(i, 1).toString()
                         + "</td> <td>"
-                        + DSCTHD.getValueAt(i, 3).toString() 
+                        + DSCTHD.getValueAt(i, 3).toString()
                         + "</td> <td>"
-                        + DSCTHD.getValueAt(i, 4).toString() 
+                        + DSCTHD.getValueAt(i, 4).toString()
                         + "</td> <td>"
-                        + DSCTHD.getValueAt(i, 6).toString() 
+                        + DSCTHD.getValueAt(i, 6).toString()
                         + "</td> </tr>";
                 check = true;
-                }
+            }
 
         }
-         body += "</tbody> </table> <h2>Tổng tiền: "
-                 + tongTien.getText()
-                 + " VND </h2> <h2>Tổng tiền giảm giá: "
-                 + giamGia.getText()
-                 +" VND</h2> <h2 style='color:red;'>Thành tiền: "
-                 + thanhTien.getText()
-                 +" VND</h2> <a href='https://www.cuahangdaquy.com/'>Cửa Hàng Đá Quý ABC</a> <a href='mailto:cuahangdaquy@abc.com'>cuahangdaquy@abc.com</a> </div>";
-        GuiMailHTML  gm = new GuiMailHTML();
+        body += "</tbody> </table> <h2>Tổng tiền: "
+                + tongTien.getText()
+                + " VND </h2> <h2>Tổng tiền giảm giá: "
+                + giamGia.getText()
+                + " VND</h2> <h2 style='color:red;'>Thành tiền: "
+                + thanhTien.getText()
+                + " VND</h2> <a href='https://www.google.com/search?q=C%E1%BB%ADa+H%C3%A0ng+%C4%90%C3%A1+Qu%C3%BD&oq=C%E1%BB%ADa+H%C3%A0ng+%C4%90%C3%A1+Qu%C3%BD&aqs=edge..69i57j0i512l7.18473j0j4&sourceid=chrome&ie=UTF-8'>Cửa Hàng Đá Quý ABC</a> <a href='mailto:cuahangdaquyabc@gmail.com'>cuahangdaquyabc@gmail.com</a> </div>";
+        GuiMailHTML gm = new GuiMailHTML();
         String email = mailKhachHang.getText();
         try {
             gm.GuiHoaDon(email, body);
             JOptionPane.showMessageDialog(this, "Gửi thành công !!!");
         } catch (MessagingException ex) {
-            Logger.getLogger(TaoHoaDon.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Gửi thất bại !!!");
         }
-}
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -219,6 +220,11 @@ private void guiHoaDonHTML(){
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Xuất hóa đơn");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         gui.setBackground(new java.awt.Color(0, 0, 255));
         gui.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -231,8 +237,6 @@ private void guiHoaDonHTML(){
         });
 
         jLabel12.setText("Mail khách hàng");
-
-        mailKhachHang.setEditable(false);
 
         huy.setBackground(new java.awt.Color(255, 0, 0));
         huy.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -381,12 +385,20 @@ private void guiHoaDonHTML(){
     private void guiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guiActionPerformed
         // TODO add your handling code here:\
         String mail = mailKhachHang.getText();
-        if(mail.equals("")){
+        if (mail.equals("")) {
             JOptionPane.showMessageDialog(this, "Khách hàng chưa có mail. Nhập mail khách hàng !!!");
             mailKhachHang.setEditable(true);
             return;
         }
-        guiHoaDonHTML();
+        try {
+            guiHoaDonHTML();
+            this.dispose();
+            QuanLyHoaDon.main(null);
+        } catch (AddressException ex) {
+            Logger.getLogger(Xem_GuiHoaDon.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(Xem_GuiHoaDon.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_guiActionPerformed
 
     private void huyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_huyActionPerformed
@@ -394,6 +406,11 @@ private void guiHoaDonHTML(){
         this.dispose();
         QuanLyHoaDon.main(null);
     }//GEN-LAST:event_huyActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Chức năng đang phát triển.");
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

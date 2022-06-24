@@ -40,7 +40,7 @@ public class DoiTac {
         int i = 0;
         Connection conn = null;
         conn = ConnectionUtils.getMyConnection();
-        String SQL = "insert into DOITAC values (madt_seq.nextval, ?, ?, ?)";
+        String SQL = "insert into DOITAC (TENCTY, DIACHI, SDT) values ( ?, ?, ?)";
         PreparedStatement ps = conn.prepareStatement(SQL);
         ps.setString(1, tenCT);
         ps.setString(2, diaC);

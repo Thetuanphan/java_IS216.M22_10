@@ -45,7 +45,7 @@ public class LoaiSanPham {
         int i = 0;
         Connection conn = null;
         conn = ConnectionUtils.getMyConnection();
-        String SQL = "insert into LOAISANPHAM values (malsp_seq.nextval, ?)";
+        String SQL = "insert into LOAISANPHAM (TENLSP) values (?)";
         PreparedStatement ps = conn.prepareStatement(SQL);
         ps.setString(1, tenLSP);
         i = ps.executeUpdate();

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.swing.Icon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -195,7 +196,7 @@ private void guiHoaDon(){
             Logger.getLogger(TaoHoaDon.class.getName()).log(Level.SEVERE, null, ex);
         }
 }
-private void guiHoaDonHTML(){
+private void guiHoaDonHTML() throws AddressException, UnsupportedEncodingException{
             String body = "<div  style='text-align:center;'> <img style='width:75%;height:50%;' src='https://www.marry.vn/wp-content/uploads/2016/04/29/hinh-dang-kim-cuong.jpg' alt='Italian Trulli'> <h1 style='color:red;'>Hóa Đơn Mua Hàng</h1> <p>Xin chào khách hàng: <b>" 
                     + tenKhachHang.getText() 
                     + "</b> </p> <p>Bạn đã mua hàng tại Cửa hàng Đá quý ABC lúc: "
@@ -857,6 +858,10 @@ private void guiHoaDonHTML(){
             QuanLyHoaDon.main(null);
         } catch (SQLException | ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(this, "Thanh toán thành thất bại  !!!");
+        } catch (AddressException ex) {
+            Logger.getLogger(TaoHoaDon.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(TaoHoaDon.class.getName()).log(Level.SEVERE, null, ex);
         }
 
 

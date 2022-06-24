@@ -43,7 +43,7 @@ public class KhuyenMai {
         int i = 0;
         Connection conn = null;
         conn = ConnectionUtils.getMyConnection();
-        String SQL = "insert into KHUYENMAI values (makm_seq.nextval, ?, ?, ?)";
+        String SQL = "insert into KHUYENMAI (LOAIKM, TYLEGIAM, TIENGIAM) values (?, ?, ?)";
         PreparedStatement ps = conn.prepareStatement(SQL);
         ps.setString(1, loaiKM);
         ps.setInt(2, tiLG);
