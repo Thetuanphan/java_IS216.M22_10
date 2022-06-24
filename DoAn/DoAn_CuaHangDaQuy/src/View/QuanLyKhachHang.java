@@ -139,6 +139,23 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(bang1);
+        if (bang1.getColumnModel().getColumnCount() > 0) {
+            bang1.getColumnModel().getColumn(0).setMinWidth(80);
+            bang1.getColumnModel().getColumn(0).setPreferredWidth(80);
+            bang1.getColumnModel().getColumn(0).setMaxWidth(80);
+            bang1.getColumnModel().getColumn(2).setMinWidth(80);
+            bang1.getColumnModel().getColumn(2).setPreferredWidth(80);
+            bang1.getColumnModel().getColumn(2).setMaxWidth(80);
+            bang1.getColumnModel().getColumn(4).setMinWidth(80);
+            bang1.getColumnModel().getColumn(4).setPreferredWidth(80);
+            bang1.getColumnModel().getColumn(4).setMaxWidth(80);
+            bang1.getColumnModel().getColumn(5).setMinWidth(80);
+            bang1.getColumnModel().getColumn(5).setPreferredWidth(80);
+            bang1.getColumnModel().getColumn(5).setMaxWidth(80);
+            bang1.getColumnModel().getColumn(7).setMinWidth(110);
+            bang1.getColumnModel().getColumn(7).setPreferredWidth(110);
+            bang1.getColumnModel().getColumn(7).setMaxWidth(110);
+        }
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("SĐT");
@@ -209,16 +226,6 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel10)
-                        .addGap(472, 472, 472))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(quayLai)
-                        .addGap(368, 368, 368)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(306, 306, 306)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,15 +243,17 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(loai, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(MKH, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(164, 164, 164)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(14, 14, 14))
-                            .addComponent(jLabel7)
+                                .addGap(164, 164, 164)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel7)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addGap(10, 10, 10))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(10, 10, 10)))
+                                .addGap(174, 174, 174)
+                                .addComponent(jLabel9)))
                         .addGap(4, 4, 4)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -265,21 +274,31 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
                                     .addComponent(TKH)
                                     .addComponent(GT, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 143, Short.MAX_VALUE)))
+                        .addGap(0, 143, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(472, 472, 472))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(quayLai)
+                                .addGap(368, 368, 368)
+                                .addComponent(jLabel2)))))
                 .addGap(69, 69, 69))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(137, 137, 137))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(bthem)
                         .addGap(151, 151, 151)
                         .addComponent(bXoa)
                         .addGap(154, 154, 154)
                         .addComponent(bSua)
-                        .addGap(341, 341, 341))))
+                        .addGap(341, 341, 341))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,9 +322,9 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
                                 .addComponent(SDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel8)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(email)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(MKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -467,12 +486,6 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
 
         try {
             KhachHang kh = new KhachHang();
-            int check = kh.checkMail(mail);
-            if (check == 0) {
-                JOptionPane.showMessageDialog(this, "Mail đã tồn tại !!!");
-                return;
-            }
-
             int rs = kh.updateKH(maKH, tenKH, gioiT, mail, sdt, di, lo, namS);
             setListKH();
             JOptionPane.showMessageDialog(this, "Sửa thành công !!!");

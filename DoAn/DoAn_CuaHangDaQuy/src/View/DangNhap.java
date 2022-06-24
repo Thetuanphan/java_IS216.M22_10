@@ -7,6 +7,7 @@ package View;
 import ConnectDB.ConnectionUtils;
 import File.ReadWriteFile;
 import Process.TaiKhoan;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -62,6 +63,18 @@ public class DangNhap extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Mật khẩu");
+
+        tenDangNhap.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tenDangNhapKeyPressed(evt);
+            }
+        });
+
+        password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordKeyPressed(evt);
+            }
+        });
 
         dangNhap.setBackground(new java.awt.Color(0, 51, 255));
         dangNhap.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -123,11 +136,10 @@ public class DangNhap extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(tenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel2)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)))
+                    .addComponent(jLabel1))
                 .addGap(34, 34, 34)
                 .addComponent(dangNhap)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -179,6 +191,66 @@ public class DangNhap extends javax.swing.JFrame {
             Logger.getLogger(DangNhap.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_dangNhapActionPerformed
+
+    private void tenDangNhapKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tenDangNhapKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String userName = tenDangNhap.getText();
+            String matKhau = password.getText();
+            if (userName.equals("") || matKhau.equals("")) {
+                JOptionPane.showMessageDialog(this, "Không được để trống !!!");
+                return;
+            }
+            try {
+                TaiKhoan tk = new TaiKhoan();
+                int check = tk.checkDN(userName, matKhau);
+                if (check == -1) {
+                    JOptionPane.showMessageDialog(this, "Tên đăng nhập hoặc Mật khuẩu không chính xác !!!");
+                    return;
+                }
+                JOptionPane.showMessageDialog(this, "Đăng Nhập Thành Công !!!");
+                ReadWriteFile rw = new ReadWriteFile();
+                rw.saveMaNV(String.valueOf(check));
+                this.dispose();
+                Menu.main(null);
+
+            } catch (SQLException | ClassNotFoundException ex) {
+                JOptionPane.showMessageDialog(this, "Lỗi kết nối  !!!");
+            } catch (IOException ex) {
+                Logger.getLogger(DangNhap.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_tenDangNhapKeyPressed
+
+    private void passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String userName = tenDangNhap.getText();
+            String matKhau = password.getText();
+            if (userName.equals("") || matKhau.equals("")) {
+                JOptionPane.showMessageDialog(this, "Không được để trống !!!");
+                return;
+            }
+            try {
+                TaiKhoan tk = new TaiKhoan();
+                int check = tk.checkDN(userName, matKhau);
+                if (check == -1) {
+                    JOptionPane.showMessageDialog(this, "Tên đăng nhập hoặc Mật khuẩu không chính xác !!!");
+                    return;
+                }
+                JOptionPane.showMessageDialog(this, "Đăng Nhập Thành Công !!!");
+                ReadWriteFile rw = new ReadWriteFile();
+                rw.saveMaNV(String.valueOf(check));
+                this.dispose();
+                Menu.main(null);
+
+            } catch (SQLException | ClassNotFoundException ex) {
+                JOptionPane.showMessageDialog(this, "Lỗi kết nối  !!!");
+            } catch (IOException ex) {
+                Logger.getLogger(DangNhap.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_passwordKeyPressed
 
     /**
      * @param args the command line arguments

@@ -304,7 +304,6 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
             PreparedStatement ps = conn.prepareStatement(SQL);
             ps.setString(1, bang1.getValueAt(bang1.getSelectedRow(), 0).toString());
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Xóa thành công !!!");
             setListPN();
 
         } catch (SQLException ex) {
