@@ -348,7 +348,6 @@ INSERT INTO CTHD VALUES(4,4,6);
 INSERT INTO CTHD VALUES(5,5,8);
 
 
-commit;
 
 CREATE OR REPLACE TRIGGER TRIGGER_CUS_REVENUE_increased
 AFTER INSERT OR UPDATE OR DELETE ON HOADON
@@ -371,7 +370,6 @@ BEGIN
     END IF;  
 END;
 
-VIP", "Thân Thi?t", "Ti?m Nãng", "M?i
 CREATE OR REPLACE TRIGGER TRIGGER_CUS_TYPE_OLD
 BEFORE UPDATE ON KHACHHANG
 FOR EACH ROW
@@ -386,10 +384,13 @@ BEGIN
     END IF;
     IF (:new.DIEM > 15000000 and :new.DIEM <= 30000000)
     THEN
-        :new.LOAI := 'Ti?m Nãng';
+        :new.LOAI := 'Thân Thi?t';
     END IF;
     IF (:new.DIEM > 30000000)
     THEN
-        :new.LOAI := 'Thân Thi?t';
+        :new.LOAI := 'VIP';
     END IF;
 END;
+
+
+commit;
