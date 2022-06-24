@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.MessagingException;
@@ -54,40 +55,39 @@ public class XuatPhieuNhap extends javax.swing.JFrame {
         if (rs1.next()) {
             maNhanVien.setText(rs1.getString(2));
             tongSoLuong.setText(rs1.getString(4));
-            ngayTao.setText(rs1.getString(3));
-            
+            Date ngayT = rs1.getDate(3);
+            ngayTao.setText(String.format("%td-%<tm-%<tY", ngayT));
 
         }
-            try {
-                DSCTNSP = (DefaultTableModel) bang2.getModel();
-                DSCTNSP.setRowCount(0);
-                Connection conn = null;
-                conn = ConnectionUtils.getMyConnection();
-                String SQL = "SELECT * FROM CTNSP WHERE MAPN = ? ORDER BY MaSP";
-                System.out.print(maPN);
-                PreparedStatement ps = conn.prepareStatement(SQL);
-                ps.setInt(1, maPN);
-                ResultSet rs = ps.executeQuery();
-                String row[] = new String[5];
-                float TT = 0;
-                while (rs.next()) {
-                    row[0] = rs.getString(2);
-                    row[1] = rs.getString(3);
-                    row[2] = rs.getString(4);
-                    row[3] = rs.getString(5);
-                    row[4] = rs.getString(6);
-                    TT += Float.valueOf(row[4]);
-                    DSCTNSP.addRow(row);
-                }
-                tongTien.setText(String.valueOf(TT));
-                bang2.setModel(DSCTNSP);
-            } catch (SQLException ex) {
-                System.out.println("Xay ra loi");
-            } catch (ClassNotFoundException cx) {
-
+        try {
+            DSCTNSP = (DefaultTableModel) bang2.getModel();
+            DSCTNSP.setRowCount(0);
+            Connection conn = null;
+            conn = ConnectionUtils.getMyConnection();
+            String SQL = "SELECT * FROM CTNSP WHERE MAPN = ? ORDER BY MaSP";
+            System.out.print(maPN);
+            PreparedStatement ps = conn.prepareStatement(SQL);
+            ps.setInt(1, maPN);
+            ResultSet rs = ps.executeQuery();
+            String row[] = new String[5];
+            float TT = 0;
+            while (rs.next()) {
+                row[0] = rs.getString(2);
+                row[1] = rs.getString(3);
+                row[2] = rs.getString(4);
+                row[3] = rs.getString(5);
+                row[4] = rs.getString(6);
+                TT += Float.valueOf(row[4]);
+                DSCTNSP.addRow(row);
             }
-    }
+            tongTien.setText(String.valueOf(TT));
+            bang2.setModel(DSCTNSP);
+        } catch (SQLException ex) {
+            System.out.println("Xay ra loi");
+        } catch (ClassNotFoundException cx) {
 
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -102,7 +102,7 @@ public class XuatPhieuNhap extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         huy = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        xuat = new javax.swing.JButton();
         tongTien = new javax.swing.JFormattedTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -139,10 +139,15 @@ public class XuatPhieuNhap extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
         jLabel1.setText("Chi Tiết Phiếu Nhập");
 
-        jButton1.setBackground(new java.awt.Color(0, 255, 204));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Xuất Phiếu Nhập");
+        xuat.setBackground(new java.awt.Color(0, 255, 204));
+        xuat.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        xuat.setForeground(new java.awt.Color(255, 255, 255));
+        xuat.setText("Xuất Phiếu Nhập");
+        xuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                xuatActionPerformed(evt);
+            }
+        });
 
         tongTien.setEditable(false);
 
@@ -199,7 +204,7 @@ public class XuatPhieuNhap extends javax.swing.JFrame {
                                 .addComponent(jLabel8))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(187, 187, 187)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(xuat, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(143, 143, 143)
                                 .addComponent(huy, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -258,7 +263,7 @@ public class XuatPhieuNhap extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(xuat)
                     .addComponent(huy))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8)
@@ -286,6 +291,11 @@ public class XuatPhieuNhap extends javax.swing.JFrame {
         this.dispose();
         QuanLyPhieuNhap.main(null);
     }//GEN-LAST:event_huyActionPerformed
+
+    private void xuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xuatActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Chức năng đang phát triển !!!");
+    }//GEN-LAST:event_xuatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -336,7 +346,6 @@ public class XuatPhieuNhap extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable bang2;
     private javax.swing.JButton huy;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -352,5 +361,6 @@ public class XuatPhieuNhap extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField ngayTao;
     private javax.swing.JFormattedTextField tongSoLuong;
     private javax.swing.JFormattedTextField tongTien;
+    private javax.swing.JButton xuat;
     // End of variables declaration//GEN-END:variables
 }

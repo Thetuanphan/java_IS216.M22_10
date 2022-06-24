@@ -25,13 +25,20 @@ public class TaiKhoan {
         ResultSet rs = ps.executeQuery();
         return rs;
     }
-    
-    public int checkTK(int maNV) throws SQLException, ClassNotFoundException {
+    public ResultSet getListMaNV() throws SQLException, ClassNotFoundException {
         Connection conn = null;
         conn = ConnectionUtils.getMyConnection();
-        String SQL = "SELECT * FROM TAIKHOAN where MANV = ?";
+        String SQL = "SELECT MANV from NHANVIEN order by MANV asc";
         PreparedStatement ps = conn.prepareStatement(SQL);
-        ps.setInt(1, maNV);
+        ResultSet rs = ps.executeQuery();
+        return rs;
+    }
+    public int checkTK(String tenTK) throws SQLException, ClassNotFoundException {
+        Connection conn = null;
+        conn = ConnectionUtils.getMyConnection();
+        String SQL = "SELECT * FROM TAIKHOAN where TENTK = ?";
+        PreparedStatement ps = conn.prepareStatement(SQL);
+        ps.setString(1, tenTK);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
             return 0;
@@ -57,9 +64,9 @@ public class TaiKhoan {
         int i = 0;
         Connection conn = null;
         conn = ConnectionUtils.getMyConnection();
-        String SQL = "insert into TAIKHOAN(tenTK, MatKhau) values (?, ?)";
+        String SQL = "insert into TAIKHOAN(MANV, tenTK, MatKhau) values (?, ?, ?)";
         PreparedStatement ps = conn.prepareStatement(SQL);
-        
+        ps.setInt(1, maNV);
         ps.setString(2, tenTK);
         ps.setString(3, MK);
         i = ps.executeUpdate();
@@ -83,9 +90,9 @@ public class TaiKhoan {
         conn = ConnectionUtils.getMyConnection();
         String SQL = "update TAIKHOAN set TENTK = ?, MATKHAU = ? where MANV = ?";
         PreparedStatement ps = conn.prepareStatement(SQL);
-        ps.setInt(1, maNV);
-        ps.setString(2, tenTK);
-        ps.setString(3, MK);
+        ps.setString(1, tenTK);
+        ps.setString(2, MK);
+        ps.setInt(3, maNV);
         i = ps.executeUpdate();
         return i;
     }

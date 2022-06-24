@@ -369,11 +369,6 @@ public class QuanLyDoiTac extends javax.swing.JFrame {
 
         try {
             DoiTac dt = new DoiTac();
-            int check = dt.checkDoiTac(tenCT);
-            if (check == 0) {
-                JOptionPane.showMessageDialog(this, "Loại đối tác đã tồn tại !!!");
-                return;
-            }
             int rs = dt.updateKM(maDT, tenCT, diaC, soDT);
             setListDT();
             JOptionPane.showMessageDialog(this, "Sửa thành công !!!");
