@@ -26,7 +26,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
     DefaultTableModel DSTK = new DefaultTableModel();
     int maNV = -1;
     int maNVC = -1;
-
+    //QLTK
     /**
      * Creates new form QuanLyTaiKhoan
      */

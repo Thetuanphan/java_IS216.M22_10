@@ -287,7 +287,7 @@ public class QuanLyPhieuDichVu extends javax.swing.JFrame {
             bang2.setModel(DSCTDV);
 
         } catch (SQLException | ClassNotFoundException ex) {
-            System.out.println("ex");
+            System.out.println(ex);
         }
     }//GEN-LAST:event_bang1MouseClicked
 
