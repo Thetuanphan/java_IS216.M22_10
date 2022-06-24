@@ -32,7 +32,7 @@
 <a name="caidat"></a>
 * B1: Tải Tạo User với tên: c##UserAdmin + passwor: 12345678 trong Oracle
 * B2: Import file SQL.sql vào user trên, tải tại:  <a href="https://github.com/Thetuanphan/java_IS216.M22_10/tree/Do/DoAn/DoAn_CuaHangDaQuy/src/SQL">Đây</a>
-* B3: Tải File: DoAn.zip trong thư mục DoAn.exe và giải nén
+* B3: Tải File: DoAn.zip tại <a href="https://github.com/Thetuanphan/java_IS216.M22_10/blob/Do/DoAn.exe/DoAn.zip">Đây</a> và giải nén
 * B4: Chạy File QuanLyCuaHang.exe hoặc DoAn_CuaHangDaQuy.jar
 
 
