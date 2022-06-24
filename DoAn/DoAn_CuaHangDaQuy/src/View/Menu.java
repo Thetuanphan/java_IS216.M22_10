@@ -51,15 +51,15 @@ public class Menu extends javax.swing.JFrame {
         quanLyKhuyenMai = new javax.swing.JButton();
         quanLyLoaiSanPham = new javax.swing.JButton();
         quanLySanPham = new javax.swing.JButton();
+        xemBaoCao = new javax.swing.JButton();
+        quanLyNhanVien = new javax.swing.JButton();
+        quanLyKhachHang = new javax.swing.JButton();
+        quanLyDoiTac = new javax.swing.JButton();
         quanLyDichVu = new javax.swing.JButton();
-        quanLyDichVu1 = new javax.swing.JButton();
-        quanLyKhuyenMai1 = new javax.swing.JButton();
-        quanLyLoaiSanPham1 = new javax.swing.JButton();
-        quanLySanPham1 = new javax.swing.JButton();
         quanLyCaNhan = new javax.swing.JButton();
-        quanLyHoaDon2 = new javax.swing.JButton();
-        quanLySanPham2 = new javax.swing.JButton();
-        quanLyKhuyenMai2 = new javax.swing.JButton();
+        quanLyPhieuDichVu = new javax.swing.JButton();
+        quanLyPhieuNhap = new javax.swing.JButton();
+        quanLyTaiKhoan = new javax.swing.JButton();
         dangXuat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -96,38 +96,38 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        quanLyDichVu.setText("Xem Báo Cáo");
+        xemBaoCao.setText("Xem Báo Cáo");
+        xemBaoCao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                xemBaoCaoActionPerformed(evt);
+            }
+        });
+
+        quanLyNhanVien.setText("Quản Lý Nhân Viên");
+        quanLyNhanVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quanLyNhanVienActionPerformed(evt);
+            }
+        });
+
+        quanLyKhachHang.setText("Quản Lý Khách Hàng");
+        quanLyKhachHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quanLyKhachHangActionPerformed(evt);
+            }
+        });
+
+        quanLyDoiTac.setText("Quản Lý Đối Tác");
+        quanLyDoiTac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quanLyDoiTacActionPerformed(evt);
+            }
+        });
+
+        quanLyDichVu.setText("Quản Lý Dịch Vụ");
         quanLyDichVu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 quanLyDichVuActionPerformed(evt);
-            }
-        });
-
-        quanLyDichVu1.setText("Quản Lý Nhân Viên");
-        quanLyDichVu1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quanLyDichVu1ActionPerformed(evt);
-            }
-        });
-
-        quanLyKhuyenMai1.setText("Quản Lý Khách Hàng");
-        quanLyKhuyenMai1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quanLyKhuyenMai1ActionPerformed(evt);
-            }
-        });
-
-        quanLyLoaiSanPham1.setText("Quản Lý Đối Tác");
-        quanLyLoaiSanPham1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quanLyLoaiSanPham1ActionPerformed(evt);
-            }
-        });
-
-        quanLySanPham1.setText("Quản Lý Dịch Vụ");
-        quanLySanPham1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quanLySanPham1ActionPerformed(evt);
             }
         });
 
@@ -138,24 +138,24 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        quanLyHoaDon2.setText("Quản Lý Phiếu Dịch Vụ");
-        quanLyHoaDon2.addActionListener(new java.awt.event.ActionListener() {
+        quanLyPhieuDichVu.setText("Quản Lý Phiếu Dịch Vụ");
+        quanLyPhieuDichVu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quanLyHoaDon2ActionPerformed(evt);
+                quanLyPhieuDichVuActionPerformed(evt);
             }
         });
 
-        quanLySanPham2.setText("Quản Lý Phiếu Nhập");
-        quanLySanPham2.addActionListener(new java.awt.event.ActionListener() {
+        quanLyPhieuNhap.setText("Quản Lý Phiếu Nhập");
+        quanLyPhieuNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quanLySanPham2ActionPerformed(evt);
+                quanLyPhieuNhapActionPerformed(evt);
             }
         });
 
-        quanLyKhuyenMai2.setText("Quản Lý Tài Khản");
-        quanLyKhuyenMai2.addActionListener(new java.awt.event.ActionListener() {
+        quanLyTaiKhoan.setText("Quản Lý Tài Khoản");
+        quanLyTaiKhoan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quanLyKhuyenMai2ActionPerformed(evt);
+                quanLyTaiKhoanActionPerformed(evt);
             }
         });
 
@@ -184,7 +184,7 @@ public class Menu extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(quanLyHoaDon)
-                            .addComponent(quanLyDichVu)
+                            .addComponent(xemBaoCao)
                             .addComponent(quanLyLoaiSanPham)
                             .addComponent(quanLySanPham))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -192,21 +192,21 @@ public class Menu extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(quanLyCaNhan)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(quanLyKhuyenMai1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(quanLyDichVu1)
-                    .addComponent(quanLyLoaiSanPham1)
-                    .addComponent(quanLySanPham1))
+                    .addComponent(quanLyKhachHang, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(quanLyNhanVien)
+                    .addComponent(quanLyDoiTac)
+                    .addComponent(quanLyDichVu))
                 .addGap(161, 161, 161)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(quanLyHoaDon2)
+                        .addComponent(quanLyPhieuDichVu)
                         .addGap(98, 98, 98))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(dangXuat)
-                            .addComponent(quanLySanPham2)
-                            .addComponent(quanLyKhuyenMai2))
-                        .addGap(82, 82, 82))))
+                            .addComponent(quanLyPhieuNhap)
+                            .addComponent(quanLyTaiKhoan))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,9 +214,9 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(quanLyHoaDon2)
+                        .addComponent(quanLyPhieuDichVu)
                         .addGap(29, 29, 29)
-                        .addComponent(quanLySanPham2)
+                        .addComponent(quanLyPhieuNhap)
                         .addGap(135, 135, 135)
                         .addComponent(dangXuat))
                     .addGroup(layout.createSequentialGroup()
@@ -232,19 +232,19 @@ public class Menu extends javax.swing.JFrame {
                                 .addGap(30, 30, 30)
                                 .addComponent(quanLyKhuyenMai)
                                 .addGap(31, 31, 31)
-                                .addComponent(quanLyDichVu))
+                                .addComponent(xemBaoCao))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(quanLyCaNhan)
                                 .addGap(29, 29, 29)
-                                .addComponent(quanLySanPham1)
+                                .addComponent(quanLyDichVu)
                                 .addGap(27, 27, 27)
-                                .addComponent(quanLyLoaiSanPham1)
+                                .addComponent(quanLyDoiTac)
                                 .addGap(30, 30, 30)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(quanLyKhuyenMai1)
-                                    .addComponent(quanLyKhuyenMai2))
+                                    .addComponent(quanLyKhachHang)
+                                    .addComponent(quanLyTaiKhoan))
                                 .addGap(31, 31, 31)
-                                .addComponent(quanLyDichVu1)))))
+                                .addComponent(quanLyNhanVien)))))
                 .addContainerGap(156, Short.MAX_VALUE))
         );
 
@@ -275,35 +275,35 @@ public class Menu extends javax.swing.JFrame {
         QuanLySanPham.main(null);
     }//GEN-LAST:event_quanLySanPhamActionPerformed
 
-    private void quanLyDichVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLyDichVuActionPerformed
+    private void xemBaoCaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xemBaoCaoActionPerformed
         // TODO add your handling code here:
         this.dispose();
         QuanLyReport.main(null);
-    }//GEN-LAST:event_quanLyDichVuActionPerformed
+    }//GEN-LAST:event_xemBaoCaoActionPerformed
 
-    private void quanLyDichVu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLyDichVu1ActionPerformed
+    private void quanLyNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLyNhanVienActionPerformed
         // TODO add your handling code here:
         this.dispose();
         QuanLyNhanVien.main(null);
-    }//GEN-LAST:event_quanLyDichVu1ActionPerformed
+    }//GEN-LAST:event_quanLyNhanVienActionPerformed
 
-    private void quanLyKhuyenMai1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLyKhuyenMai1ActionPerformed
+    private void quanLyKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLyKhachHangActionPerformed
         // TODO add your handling code here:
         this.dispose();
         QuanLyKhachHang.main(null);
-    }//GEN-LAST:event_quanLyKhuyenMai1ActionPerformed
+    }//GEN-LAST:event_quanLyKhachHangActionPerformed
 
-    private void quanLyLoaiSanPham1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLyLoaiSanPham1ActionPerformed
+    private void quanLyDoiTacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLyDoiTacActionPerformed
         // TODO add your handling code here:
         this.dispose();
         QuanLyDoiTac.main(null);
-    }//GEN-LAST:event_quanLyLoaiSanPham1ActionPerformed
+    }//GEN-LAST:event_quanLyDoiTacActionPerformed
 
-    private void quanLySanPham1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLySanPham1ActionPerformed
+    private void quanLyDichVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLyDichVuActionPerformed
         // TODO add your handling code here:
         this.dispose();
         QuanLyDichVu.main(null);
-    }//GEN-LAST:event_quanLySanPham1ActionPerformed
+    }//GEN-LAST:event_quanLyDichVuActionPerformed
 
     private void quanLyCaNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLyCaNhanActionPerformed
         // TODO add your handling code here:
@@ -311,23 +311,23 @@ public class Menu extends javax.swing.JFrame {
         QuanLyCaNhan.main(null);
     }//GEN-LAST:event_quanLyCaNhanActionPerformed
 
-    private void quanLyHoaDon2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLyHoaDon2ActionPerformed
+    private void quanLyPhieuDichVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLyPhieuDichVuActionPerformed
         // TODO add your handling code here:
         this.dispose();
         QuanLyPhieuDichVu.main(null);
-    }//GEN-LAST:event_quanLyHoaDon2ActionPerformed
+    }//GEN-LAST:event_quanLyPhieuDichVuActionPerformed
 
-    private void quanLySanPham2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLySanPham2ActionPerformed
+    private void quanLyPhieuNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLyPhieuNhapActionPerformed
         // TODO add your handling code here:
         this.dispose();
         QuanLyPhieuNhap.main(null);
-    }//GEN-LAST:event_quanLySanPham2ActionPerformed
+    }//GEN-LAST:event_quanLyPhieuNhapActionPerformed
 
-    private void quanLyKhuyenMai2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLyKhuyenMai2ActionPerformed
+    private void quanLyTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanLyTaiKhoanActionPerformed
         // TODO add your handling code here:
         this.dispose();
         QuanLyTaiKhoan.main(null);
-    }//GEN-LAST:event_quanLyKhuyenMai2ActionPerformed
+    }//GEN-LAST:event_quanLyTaiKhoanActionPerformed
 
     private void dangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dangXuatActionPerformed
         // TODO add your handling code here:
@@ -390,16 +390,16 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton quanLyCaNhan;
     private javax.swing.JButton quanLyDichVu;
-    private javax.swing.JButton quanLyDichVu1;
+    private javax.swing.JButton quanLyDoiTac;
     private javax.swing.JButton quanLyHoaDon;
-    private javax.swing.JButton quanLyHoaDon2;
+    private javax.swing.JButton quanLyKhachHang;
     private javax.swing.JButton quanLyKhuyenMai;
-    private javax.swing.JButton quanLyKhuyenMai1;
-    private javax.swing.JButton quanLyKhuyenMai2;
     private javax.swing.JButton quanLyLoaiSanPham;
-    private javax.swing.JButton quanLyLoaiSanPham1;
+    private javax.swing.JButton quanLyNhanVien;
+    private javax.swing.JButton quanLyPhieuDichVu;
+    private javax.swing.JButton quanLyPhieuNhap;
     private javax.swing.JButton quanLySanPham;
-    private javax.swing.JButton quanLySanPham1;
-    private javax.swing.JButton quanLySanPham2;
+    private javax.swing.JButton quanLyTaiKhoan;
+    private javax.swing.JButton xemBaoCao;
     // End of variables declaration//GEN-END:variables
 }

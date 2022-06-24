@@ -41,6 +41,7 @@ public class HoaDon {
         conn = ConnectionUtils.getMyConnection();
         String SQL = "INSERT INTO HOADON ( MANV, NGAYTAOHD, TONGTIEN, TIENKM, THANHTIEN) VALUES ( ?, TO_DATE(CURRENT_DATE, 'DD-MM-YYYY HH24:MI:SS'), '0', '0', '0')";
         PreparedStatement ps = conn.prepareStatement(SQL);
+        System.out.print(SQL);
         ps.setInt(1, maNV);
         i = ps.executeUpdate();
         return i;

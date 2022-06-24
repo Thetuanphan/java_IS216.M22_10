@@ -39,7 +39,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="quanLyHoaDon" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="quanLyDichVu" min="-2" max="-2" attributes="0"/>
+                          <Component id="xemBaoCao" min="-2" max="-2" attributes="0"/>
                           <Component id="quanLyLoaiSanPham" min="-2" max="-2" attributes="0"/>
                           <Component id="quanLySanPham" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -51,24 +51,24 @@
                       <Component id="quanLyCaNhan" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="16" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="quanLyKhuyenMai1" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="quanLyDichVu1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="quanLyLoaiSanPham1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="quanLySanPham1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="quanLyKhachHang" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="quanLyNhanVien" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="quanLyDoiTac" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="quanLyDichVu" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="quanLyHoaDon2" min="-2" max="-2" attributes="0"/>
+                      <Component id="quanLyPhieuDichVu" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="dangXuat" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="quanLySanPham2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="quanLyKhuyenMai2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="quanLyPhieuNhap" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="quanLyTaiKhoan" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -80,9 +80,9 @@
               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="quanLyHoaDon2" min="-2" max="-2" attributes="0"/>
+                      <Component id="quanLyPhieuDichVu" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="quanLySanPham2" min="-2" max="-2" attributes="0"/>
+                      <Component id="quanLyPhieuNhap" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
                       <Component id="dangXuat" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -99,21 +99,21 @@
                               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="quanLyKhuyenMai" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                              <Component id="quanLyDichVu" min="-2" max="-2" attributes="0"/>
+                              <Component id="xemBaoCao" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="quanLyCaNhan" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                              <Component id="quanLySanPham1" min="-2" max="-2" attributes="0"/>
+                              <Component id="quanLyDichVu" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                              <Component id="quanLyLoaiSanPham1" min="-2" max="-2" attributes="0"/>
+                              <Component id="quanLyDoiTac" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="quanLyKhuyenMai1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="quanLyKhuyenMai2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="quanLyKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="quanLyTaiKhoan" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                              <Component id="quanLyDichVu1" min="-2" max="-2" attributes="0"/>
+                              <Component id="quanLyNhanVien" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -167,44 +167,44 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quanLySanPhamActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="quanLyDichVu">
+    <Component class="javax.swing.JButton" name="xemBaoCao">
       <Properties>
         <Property name="text" type="java.lang.String" value="Xem B&#xe1;o C&#xe1;o"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quanLyDichVuActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="xemBaoCaoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="quanLyDichVu1">
+    <Component class="javax.swing.JButton" name="quanLyNhanVien">
       <Properties>
         <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; Nh&#xe2;n Vi&#xea;n"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quanLyDichVu1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quanLyNhanVienActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="quanLyKhuyenMai1">
+    <Component class="javax.swing.JButton" name="quanLyKhachHang">
       <Properties>
         <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; Kh&#xe1;ch H&#xe0;ng"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quanLyKhuyenMai1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quanLyKhachHangActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="quanLyLoaiSanPham1">
+    <Component class="javax.swing.JButton" name="quanLyDoiTac">
       <Properties>
         <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; &#x110;&#x1ed1;i T&#xe1;c"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quanLyLoaiSanPham1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quanLyDoiTacActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="quanLySanPham1">
+    <Component class="javax.swing.JButton" name="quanLyDichVu">
       <Properties>
         <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; D&#x1ecb;ch V&#x1ee5;"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quanLySanPham1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quanLyDichVuActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="quanLyCaNhan">
@@ -215,28 +215,28 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quanLyCaNhanActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="quanLyHoaDon2">
+    <Component class="javax.swing.JButton" name="quanLyPhieuDichVu">
       <Properties>
         <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; Phi&#x1ebf;u D&#x1ecb;ch V&#x1ee5;"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quanLyHoaDon2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quanLyPhieuDichVuActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="quanLySanPham2">
+    <Component class="javax.swing.JButton" name="quanLyPhieuNhap">
       <Properties>
         <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; Phi&#x1ebf;u Nh&#x1ead;p"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quanLySanPham2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quanLyPhieuNhapActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="quanLyKhuyenMai2">
+    <Component class="javax.swing.JButton" name="quanLyTaiKhoan">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; T&#xe0;i Kh&#x1ea3;n"/>
+        <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; T&#xe0;i Kho&#x1ea3;n"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quanLyKhuyenMai2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quanLyTaiKhoanActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="dangXuat">
