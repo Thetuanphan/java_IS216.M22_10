@@ -293,8 +293,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         String tenTK = tenTaiKhoan.getText();
         String MK = matKhau.getText();
         String XNMK = xnMatKhau.getText();
-        String maNV = maNhanVien.getSelectedItem().toString();
-        if (tenTK.equals("") || maNV.equals("") || MK.equals("") || XNMK.equals("")) {
+        if (tenTK.equals("") || MK.equals("") || XNMK.equals("")) {
             JOptionPane.showMessageDialog(this, "Không được để trống !!!");
             return;
         }
