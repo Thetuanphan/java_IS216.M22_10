@@ -214,7 +214,7 @@ public class QuanLyReport extends javax.swing.JFrame {
     private void btHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHDActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        ReportHoaDon1.main(null);
+        ReportHoaDon.main(null);
 
     }//GEN-LAST:event_btHDActionPerformed
 

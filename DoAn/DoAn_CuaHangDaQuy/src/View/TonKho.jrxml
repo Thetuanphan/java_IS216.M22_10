@@ -19,7 +19,7 @@
 					<textElement>
 						<font size="12"/>
 					</textElement>
-					<text><![CDATA[MASP]]></text>
+					<text><![CDATA[MALSP]]></text>
 				</staticText>
 				<textField>
 					<reportElement mode="Opaque" x="100" y="0" width="455" height="32" forecolor="#006699" backcolor="#E6E6E6" uuid="597530c7-1608-457b-8176-45dadd7e8a65"/>
@@ -67,7 +67,7 @@
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[MALSP]]></text>
+				<text><![CDATA[MASP]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="185" y="0" width="185" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="dbbc288c-6210-49bb-99d9-f015a1069b80"/>
