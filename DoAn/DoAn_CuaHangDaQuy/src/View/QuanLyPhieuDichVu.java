@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author thetu
@@ -23,15 +24,16 @@ public class QuanLyPhieuDichVu extends javax.swing.JFrame {
     DefaultTableModel DSPDV = new DefaultTableModel();
     int maNV = -1;
     int maPDV = -1;
+
     /**
      * Creates new form QuanLyPhieuDichVu
      */
-    public QuanLyPhieuDichVu() throws SQLException, ClassNotFoundException, IOException{
+    public QuanLyPhieuDichVu() throws SQLException, ClassNotFoundException, IOException {
         initComponents();
         setListPDV();
-        //setMaNV();
+        setMaNV();
     }
-    
+
     private void setListPDV() throws SQLException, ClassNotFoundException {
         try {
             PhieuDichVu pdv = new PhieuDichVu();
@@ -55,7 +57,6 @@ public class QuanLyPhieuDichVu extends javax.swing.JFrame {
             System.out.println("Xay ra loi" + ex.getMessage());
         }
     }
-    
 
     public void setMaNV() throws IOException {
         ReadWriteFile rw = new ReadWriteFile();
@@ -63,6 +64,7 @@ public class QuanLyPhieuDichVu extends javax.swing.JFrame {
         maNV = Integer.valueOf(temp);
         System.out.println(maNV);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -155,9 +157,9 @@ public class QuanLyPhieuDichVu extends javax.swing.JFrame {
             bang2.getColumnModel().getColumn(3).setMinWidth(130);
             bang2.getColumnModel().getColumn(3).setPreferredWidth(130);
             bang2.getColumnModel().getColumn(3).setMaxWidth(130);
-            bang2.getColumnModel().getColumn(4).setMinWidth(130);
-            bang2.getColumnModel().getColumn(4).setPreferredWidth(130);
-            bang2.getColumnModel().getColumn(4).setMaxWidth(130);
+            bang2.getColumnModel().getColumn(4).setMinWidth(180);
+            bang2.getColumnModel().getColumn(4).setPreferredWidth(180);
+            bang2.getColumnModel().getColumn(4).setMaxWidth(180);
         }
 
         bang1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -169,7 +171,7 @@ public class QuanLyPhieuDichVu extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Mã PDV", "Tên KH", "Ngày Tạo", "Tổng Cộng", "Trả Trước", "Thành Tiền"
+                "Mã PDV", "Tên KH", "Ngày Tạo", "Tổng SL", "Trả Trước", "Thành Tiền"
             }
         ));
         bang1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -260,7 +262,6 @@ public class QuanLyPhieuDichVu extends javax.swing.JFrame {
     private void bang1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bang1MouseClicked
         // TODO add your handling code here:
         xoa.setEnabled(true);
-
         int Index = bang1.getSelectedRow();
         if (Index < DSPDV.getRowCount() && Index >= 0) {
             maPDV = Integer.valueOf(DSPDV.getValueAt(Index, 0).toString());
@@ -272,16 +273,14 @@ public class QuanLyPhieuDichVu extends javax.swing.JFrame {
             ResultSet rs = pdv.getListCTDV(maPDV);
             DSCTDV = (DefaultTableModel) bang2.getModel();
             DSCTDV.setRowCount(0);
-            String row[] = new String[7];
+            String row[] = new String[5];
             while (rs.next()) {
                 row[0] = rs.getString(1);
                 row[1] = rs.getString(2);
                 row[2] = rs.getString(3);
                 row[3] = rs.getString(4);
-                row[4] = rs.getString(5);
-                row[5] = rs.getString(6);
-                float temp = Integer.valueOf(row[3]) * Integer.valueOf(row[5]);
-                row[6] = String.valueOf(temp);
+                float temp = Integer.valueOf(row[2]) * Integer.valueOf(row[3]);
+                row[4] = String.valueOf(temp);
                 DSCTDV.addRow(row);
             }
             bang2.setModel(DSCTDV);
@@ -334,7 +333,7 @@ public class QuanLyPhieuDichVu extends javax.swing.JFrame {
 
         try {
             PhieuDichVu pdv = new PhieuDichVu();
-            int check = pdv.addPDV(1);
+            int check = pdv.addPDV(maNV);
             if (check == 0) {
                 JOptionPane.showMessageDialog(this, "Tạo phiếu dịch vụ thất bại");
                 return;

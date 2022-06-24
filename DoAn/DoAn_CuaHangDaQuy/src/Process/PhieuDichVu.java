@@ -18,7 +18,7 @@ public class PhieuDichVu {
     public ResultSet getListPDV() throws SQLException, ClassNotFoundException {
         Connection conn = null;
         conn = ConnectionUtils.getMyConnection();
-        String SQL = "SELECT PDV.MAPDV, KH.TENKH, NGAYTAOPDV, TONGSLDV, TONGTIEN, TRATRUOC, THANHTIEN "
+        String SQL = "SELECT PDV.MAPDV, KH.TENKH, NGAYTAOPDV, TONGSLDV,  TRATRUOC, THANHTIEN "
                 + "FROM PHIEUDV PDV, KHACHHANG KH WHERE KH.MAKH = PDV.MAKH order by MAPDV DESC";
         PreparedStatement ps = conn.prepareStatement(SQL);
         ResultSet rs = ps.executeQuery();
@@ -30,7 +30,7 @@ public class PhieuDichVu {
         Connection conn = null;
         conn = ConnectionUtils.getMyConnection();
         String SQL = "SELECT S.MADV, S.TENDV, C.SLDV, S.TIENDV"
-                + "FROM CTDV C, DICHVU S WHERE C.MADV = S.MADV AND MAPDV = ? ORDER BY TENDV ASC";
+                + " FROM CTDV C, DICHVU S WHERE C.MADV = S.MADV AND MAPDV = ? ORDER BY TENDV ASC";
         PreparedStatement ps = conn.prepareStatement(SQL);
         ps.setInt(1, maPDV);
         ResultSet rs = ps.executeQuery();
@@ -41,8 +41,8 @@ public class PhieuDichVu {
         int i = 0;
         Connection conn = null;
         conn = ConnectionUtils.getMyConnection();
-        String SQL = "INSERT INTO PHIEUDV (MANV, MAKH, NGAYTAOPDV, TONGSLDV, TONGTIEN, TRATRUOC, THANHTIEN, TINHTRANG) "
-                + "VALUES (?, '1', TO_DATE(CURRENT_DATE, 'DD-MM-YYYY HH24:MI:SS'), '0', '0', '0', '0', 'CHƯA THANH TOÁN')";
+        String SQL = "INSERT INTO PHIEUDV (MANV, MAKH, NGAYTAOPDV, TONGSLDV, TONGTIEN, TRATRUOC, THANHTIEN) "
+                + "VALUES (?, '1', TO_DATE(CURRENT_DATE, 'DD-MM-YYYY HH24:MI:SS'), '0', '0', '0', '0')";
         PreparedStatement ps = conn.prepareStatement(SQL);
         ps.setInt(1, maNV);
         i = ps.executeUpdate();
@@ -116,7 +116,7 @@ public class PhieuDichVu {
             SQL = "UPDATE phieudv SET MAKH = ?,TONGSLDV = ?, TONGTIEN = ?, TRATRUOC = ?, THANHTIEN = ? WHERE MAPDV = ?";
             PreparedStatement ps = conn.prepareStatement(SQL);
             ps.setInt(1, maKH);
-            ps.setInt(2, Integer.valueOf(tongSLDV));
+            ps.setInt(2, tongSLDV);
             ps.setFloat(3, a);
             ps.setFloat(4, b);
             ps.setFloat(5, c);
