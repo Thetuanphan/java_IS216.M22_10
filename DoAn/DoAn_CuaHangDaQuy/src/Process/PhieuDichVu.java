@@ -26,6 +26,7 @@ public class PhieuDichVu {
     }
 
     public ResultSet getListCTDV(int maPDV) throws SQLException, ClassNotFoundException {
+        System.out.print(maPDV);
         Connection conn = null;
         conn = ConnectionUtils.getMyConnection();
         String SQL = "SELECT S.MADV, S.TENDV, C.SLDV, S.TIENDV"
