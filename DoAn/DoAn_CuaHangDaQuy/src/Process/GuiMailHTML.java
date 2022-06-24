@@ -23,22 +23,22 @@ import javax.mail.internet.MimeMessage;
  */
 public class GuiMailHTML {
 
-    public void GuiHoaDon(String nguoiN, String noiD) throws AddressException, MessagingException {
-        //        final String fromEmail = "nghenhacvui2022@gmail.com";
+    public void GuiHoaDon(String nguoiN, String noiD) throws AddressException, MessagingException, UnsupportedEncodingException {
+                final String fromEmail = "cuahangdaquyabc@gmail.com";
 //        // Mat khai email cua ban
-//        final String password = "hqxmgeorzceilvwh";
+        final String password = "mpomuveaaaefsjyd";
 //        // dia chi email nguoi nhan
-        final String fromEmail = "vothanhdo113114@yahoo.com";
+//        final String fromEmail = "vothanhdo113114@yahoo.com";
         // Mat khai email cua ban
-        final String password = "pifbjnmaifqjvwsd";
+//        final String password = "pifbjnmaifqjvwsd";
         // dia chi email nguoi nhan
         final String toEmail = nguoiN;
 
-        final String subject = "Java Example Test";
+
 
         Properties props = new Properties();
-        props.put("mail.smtp.host", "smtp.mail.yahoo.com"); //SMTP Host
-        //props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
+        //props.put("mail.smtp.host", "smtp.mail.yahoo.com"); //SMTP Host
+        props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
         props.put("mail.smtp.port", "587"); //TLS Port
         props.put("mail.smtp.auth", "true"); //enable authentication
         props.put("mail.smtp.starttls.enable", "true"); //enable STARTTLS
@@ -55,7 +55,7 @@ public class GuiMailHTML {
         });
 
         MimeMessage message = new MimeMessage(session);
-        message.setFrom(new InternetAddress(fromEmail));
+        message.setFrom(new InternetAddress(fromEmail, "Cửa Hàng Đá Quý ABC"));
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
         message.setHeader("Content-Type", "text/plain; charset=utf-8");
         message.setSubject("Hóa Đơn Mua Hàng Ngày: " + java.time.LocalDate.now() + " " +java.time.LocalTime.now());

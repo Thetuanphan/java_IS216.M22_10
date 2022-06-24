@@ -39,8 +39,9 @@ public class HoaDon {
         int i = 0;
         Connection conn = null;
         conn = ConnectionUtils.getMyConnection();
-        String SQL = "INSERT INTO HOADON (MAHD, MANV, NGAYTAOHD, TONGTIEN, TIENKM, THANHTIEN) VALUES (mahd_seq.nextval, ?, TO_DATE(CURRENT_DATE, 'DD-MM-YYYY HH24:MI:SS'), '0', '0', '0')";
+        String SQL = "INSERT INTO HOADON ( MANV, NGAYTAOHD, TONGTIEN, TIENKM, THANHTIEN) VALUES ( ?, TO_DATE(CURRENT_DATE, 'DD-MM-YYYY HH24:MI:SS'), '0', '0', '0')";
         PreparedStatement ps = conn.prepareStatement(SQL);
+        System.out.print(SQL);
         ps.setInt(1, maNV);
         i = ps.executeUpdate();
         return i;

@@ -38,7 +38,7 @@ public class KhachHang {
         int i = 0;
         Connection conn = null;
         conn = ConnectionUtils.getMyConnection();
-        String SQL = "INSERT INTO KHACHHANG(MAKH, TenKH,GioiTinh,Email,SDT,Diem,Loai,NgaySinh) VALUES(makh_seq.nextval, ?,?,?,?,?,?,?)";
+        String SQL = "INSERT INTO KHACHHANG(TenKH,GioiTinh,Email,SDT,Diem,Loai,NgaySinh) VALUES(?,?,?,?,?,?,?)";
         PreparedStatement ps = conn.prepareStatement(SQL);
         ps.setString(1, tenKH);
         ps.setString(2, gioiT);

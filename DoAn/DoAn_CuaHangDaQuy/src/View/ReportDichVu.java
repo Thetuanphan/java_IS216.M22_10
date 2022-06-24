@@ -63,9 +63,9 @@ public class ReportDichVu extends javax.swing.JFrame {
     
     private void getInput(String ma) throws SQLException, JRException{
         Hashtable map = new Hashtable();
-        JasperReport report = JasperCompileManager.compileReport("src\\View\\demo.jrxml");
+        JasperReport report = JasperCompileManager.compileReport("src\\View\\PDichVu.jrxml");
 
-        map.put("PARA_MA", ma);
+        map.put("PARA_MADV", ma);
         try {
             Connection con = ConnectionUtils.getMyConnection();
             JasperPrint p = JasperFillManager.fillReport(report, map, con);
@@ -84,14 +84,33 @@ public class ReportDichVu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        bang1 = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         maPhieuDichVu = new javax.swing.JFormattedTextField();
-        quayLai = new javax.swing.JButton();
         btHD = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        bang1 = new javax.swing.JTable();
+        quayLai = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Report Dịch Vụ");
+
+        jPanel1.setBackground(new java.awt.Color(255, 204, 255));
+
+        jLabel1.setText("Mã phiếu dịch vụ đã chọn");
+
+        maPhieuDichVu.setEditable(false);
+
+        btHD.setBackground(new java.awt.Color(0, 255, 0));
+        btHD.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btHD.setForeground(new java.awt.Color(255, 255, 255));
+        btHD.setText("Xem Phiếu DV");
+        btHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btHDActionPerformed(evt);
+            }
+        });
 
         bang1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -110,10 +129,11 @@ public class ReportDichVu extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(bang1);
-
-        jLabel1.setText("Mã phiếu dịch vụ đã chọn");
-
-        maPhieuDichVu.setEditable(false);
+        if (bang1.getColumnModel().getColumnCount() > 0) {
+            bang1.getColumnModel().getColumn(0).setMinWidth(80);
+            bang1.getColumnModel().getColumn(0).setPreferredWidth(80);
+            bang1.getColumnModel().getColumn(0).setMaxWidth(80);
+        }
 
         quayLai.setBackground(new java.awt.Color(102, 102, 102));
         quayLai.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -125,51 +145,63 @@ public class ReportDichVu extends javax.swing.JFrame {
             }
         });
 
-        btHD.setText("Xem Phiếu DV");
-        btHD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btHDActionPerformed(evt);
-            }
-        });
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel2.setText("Report Dịch Vụ");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(219, 219, 219)
+                        .addComponent(jLabel1)
+                        .addGap(28, 28, 28)
+                        .addComponent(maPhieuDichVu, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(99, 99, 99)
+                        .addComponent(btHD, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(quayLai)
+                        .addGap(272, 272, 272)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 988, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(quayLai)
+                    .addComponent(jLabel2))
+                .addGap(52, 52, 52)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(maPhieuDichVu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btHD))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jLabel1)
-                .addGap(28, 28, 28)
-                .addComponent(maPhieuDichVu, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(btHD, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(24, 24, 24)
-                    .addComponent(quayLai)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(12, 12, 12)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(maPhieuDichVu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btHD))
-                .addContainerGap(471, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(quayLai)
-                    .addGap(121, 121, 121)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -211,7 +243,7 @@ public class ReportDichVu extends javax.swing.JFrame {
     private void quayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quayLaiActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        Menu.main(null);
+        QuanLyReport.main(null);
     }//GEN-LAST:event_quayLaiActionPerformed
 
     private void btHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHDActionPerformed
@@ -272,6 +304,8 @@ public class ReportDichVu extends javax.swing.JFrame {
     private javax.swing.JTable bang1;
     private javax.swing.JButton btHD;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JFormattedTextField maPhieuDichVu;
     private javax.swing.JButton quayLai;

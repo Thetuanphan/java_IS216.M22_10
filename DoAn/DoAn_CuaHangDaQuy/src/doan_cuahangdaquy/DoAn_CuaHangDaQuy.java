@@ -4,7 +4,7 @@
  */
 package doan_cuahangdaquy;
 
-import View.Menu;
+import View.DangNhap;
 
 
 
@@ -19,7 +19,7 @@ public class DoAn_CuaHangDaQuy {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Menu.main(null);
+        DangNhap.main(null);
     }
     
 }

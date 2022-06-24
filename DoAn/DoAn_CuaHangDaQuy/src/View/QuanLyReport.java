@@ -4,6 +4,17 @@
  */
 package View;
 
+import ConnectDB.ConnectionUtils;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Hashtable;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
+
 /**
  *
  * @author thetu
@@ -16,7 +27,48 @@ public class QuanLyReport extends javax.swing.JFrame {
     public QuanLyReport() {
         initComponents();
     }
+    
+    private void getInputTK() throws SQLException, JRException{
+        Hashtable map = new Hashtable();
+        JasperReport report = JasperCompileManager.compileReport("src\\View\\demo.jrxml");
 
+        //map.put("PARA_MA", ma);
+        try {
+            Connection con = ConnectionUtils.getMyConnection();
+            JasperPrint p = JasperFillManager.fillReport(report, map, con);
+            JasperViewer.viewReport(p, false);
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    private void getInputDT() throws SQLException, JRException{
+        Hashtable map = new Hashtable();
+        JasperReport report = JasperCompileManager.compileReport("src\\View\\DoanhThu.jrxml");
+
+        //map.put("PARA_MA", ma);
+        try {
+            Connection con = ConnectionUtils.getMyConnection();
+            JasperPrint p = JasperFillManager.fillReport(report, map, con);
+            JasperViewer.viewReport(p, false);
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    private void getInputTKho() throws SQLException, JRException{
+        Hashtable map = new Hashtable();
+        JasperReport report = JasperCompileManager.compileReport("src\\View\\TonKho.jrxml");
+
+        //map.put("PARA_MA", ma);
+        try {
+            Connection con = ConnectionUtils.getMyConnection();
+            JasperPrint p = JasperFillManager.fillReport(report, map, con);
+            JasperViewer.viewReport(p, false);
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,49 +78,23 @@ public class QuanLyReport extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        quayLai = new javax.swing.JButton();
         btHD = new javax.swing.JButton();
         btHD1 = new javax.swing.JButton();
         btHD2 = new javax.swing.JButton();
         btHD3 = new javax.swing.JButton();
         btHD4 = new javax.swing.JButton();
-        quayLai = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Quản Lý Report");
 
-        btHD.setText("Hóa Đơn");
-        btHD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btHDActionPerformed(evt);
-            }
-        });
+        jPanel1.setBackground(new java.awt.Color(255, 204, 255));
 
-        btHD1.setText("Phiếu Nhập");
-        btHD1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btHD1ActionPerformed(evt);
-            }
-        });
-
-        btHD2.setText("Phiếu DV");
-        btHD2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btHD2ActionPerformed(evt);
-            }
-        });
-
-        btHD3.setText("Tồn Kho");
-        btHD3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btHD3ActionPerformed(evt);
-            }
-        });
-
-        btHD4.setText("Doanh Thu");
-        btHD4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btHD4ActionPerformed(evt);
-            }
-        });
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel1.setText("Quản Lý Report");
 
         quayLai.setBackground(new java.awt.Color(102, 102, 102));
         quayLai.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -80,32 +106,85 @@ public class QuanLyReport extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(193, 193, 193)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btHD4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btHD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btHD1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btHD3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btHD2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(quayLai)))
-                .addContainerGap(197, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+        btHD.setBackground(new java.awt.Color(102, 51, 0));
+        btHD.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btHD.setForeground(new java.awt.Color(255, 255, 255));
+        btHD.setText("Hóa Đơn");
+        btHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btHDActionPerformed(evt);
+            }
+        });
+
+        btHD1.setBackground(new java.awt.Color(102, 51, 0));
+        btHD1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btHD1.setForeground(new java.awt.Color(255, 255, 255));
+        btHD1.setText("Phiếu Nhập");
+        btHD1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btHD1ActionPerformed(evt);
+            }
+        });
+
+        btHD2.setBackground(new java.awt.Color(102, 51, 0));
+        btHD2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btHD2.setForeground(new java.awt.Color(255, 255, 255));
+        btHD2.setText("Phiếu DV");
+        btHD2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btHD2ActionPerformed(evt);
+            }
+        });
+
+        btHD3.setBackground(new java.awt.Color(102, 51, 0));
+        btHD3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btHD3.setForeground(new java.awt.Color(255, 255, 255));
+        btHD3.setText("Tồn Kho");
+        btHD3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btHD3ActionPerformed(evt);
+            }
+        });
+
+        btHD4.setBackground(new java.awt.Color(102, 51, 0));
+        btHD4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btHD4.setForeground(new java.awt.Color(255, 255, 255));
+        btHD4.setText("Doanh Thu");
+        btHD4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btHD4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
                 .addComponent(quayLai)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(244, 244, 244))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btHD4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btHD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btHD1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btHD3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btHD2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(306, 306, 306))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(quayLai)
+                    .addComponent(jLabel1))
+                .addGap(60, 60, 60)
                 .addComponent(btHD)
                 .addGap(18, 18, 18)
                 .addComponent(btHD1)
@@ -115,7 +194,18 @@ public class QuanLyReport extends javax.swing.JFrame {
                 .addComponent(btHD3)
                 .addGap(18, 18, 18)
                 .addComponent(btHD4)
-                .addGap(25, 25, 25))
+                .addContainerGap(137, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -124,12 +214,14 @@ public class QuanLyReport extends javax.swing.JFrame {
     private void btHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHDActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        ReportHoaDon.main(null);
+        ReportHoaDon1.main(null);
 
     }//GEN-LAST:event_btHDActionPerformed
 
     private void btHD1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHD1ActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        ReportPhieuNhap.main(null);
     }//GEN-LAST:event_btHD1ActionPerformed
 
     private void btHD2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHD2ActionPerformed
@@ -140,10 +232,21 @@ public class QuanLyReport extends javax.swing.JFrame {
 
     private void btHD3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHD3ActionPerformed
         // TODO add your handling code here:
+
+        try {
+            getInputTKho();
+        } catch(SQLException | JRException ex){
+            System.out.println(ex);
+        }
     }//GEN-LAST:event_btHD3ActionPerformed
 
     private void btHD4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHD4ActionPerformed
         // TODO add your handling code here:
+        try {
+            getInputDT();
+        } catch(SQLException | JRException ex){
+            System.out.println(ex);
+        }
     }//GEN-LAST:event_btHD4ActionPerformed
 
     private void quayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quayLaiActionPerformed
@@ -193,6 +296,8 @@ public class QuanLyReport extends javax.swing.JFrame {
     private javax.swing.JButton btHD2;
     private javax.swing.JButton btHD3;
     private javax.swing.JButton btHD4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton quayLai;
     // End of variables declaration//GEN-END:variables
 }

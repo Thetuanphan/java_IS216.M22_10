@@ -16,7 +16,7 @@ import java.io.IOException;
 public class ReadWriteFile {
 
     public void saveMaHD(String maHD) throws FileNotFoundException, IOException {
-        try ( FileOutputStream output = new FileOutputStream("D:\\HocTap\\HK1\\Java\\DoAn\\java_IS216.M22_10\\DoAn\\DoAn_CuaHangDaQuy\\src\\File\\MaHD.txt")) {
+        try ( FileOutputStream output = new FileOutputStream("D:\\MaHD.txt")) {
             output.write(maHD.getBytes());
         }
     }
@@ -24,7 +24,7 @@ public class ReadWriteFile {
     public String readMaHD() throws IOException {
         String maHD = "";
         try ( // Đọc từ file rồi ghi vào 1 biến String
-                 FileInputStream input = new FileInputStream("D:\\HocTap\\HK1\\Java\\DoAn\\java_IS216.M22_10\\DoAn\\DoAn_CuaHangDaQuy\\src\\File\\MaHD.txt")) {
+                 FileInputStream input = new FileInputStream("D:\\MaHD.txt")) {
             int i = 0;
             while ((i = input.read()) != -1) {
                 maHD += (char) i;
@@ -34,14 +34,14 @@ public class ReadWriteFile {
         return maHD;
     }
     public void saveMaNV(String maNV) throws FileNotFoundException, IOException {
-        try ( FileOutputStream output = new FileOutputStream("D:\\HocTap\\HK1\\Java\\DoAn\\java_IS216.M22_10\\DoAn\\DoAn_CuaHangDaQuy\\src\\File\\MaNV.txt")) {
+        try ( FileOutputStream output = new FileOutputStream("D:\\MaNV.txt")) {
             output.write(maNV.getBytes());
         }
     }
     public String readMaNV() throws IOException {
         String maHD = "";
         try ( // Đọc từ file rồi ghi vào 1 biến String
-                 FileInputStream input = new FileInputStream("D:\\HocTap\\HK1\\Java\\DoAn\\java_IS216.M22_10\\DoAn\\DoAn_CuaHangDaQuy\\src\\File\\MaNV.txt")) {
+                 FileInputStream input = new FileInputStream("D:\\MaNV.txt")) {
             int i = 0;
             while ((i = input.read()) != -1) {
                 maHD += (char) i;

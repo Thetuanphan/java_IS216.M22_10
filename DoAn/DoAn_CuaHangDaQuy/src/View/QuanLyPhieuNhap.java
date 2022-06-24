@@ -30,9 +30,10 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
     /**
      * Creates new form QuanLyNhapHang1
      */
-    public QuanLyPhieuNhap() {
+    public QuanLyPhieuNhap() throws IOException {
         initComponents();
         setListPN();
+        setMaNV();
         setVisible(true);
     }
     public void setMaNV() throws IOException{
@@ -74,9 +75,7 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        MP = new javax.swing.JTextField();
-        AddReport = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         xoa = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         bang1 = new javax.swing.JTable();
@@ -85,28 +84,16 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         bang2 = new javax.swing.JTable();
         xuat = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        MP = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        AddReport = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Quản Lý Phiếu Nhập");
 
-        jLabel1.setText("Mã phiếu");
-
-        MP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MPActionPerformed(evt);
-            }
-        });
-
-        AddReport.setBackground(new java.awt.Color(0, 0, 255));
-        AddReport.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        AddReport.setForeground(new java.awt.Color(255, 255, 255));
-        AddReport.setText("Tạo phiếu nhập");
-        AddReport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddReportActionPerformed(evt);
-            }
-        });
+        jPanel1.setBackground(new java.awt.Color(255, 204, 255));
 
         xoa.setBackground(new java.awt.Color(255, 0, 51));
         xoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -118,6 +105,7 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
             }
         });
 
+        bang1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         bang1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -150,6 +138,7 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 0, 51));
         jLabel2.setText("Quản Lý Phiếu Nhập");
 
+        bang2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         bang2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -169,61 +158,77 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setText("Mã phiếu");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Danh Sách Phiếu Nhập");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        MP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MPActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Chi Tiết Phiếu Nhập");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(quayLai)
-                                .addGap(169, 169, 169)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 1036, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(223, 223, 223)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(MP, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56)
-                        .addComponent(AddReport)
-                        .addGap(52, 52, 52)
-                        .addComponent(xuat)
-                        .addGap(58, 58, 58)
-                        .addComponent(xoa)))
-                .addContainerGap(29, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        AddReport.setBackground(new java.awt.Color(0, 0, 255));
+        AddReport.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        AddReport.setForeground(new java.awt.Color(255, 255, 255));
+        AddReport.setText("Tạo phiếu nhập");
+        AddReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddReportActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(quayLai)
+                        .addGap(269, 269, 269)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(257, 257, 257)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 1036, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(203, 203, 203)
+                            .addComponent(jLabel1)
+                            .addGap(18, 18, 18)
+                            .addComponent(MP, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(56, 56, 56)
+                            .addComponent(AddReport)
+                            .addGap(52, 52, 52)
+                            .addComponent(xuat)
+                            .addGap(58, 58, 58)
+                            .addComponent(xoa))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addGap(441, 441, 441))))
+                .addContainerGap(26, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(363, 363, 363))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(470, 470, 470))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addGap(477, 477, 477))
+                .addGap(475, 475, 475))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(quayLai)
-                .addGap(3, 3, 3)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(quayLai))
+                .addGap(47, 47, 47)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(MP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(AddReport)
@@ -233,11 +238,22 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addGap(31, 31, 31)
                 .addComponent(jLabel4)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addContainerGap(63, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -246,8 +262,9 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
     private void AddReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddReportActionPerformed
         Connection conn = null;
         try {
+            System.out.println("Ma nv: " + maNV);
             conn = ConnectionUtils.getMyConnection();
-            String SQL = "INSERT INTO PHIEUNHAP(MAPN, MANV, NGAYTAOPN, TONGSLSP) VALUES(mapn_seq.nextval, ?, TO_DATE(CURRENT_DATE, 'DD-MM-YYYY HH24:MI:SS'),0)";
+            String SQL = "INSERT INTO PHIEUNHAP(MANV, NGAYTAOPN, TONGSLSP) VALUES(?, TO_DATE(CURRENT_DATE, 'DD-MM-YYYY HH24:MI:SS'),0)";
             PreparedStatement ps = conn.prepareStatement(SQL);
             ps.setInt(1, maNV);
             ps.executeUpdate();
@@ -256,7 +273,7 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
             TaoPhieuNhap.main(null);
         } catch (SQLException ex) {
             System.out.println(ex);
-            System.out.println("Xảy ra lỗi!");
+            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra !!!");
         } catch (ClassNotFoundException cx) {
 
         }        // TODO add your handling code here:
@@ -287,7 +304,6 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
             PreparedStatement ps = conn.prepareStatement(SQL);
             ps.setString(1, bang1.getValueAt(bang1.getSelectedRow(), 0).toString());
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Xóa thành công !!!");
             setListPN();
 
         } catch (SQLException ex) {
@@ -389,7 +405,11 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new QuanLyPhieuNhap().setVisible(true);
+                try {
+                    new QuanLyPhieuNhap().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(QuanLyPhieuNhap.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -403,6 +423,7 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton quayLai;
