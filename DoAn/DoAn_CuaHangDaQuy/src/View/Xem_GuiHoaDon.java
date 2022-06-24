@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.MessagingException;
@@ -27,6 +28,7 @@ public class Xem_GuiHoaDon extends javax.swing.JFrame {
 
     DefaultTableModel DSCTHD = new DefaultTableModel();
     int maHD = -1;
+    String ngayHD = "";
 
     /**
      * Creates new form GuiHoaDon
@@ -53,7 +55,9 @@ public class Xem_GuiHoaDon extends javax.swing.JFrame {
             tenKhachHang.setText(rs.getString(2));
             mailKhachHang.setText(rs.getString(3));
             khuyenMai.setText(rs.getString(4));
-            ngayHoaDon.setText(rs.getString(5));
+            Date ngayS = rs.getDate(5);
+            ngayHoaDon.setText(String.format("%td-%<tm-%<tY", ngayS));
+            ngayHD = String.format("%td-%<tm-%<tY", ngayS);
             ghiChu.setText(rs.getString(6));
             tongTien.setText(rs.getString(7));
             giamGia.setText(rs.getString(8));
@@ -87,8 +91,8 @@ public class Xem_GuiHoaDon extends javax.swing.JFrame {
     private void guiHoaDonHTML() throws AddressException, UnsupportedEncodingException {
         String body = "<div  style='text-align:center;'> <img style='width:75%;height:50%;' src='https://www.marry.vn/wp-content/uploads/2016/04/29/hinh-dang-kim-cuong.jpg' alt='Italian Trulli'> <h1 style='color:red;'>Hóa Đơn Mua Hàng</h1> <p>Xin chào khách hàng: <b>"
                 + tenKhachHang.getText()
-                + "</b> </p> <p>Bạn đã mua hàng tại Cửa hàng Đá quý ABC lúc: "
-                + java.time.LocalDate.now() + " " + java.time.LocalTime.now()
+                + "</b> </p> <p>Bạn đã mua hàng tại Cửa hàng Đá quý ABC ngày: "
+                + ngayHD
                 + "</p> <h2>Mã hóa đơn: <b style='color:blue;'>"
                 + maHoaDon.getText()
                 + "</b></h2> <table style='  font-family: arial, sans-serif; border-collapse: collapse; width: 100%;'> <tbody> <tr style='background-color: #D6EEEE;'> <td><b>Tên sản phẩm</b></td> <td><b>Số lượng</b></td> <td><b>Đơn vị</b></td> <td><b>Đơn giá</b></td> </tr> ";

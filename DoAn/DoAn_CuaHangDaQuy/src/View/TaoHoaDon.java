@@ -645,9 +645,6 @@ private void guiHoaDonHTML() throws AddressException, UnsupportedEncodingExcepti
                                 .addGap(44, 44, 44)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 996, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(633, 633, 633)
-                                .addComponent(abc))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(634, 634, 634)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9)
@@ -672,15 +669,17 @@ private void guiHoaDonHTML() throws AddressException, UnsupportedEncodingExcepti
                                 .addGap(835, 835, 835)
                                 .addComponent(themVaoHoaDon)))
                         .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(abc)
+                .addGap(827, 827, 827))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(abc)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(93, 93, 93)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel17)
                             .addComponent(maHoaDon))
@@ -723,7 +722,9 @@ private void guiHoaDonHTML() throws AddressException, UnsupportedEncodingExcepti
                                 .addComponent(huyHoaDon)
                                 .addGap(86, 86, 86))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(abc)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(chonLai))
@@ -883,6 +884,7 @@ private void guiHoaDonHTML() throws AddressException, UnsupportedEncodingExcepti
         try {
             HoaDon hd = new HoaDon();
             int check = hd.updateHD(maHD, maKH, maKM, tongT, tongKM, thanhT, ghiC);
+            
             if (check == 0) {
                 JOptionPane.showMessageDialog(this, "Thanh toán thành thất bại !!!");
                 return;
@@ -899,8 +901,6 @@ private void guiHoaDonHTML() throws AddressException, UnsupportedEncodingExcepti
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(TaoHoaDon.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-
     }//GEN-LAST:event_thanhToanActionPerformed
 
     private void boKMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boKMActionPerformed

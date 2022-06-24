@@ -5,7 +5,9 @@
 package View;
 
 import File.ReadWriteFile;
+import Process.TaiKhoan;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -16,25 +18,46 @@ import javax.swing.JOptionPane;
  */
 public class Menu extends javax.swing.JFrame {
 
+    String roll = "";
+    int maNV = -1;
+
     /**
      * Creates new form Menu
      *
      * @throws java.io.IOException
      */
-    public Menu() throws IOException {
+    public Menu() throws IOException, SQLException, ClassNotFoundException {
 
         initComponents();
+        checkTrangThaiDN();
+        getRoll();
+        setRoll();
+    }
+
+    public void setRoll() {
+        if (!(roll.equals("QL"))) {
+            quanLyTaiKhoan.setEnabled(false);
+            xemBaoCao.setEnabled(false);
+            quanLyPhieuNhap.setEnabled(false);
+            quanLySanPham.setEnabled(false);
+            quanLyKhuyenMai.setEnabled(false);
+            quanLyDoiTac.setEnabled(false);
+            quanLyNhanVien.setEnabled(false);
+            quanLyDichVu.setEnabled(false);
+
+        }
+    }
+
+    public void getRoll() throws SQLException, ClassNotFoundException {
+        TaiKhoan tk = new TaiKhoan();
+        roll = tk.getRoll(maNV);
+        System.out.println(maNV + " + " + roll);
 
     }
 
     public void checkTrangThaiDN() throws IOException {
         ReadWriteFile rw = new ReadWriteFile();
-        String check = rw.readMaNV();
-        if (check.equals("")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập !!!");
-            this.dispose();
-            DangNhap.main(null);
-        }
+        maNV = Integer.valueOf(rw.readMaNV());
     }
 
     /**
@@ -412,6 +435,10 @@ public class Menu extends javax.swing.JFrame {
                 try {
                     new Menu().setVisible(true);
                 } catch (IOException ex) {
+                    Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
                     Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
