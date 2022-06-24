@@ -52,11 +52,10 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         matKhau = new javax.swing.JFormattedTextField();
         btXoa = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-<<<<<<< Updated upstream
-=======
+
         xnMatKhau = new javax.swing.JFormattedTextField();
         quayLai = new javax.swing.JButton();
->>>>>>> Stashed changes
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản Lý Tài Khoản");
@@ -242,9 +241,9 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< Updated upstream
+
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-=======
+
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(quayLai)
@@ -284,15 +283,15 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
                                 .addGap(22, 22, 22))
                             .addComponent(btXoa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(73, 73, 73))
->>>>>>> Stashed changes
+
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-<<<<<<< Updated upstream
+
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 6, Short.MAX_VALUE))
-=======
+
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
@@ -323,7 +322,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(25, Short.MAX_VALUE))
->>>>>>> Stashed changes
+
         );
 
         pack();

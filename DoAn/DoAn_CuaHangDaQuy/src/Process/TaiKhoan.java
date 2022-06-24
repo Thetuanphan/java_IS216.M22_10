@@ -20,11 +20,7 @@ public class TaiKhoan {
     public ResultSet getListTK() throws SQLException, ClassNotFoundException {
         Connection conn = null;
         conn = ConnectionUtils.getMyConnection();
-<<<<<<< Updated upstream
         String SQL = "SELECT MANV, TENTK, MATKHAU from TAIKHOAN order by MANV asc";
-=======
-        String SQL = "SELECT * from TAIKHOAN order by MANV asc";
->>>>>>> Stashed changes
         PreparedStatement ps = conn.prepareStatement(SQL);
         ResultSet rs = ps.executeQuery();
         return rs;
