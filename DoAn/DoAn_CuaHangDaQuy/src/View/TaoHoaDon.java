@@ -37,7 +37,7 @@ public class TaoHoaDon extends javax.swing.JFrame {
     DefaultTableModel DSSPC = new DefaultTableModel();
     String email = "";
     String SPDC[] = new String[7];
-    float TongTien = 0;
+    int TongTien = 0;
     int phanTramKM = 0;
     int tienKM = 0;
 
@@ -818,6 +818,7 @@ private void guiHoaDonHTML() throws AddressException, UnsupportedEncodingExcepti
         if (!(ret == JOptionPane.YES_OPTION)) {
             return;
         }
+        TongTien = 0;
         DSSPC.setRowCount(0);
         DSSP.setRowCount(0);
         setListSP();
