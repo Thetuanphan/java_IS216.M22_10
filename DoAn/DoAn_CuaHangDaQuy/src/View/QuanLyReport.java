@@ -242,11 +242,8 @@ public class QuanLyReport extends javax.swing.JFrame {
 
     private void btHD4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHD4ActionPerformed
         // TODO add your handling code here:
-        try {
-            getInputDT();
-        } catch(SQLException | JRException ex){
-            System.out.println(ex);
-        }
+       this.dispose();
+        ReportDoanhThu.main(null);
     }//GEN-LAST:event_btHD4ActionPerformed
 
     private void quayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quayLaiActionPerformed

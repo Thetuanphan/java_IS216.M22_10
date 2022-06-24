@@ -70,18 +70,16 @@ public class ReportDoanhThu extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        thang = new javax.swing.JFormattedTextField();
         btHD = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        nam = new javax.swing.JFormattedTextField();
         btHD1 = new javax.swing.JButton();
         quayLai1 = new javax.swing.JButton();
+        thang = new javax.swing.JTextField();
+        nam = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Nhập tháng");
-
-        thang.setEditable(false);
 
         btHD.setText("Xem Doanh Thu Theo Năm");
         btHD.addActionListener(new java.awt.event.ActionListener() {
@@ -91,8 +89,6 @@ public class ReportDoanhThu extends javax.swing.JFrame {
         });
 
         jLabel2.setText("Nhập năm");
-
-        nam.setEditable(false);
 
         btHD1.setText("Xem Doanh Thu Theo Tháng");
         btHD1.addActionListener(new java.awt.event.ActionListener() {
@@ -119,29 +115,29 @@ public class ReportDoanhThu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(66, 66, 66)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btHD1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btHD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btHD1, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                                .addComponent(btHD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(nam, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(thang, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGap(25, 25, 25)
+                                    .addComponent(nam, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(thang, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(quayLai1)))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(quayLai1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(thang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -162,7 +158,7 @@ public class ReportDoanhThu extends javax.swing.JFrame {
     private void btHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHDActionPerformed
         // TODO add your handling code here:
         String ma1 = nam.getText();
-        if(ma1 == null){
+        if(ma1 == ""){
             JOptionPane.showMessageDialog(this, "Không được để trống !!!");
             return;
         }
@@ -179,7 +175,7 @@ public class ReportDoanhThu extends javax.swing.JFrame {
         String ma = thang.getText();
         String ma1 = nam.getText();
         
-        if(ma == null || ma1 == null){
+        if(ma == "" || ma1 == ""){
             JOptionPane.showMessageDialog(this, "Không được để trống !!!");
             return;
         }
@@ -237,8 +233,8 @@ public class ReportDoanhThu extends javax.swing.JFrame {
     private javax.swing.JButton btHD1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JFormattedTextField nam;
+    private javax.swing.JTextField nam;
     private javax.swing.JButton quayLai1;
-    private javax.swing.JFormattedTextField thang;
+    private javax.swing.JTextField thang;
     // End of variables declaration//GEN-END:variables
 }

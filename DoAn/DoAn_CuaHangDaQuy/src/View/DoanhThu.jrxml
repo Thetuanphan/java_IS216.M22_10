@@ -22,7 +22,7 @@
 	<field name="MASP" class="java.math.BigDecimal"/>
 	<field name="SLSP" class="java.math.BigDecimal"/>
 	<variable name="sum" class="java.lang.Double" calculation="Sum">
-		<variableExpression><![CDATA[$F{THANHTIEN}.doubleValue()]]></variableExpression>
+		<variableExpression><![CDATA[$F{THANHTIEN}]]></variableExpression>
 	</variable>
 	<background>
 		<band/>
