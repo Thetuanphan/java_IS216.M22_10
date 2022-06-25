@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static org.codehaus.groovy.runtime.DefaultGroovyMethods.isInteger;
 
 /**
  *
@@ -554,12 +555,24 @@ public class TaoPhieuNhap extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Đơn giá không được để trống !!!");
             return;
         }
-
+        if (!(isInteger(soLuong.getText())) || !(isInteger(donGiaNhap.getText()))) {
+            JOptionPane.showMessageDialog(this, "Số lượng và đơn giá phải là số !!!");
+            soLuong.setText("0");
+            donGiaNhap.setText("0");
+            return;
+        }
+        int sol = Integer.valueOf(soLuong.getText());
+        int donj = Integer.valueOf(donGiaNhap.getText());
+        if (sol <= 0 || donj <= 0) {
+            JOptionPane.showMessageDialog(this, "Số không hợp lệ !!!");
+            return;
+        }
+        
         SPDC[1] = String.valueOf(maDT);
         SPDC[2] = soLuong.getText();
         SPDC[3] = donGiaNhap.getText();
         float TT = Integer.valueOf(SPDC[2]) * Integer.valueOf(SPDC[3]);
-        SPDC[4] = String.valueOf(TT);
+        SPDC[4] = String.valueOf((int)TT);
         TongTien += Integer.valueOf(SPDC[2]);
         tongCong.setText(String.valueOf(TongTien));
         DSSPC = (DefaultTableModel) bang2.getModel();

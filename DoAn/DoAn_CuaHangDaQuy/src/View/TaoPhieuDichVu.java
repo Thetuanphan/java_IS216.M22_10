@@ -580,15 +580,25 @@ public class TaoPhieuDichVu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Số lượng không được để trống !!!");
             return;
         }
+        if (!(isInteger(soLC.getText()))) {
+            JOptionPane.showMessageDialog(this, "Số lượng và đơn giá phải là số !!!");
+            soLC.setText("1");
+            return;
+        }
         String tempSS = soLC.getText();
         int a = Integer.parseInt(SPDC[2]), b = Integer.parseInt(tempSS);
+        int sol = Integer.valueOf(tempSS);
+        if (sol <= 0) {
+            JOptionPane.showMessageDialog(this, "Số không hợp lệ !!!");
+            return;
+        }
 
         int temp = Integer.parseInt(SPDC[2]) * b;
         TongTien += temp;
         tongSLDV += Integer.valueOf(soLC.getText());
         tongTien.setText(String.valueOf(TongTien));
         DSSPC = (DefaultTableModel) bang4.getModel();
-        DSSPC.addRow(new Object[]{SPDC[0], SPDC[1], SPDC[2], soLC.getText(),  b});
+        DSSPC.addRow(new Object[]{SPDC[0], SPDC[1], SPDC[2], soLC.getText(), b});
         int indexTB = bang2.getSelectedRow();
         themVaoHoaDon.setEnabled(false);
         if (indexTB < DSDV.getRowCount() && indexTB >= 0) {
