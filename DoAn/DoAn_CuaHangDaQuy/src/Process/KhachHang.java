@@ -45,7 +45,7 @@ public class KhachHang {
         ps.setString(3, mail);
         ps.setString(4, sdt);
         ps.setString(5, di);
-        ps.setString(6, sdt);
+        ps.setString(6, lo);
         ps.setString(7, namS);
         i = ps.executeUpdate();
         return i;

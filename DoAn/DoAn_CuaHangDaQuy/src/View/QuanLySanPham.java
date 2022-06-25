@@ -13,6 +13,7 @@ import java.util.HashMap;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static org.codehaus.groovy.runtime.DefaultGroovyMethods.isInteger;
 
 /**
  *
@@ -380,6 +381,12 @@ public class QuanLySanPham extends javax.swing.JFrame {
         String SL = soLuong.getText();
         String DV = donVi.getText();
         String DG = donGia.getText();
+        if (!(isInteger(soLuong.getText())) || !(isInteger(donGia.getText()))) {
+            JOptionPane.showMessageDialog(this, "Số lượng và đơn giá phải là số !!!");
+            soLuong.setText("0");
+            donGia.setText("0");
+            return;
+        }
         if (tenSP.equals("") || SL.equals("") || DV.equals("") || DG.equals("")) {
             JOptionPane.showMessageDialog(this, "Không được để trống !!!");
             return;
@@ -400,6 +407,10 @@ public class QuanLySanPham extends javax.swing.JFrame {
             int maLSP = Integer.valueOf(listMaLSP.get(loaiSanPham.getSelectedIndex()));
             int intSL = Integer.valueOf(SL);
             int intDG = Integer.valueOf(DG);
+            if (intSL <= 0 || intDG <= 0) {
+                JOptionPane.showMessageDialog(this, "Số không hợp lệ !!!");
+                return;
+            }
             int rs = sp.addSP(maLSP, tenSP, intSL, DV, intDG);
             setListSP();
             JOptionPane.showMessageDialog(this, "Thêm thành công !!!");
@@ -437,7 +448,12 @@ public class QuanLySanPham extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Chọn loại sản phẩm cần sửa !!!");
             return;
         }
-
+        if (!(isInteger(soLuong.getText())) || !(isInteger(donGia.getText()))) {
+            JOptionPane.showMessageDialog(this, "Số lượng và đơn giá phải là số !!!");
+            soLuong.setText("0");
+            donGia.setText("0");
+            return;
+        }
         String tenSP = tenSanPham.getText();
         String SL = soLuong.getText();
         String DV = donVi.getText();
@@ -458,6 +474,10 @@ public class QuanLySanPham extends javax.swing.JFrame {
             int maLSP = Integer.valueOf(listMaLSP.get(loaiSanPham.getSelectedIndex()));
             int intSL = Integer.valueOf(SL);
             int intDG = Integer.valueOf(DG);
+            if (intSL <= 0 || intDG <= 0) {
+                JOptionPane.showMessageDialog(this, "Số không hợp lệ !!!");
+                return;
+            }
             int rs = sp.updateSP(maLSP, tenSP, intSL, DV, intDG, maSP);
             setListSP();
             JOptionPane.showMessageDialog(this, "Sửa thành công !!!");

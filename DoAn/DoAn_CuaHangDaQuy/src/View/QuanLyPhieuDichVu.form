@@ -244,7 +244,7 @@
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="130" minWidth="130" prefWidth="130" resizable="true">
+                    <Column maxWidth="180" minWidth="180" prefWidth="180" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
@@ -276,7 +276,7 @@
                     <Column editable="true" title="M&#xe3; PDV" type="java.lang.Object"/>
                     <Column editable="true" title="T&#xea;n KH" type="java.lang.Object"/>
                     <Column editable="true" title="Ng&#xe0;y T&#x1ea1;o" type="java.lang.Object"/>
-                    <Column editable="true" title="T&#x1ed5;ng C&#x1ed9;ng" type="java.lang.Object"/>
+                    <Column editable="true" title="T&#x1ed5;ng SL" type="java.lang.Object"/>
                     <Column editable="true" title="Tr&#x1ea3; Tr&#x1b0;&#x1edb;c" type="java.lang.Object"/>
                     <Column editable="true" title="Th&#xe0;nh Ti&#x1ec1;n" type="java.lang.Object"/>
                   </Table>

@@ -4,10 +4,10 @@
  */
 package View;
 
-
 import Process.PhieuDichVu;
 import Process.KhachHang;
 import Process.DichVu;
+import java.awt.event.KeyEvent;
 import java.io.UnsupportedEncodingException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,6 +18,7 @@ import javax.mail.MessagingException;
 import javax.swing.Icon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static org.codehaus.groovy.runtime.DefaultGroovyMethods.isInteger;
 
 /**
  *
@@ -31,7 +32,7 @@ public class TaoPhieuDichVu extends javax.swing.JFrame {
     DefaultTableModel DSKH = new DefaultTableModel();
     DefaultTableModel DSSPC = new DefaultTableModel();
     String SPDC[] = new String[7];
-    float TongTien = 0;
+    int TongTien = 0;
     int traTruoc = 0;
     int tongSLDV = 0;
 
@@ -47,7 +48,7 @@ public class TaoPhieuDichVu extends javax.swing.JFrame {
         setListKH();
         setMaPDV();
     }
-    
+
     private void setMaPDV() {
         try {
             PhieuDichVu pdv = new PhieuDichVu();
@@ -216,7 +217,7 @@ public class TaoPhieuDichVu extends javax.swing.JFrame {
         huyHoaDon.setBackground(new java.awt.Color(255, 0, 0));
         huyHoaDon.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         huyHoaDon.setForeground(new java.awt.Color(255, 255, 255));
-        huyHoaDon.setText("Hủy Hóa Đơn");
+        huyHoaDon.setText("Hủy Phiếu Dịch Vụ");
         huyHoaDon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 huyHoaDonActionPerformed(evt);
@@ -244,6 +245,11 @@ public class TaoPhieuDichVu extends javax.swing.JFrame {
         tenKhachHang.setEditable(false);
 
         tongKhuyenMai.setText("0");
+        tongKhuyenMai.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tongKhuyenMaiKeyPressed(evt);
+            }
+        });
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel13.setText("Trả Trước");
@@ -326,11 +332,22 @@ public class TaoPhieuDichVu extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã", "Tên Dịch Vụ", "Tiền Dịch Vụ", "SL"
+                "Mã", "Tên Dịch Vụ", "Tiền Dịch Vụ", "SL", "Thành Tiền"
             }
         ));
         bang4.setEnabled(false);
         jScrollPane5.setViewportView(bang4);
+        if (bang4.getColumnModel().getColumnCount() > 0) {
+            bang4.getColumnModel().getColumn(0).setMinWidth(80);
+            bang4.getColumnModel().getColumn(0).setPreferredWidth(80);
+            bang4.getColumnModel().getColumn(0).setMaxWidth(80);
+            bang4.getColumnModel().getColumn(3).setMinWidth(80);
+            bang4.getColumnModel().getColumn(3).setPreferredWidth(80);
+            bang4.getColumnModel().getColumn(3).setMaxWidth(80);
+            bang4.getColumnModel().getColumn(4).setMinWidth(150);
+            bang4.getColumnModel().getColumn(4).setPreferredWidth(150);
+            bang4.getColumnModel().getColumn(4).setMaxWidth(150);
+        }
 
         jSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -416,13 +433,9 @@ public class TaoPhieuDichVu extends javax.swing.JFrame {
                                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                .addGap(147, 147, 147)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                        .addComponent(thanhToan)
-                                                        .addGap(11, 11, 11))
-                                                    .addComponent(huyHoaDon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(97, 97, 97))
+                                                .addGap(157, 157, 157)
+                                                .addComponent(thanhToan)
+                                                .addGap(108, 108, 108))
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -434,15 +447,18 @@ public class TaoPhieuDichVu extends javax.swing.JFrame {
                                                     .addComponent(jLabel14))
                                                 .addGap(21, 21, 21)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(tongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(tongKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(thanhTien, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(tongTien, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                                                    .addComponent(tongKhuyenMai, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                                                    .addComponent(thanhTien))
+                                                .addGap(29, 29, 29)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(jLabel12)
                                                         .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING))
-                                                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                                                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(136, 136, 136)
+                                                .addComponent(huyHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel1)
@@ -548,31 +564,13 @@ public class TaoPhieuDichVu extends javax.swing.JFrame {
             SPDC[0] = DSDV.getValueAt(bang2.getSelectedRow(), 0).toString();
             SPDC[1] = DSDV.getValueAt(bang2.getSelectedRow(), 1).toString();
             SPDC[2] = DSDV.getValueAt(bang2.getSelectedRow(), 2).toString();
-            //        int temp = Integer.parseInt(soL) * Integer.parseInt(donG);
-            //        SPDC[6] = String.valueOf(temp);
         }
-        //        DefaultTableModel tableModelChuyen, tableModelNhan = new DefaultTableModel();
-        //        tableModelChuyen = (DefaultTableModel) bang2.getModel();
-        //        String maSP = tableModelChuyen.getValueAt(bang2.getSelectedRow(), 0).toString();
-        //        String tenSP = tableModelChuyen.getValueAt(bang2.getSelectedRow(), 1).toString();
-        //        String loaiSP = tableModelChuyen.getValueAt(bang2.getSelectedRow(), 2).toString();
-        //        String soL = "1";
-        //        String donV = tableModelChuyen.getValueAt(bang2.getSelectedRow(), 4).toString();
-        //        String donG = tableModelChuyen.getValueAt(bang2.getSelectedRow(), 5).toString();
-        //        int temp = Integer.parseInt(soL) * Integer.parseInt(donG);
-        //        String thanhT = String.valueOf(temp);
-        //
-        //        tableModelNhan = (DefaultTableModel) bang4.getModel();
-        //        tableModelNhan.addRow(new Object[]{maSP, tenSP, loaiSP, soL, donV, donG, thanhT});
-        //        int indexTB = bang2.getSelectedRow();
-        //        if (indexTB < DSSP.getRowCount() && indexTB >= 0) {
-            //            DSSP.removeRow(indexTB);
-            //        }
+
     }//GEN-LAST:event_bang2MouseClicked
 
     private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
         // TODO add your handling code here:
-        System.out.println( jSlider1.getValue());
+        System.out.println(jSlider1.getValue());
         soLC.setText(String.valueOf(jSlider1.getValue()));
     }//GEN-LAST:event_jSlider1StateChanged
 
@@ -582,14 +580,25 @@ public class TaoPhieuDichVu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Số lượng không được để trống !!!");
             return;
         }
+        if (!(isInteger(soLC.getText()))) {
+            JOptionPane.showMessageDialog(this, "Số lượng và đơn giá phải là số !!!");
+            soLC.setText("1");
+            return;
+        }
         String tempSS = soLC.getText();
         int a = Integer.parseInt(SPDC[2]), b = Integer.parseInt(tempSS);
-        
+        int sol = Integer.valueOf(tempSS);
+        if (sol <= 0) {
+            JOptionPane.showMessageDialog(this, "Số không hợp lệ !!!");
+            return;
+        }
+
         int temp = Integer.parseInt(SPDC[2]) * b;
         TongTien += temp;
+        tongSLDV += Integer.valueOf(soLC.getText());
         tongTien.setText(String.valueOf(TongTien));
         DSSPC = (DefaultTableModel) bang4.getModel();
-        DSSPC.addRow(new Object[]{SPDC[0], SPDC[1], SPDC[2], b});
+        DSSPC.addRow(new Object[]{SPDC[0], SPDC[1], SPDC[2], soLC.getText(), b});
         int indexTB = bang2.getSelectedRow();
         themVaoHoaDon.setEnabled(false);
         if (indexTB < DSDV.getRowCount() && indexTB >= 0) {
@@ -597,6 +606,16 @@ public class TaoPhieuDichVu extends javax.swing.JFrame {
         }
         soLC.setText("1");
         chonLai.setEnabled(true);
+        int tongTi = Integer.valueOf(tongTien.getText());
+        int tienGi = Integer.valueOf(tongKhuyenMai.getText());
+        int thanhTi = tongTi - tienGi;
+        if (thanhTi > 0) {
+            thanhTien.setText(String.valueOf(thanhTi));
+        } else {
+            thanhTien.setText("0");
+        }
+
+
     }//GEN-LAST:event_themVaoHoaDonActionPerformed
 
     private void chonLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chonLaiActionPerformed
@@ -612,6 +631,7 @@ public class TaoPhieuDichVu extends javax.swing.JFrame {
         tongTien.setText("0");
         tongKhuyenMai.setText("0");
         thanhTien.setText("0");
+        TongTien = 0;
         tongSLDV = 0;
     }//GEN-LAST:event_chonLaiActionPerformed
 
@@ -671,6 +691,28 @@ public class TaoPhieuDichVu extends javax.swing.JFrame {
             System.out.println(maKH);
         }
     }//GEN-LAST:event_bang1MouseClicked
+
+    private void tongKhuyenMaiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tongKhuyenMaiKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (isInteger(tongKhuyenMai.getText())) {
+                int tongTi = Integer.valueOf(tongTien.getText());
+                int tienGi = Integer.valueOf(tongKhuyenMai.getText());
+                int thanhTi = tongTi - tienGi;
+                if (thanhTi > 0) {
+                    thanhTien.setText(String.valueOf(thanhTi));
+                } else {
+                    thanhTien.setText("0");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Tiền giảm phải là số !!!");
+                tongKhuyenMai.setText("0");
+                return;
+            }
+
+        }
+
+    }//GEN-LAST:event_tongKhuyenMaiKeyPressed
 
     /**
      * @param args the command line arguments

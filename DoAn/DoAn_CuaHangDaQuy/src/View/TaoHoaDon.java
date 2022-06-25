@@ -21,6 +21,7 @@ import javax.mail.internet.AddressException;
 import javax.swing.Icon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static org.codehaus.groovy.runtime.DefaultGroovyMethods.isInteger;
 
 /**
  *
@@ -144,8 +145,10 @@ public class TaoHoaDon extends javax.swing.JFrame {
         if (TT < 0) {
             TT = 0;
         }
-        tongKhuyenMai.setText(String.valueOf(khuyenMai));
-        thanhTien.setText(String.valueOf(TT));
+        int temp1 = (int) khuyenMai;
+        int temp = (int) TT;
+        tongKhuyenMai.setText(String.valueOf(temp1));
+        thanhTien.setText(String.valueOf(temp));
     }
 
     private void addCTHD() {
@@ -169,24 +172,25 @@ public class TaoHoaDon extends javax.swing.JFrame {
         }
         System.out.println(countResult);
     }
-private void guiHoaDon(){
-            String body = "Xin chào khách hàng: " + tenKhachHang.getText() + "\n"
+
+    private void guiHoaDon() {
+        String body = "Xin chào khách hàng: " + tenKhachHang.getText() + "\n"
                 + "Quý khách có 1 hóa đơn ở Cửa hàng đá quý ABC\n"
                 + "Mã hóa đơn: " + maHoaDon.getText() + "\n"
                 + "Tổng tiền:  " + tongTien.getText() + " VND\n"
                 + "Giảm giá: " + tongKhuyenMai.getText() + " VND\n"
-                + "Thành tiền: " + thanhTien.getText() +" VND\n"
+                + "Thành tiền: " + thanhTien.getText() + " VND\n"
                 + "Chi tiết:\n===================================================\n";
         int countResult = 0;
         for (int i = 0; i < DSSPC.getRowCount(); i++) {
-                body += "Tên sản phẩm: " + DSSPC.getValueAt(i, 1).toString() + ""
-                        + " - " + DSSPC.getValueAt(i, 3).toString() + ""
-                        + " (" + DSSPC.getValueAt(i, 4).toString() + "), "
-                        + "Thành tiền: " + DSSPC.getValueAt(i, 6).toString() + " VND\n"
-                        + "===================================================\n";
-                countResult++;
+            body += "Tên sản phẩm: " + DSSPC.getValueAt(i, 1).toString() + ""
+                    + " - " + DSSPC.getValueAt(i, 3).toString() + ""
+                    + " (" + DSSPC.getValueAt(i, 4).toString() + "), "
+                    + "Thành tiền: " + DSSPC.getValueAt(i, 6).toString() + " VND\n"
+                    + "===================================================\n";
+            countResult++;
         }
-        GuiMail  gm = new GuiMail();
+        GuiMail gm = new GuiMail();
         try {
             gm.GuiHoaDon(email, body);
             JOptionPane.showMessageDialog(this, "Gửi thành công !!!");
@@ -195,58 +199,59 @@ private void guiHoaDon(){
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(TaoHoaDon.class.getName()).log(Level.SEVERE, null, ex);
         }
-}
-private void guiHoaDonHTML() throws AddressException, UnsupportedEncodingException{
-            String body = "<div  style='text-align:center;'> <img style='width:75%;height:50%;' src='https://www.marry.vn/wp-content/uploads/2016/04/29/hinh-dang-kim-cuong.jpg' alt='Italian Trulli'> <h1 style='color:red;'>Hóa Đơn Mua Hàng</h1> <p>Xin chào khách hàng: <b>" 
-                    + tenKhachHang.getText() 
-                    + "</b> </p> <p>Bạn đã mua hàng tại Cửa hàng Đá quý ABC lúc: "
-                    + java.time.LocalDate.now() + " " +java.time.LocalTime.now() 
-                    + "</p> <h2>Mã hóa đơn: <b style='color:blue;'>" 
-                    + maHoaDon.getText() 
-                    + "</b></h2> <table style='  font-family: arial, sans-serif; border-collapse: collapse; width: 100%;'> <tbody> <tr style='background-color: #D6EEEE;'> <td><b>Tên sản phẩm</b></td> <td><b>Số lượng</b></td> <td><b>Đơn vị</b></td> <td><b>Đơn giá</b></td> </tr> ";
+    }
+
+    private void guiHoaDonHTML() throws AddressException, UnsupportedEncodingException {
+        String body = "<div  style='text-align:center;'> <img style='width:75%;height:50%;' src='https://www.marry.vn/wp-content/uploads/2016/04/29/hinh-dang-kim-cuong.jpg' alt='Italian Trulli'> <h1 style='color:red;'>Hóa Đơn Mua Hàng</h1> <p>Xin chào khách hàng: <b>"
+                + tenKhachHang.getText()
+                + "</b> </p> <p>Bạn đã mua hàng tại Cửa hàng Đá quý ABC lúc: "
+                + java.time.LocalDate.now() + " " + java.time.LocalTime.now()
+                + "</p> <h2>Mã hóa đơn: <b style='color:blue;'>"
+                + maHoaDon.getText()
+                + "</b></h2> <table style='  font-family: arial, sans-serif; border-collapse: collapse; width: 100%;'> <tbody> <tr style='background-color: #D6EEEE;'> <td><b>Tên sản phẩm</b></td> <td><b>Số lượng</b></td> <td><b>Đơn vị</b></td> <td><b>Đơn giá</b></td> </tr> ";
         boolean check = true;
         for (int i = 0; i < DSSPC.getRowCount(); i++) {
-                if(check){
-                body += "<tr> <td>" 
-                        + DSSPC.getValueAt(i, 1).toString() 
+            if (check) {
+                body += "<tr> <td>"
+                        + DSSPC.getValueAt(i, 1).toString()
                         + "</td> <td>"
-                        + DSSPC.getValueAt(i, 3).toString() 
+                        + DSSPC.getValueAt(i, 3).toString()
                         + "</td> <td>"
-                        + DSSPC.getValueAt(i, 4).toString() 
+                        + DSSPC.getValueAt(i, 4).toString()
                         + "</td> <td>"
-                        + DSSPC.getValueAt(i, 6).toString() 
+                        + DSSPC.getValueAt(i, 6).toString()
                         + "</td> </tr>";
                 check = false;
-                }
-                else{
-                body += "<tr style='background-color: #D6EEEE;'> <td>" 
-                        + DSSPC.getValueAt(i, 1).toString() 
+            } else {
+                body += "<tr style='background-color: #D6EEEE;'> <td>"
+                        + DSSPC.getValueAt(i, 1).toString()
                         + "</td> <td>"
-                        + DSSPC.getValueAt(i, 3).toString() 
+                        + DSSPC.getValueAt(i, 3).toString()
                         + "</td> <td>"
-                        + DSSPC.getValueAt(i, 4).toString() 
+                        + DSSPC.getValueAt(i, 4).toString()
                         + "</td> <td>"
-                        + DSSPC.getValueAt(i, 6).toString() 
+                        + DSSPC.getValueAt(i, 6).toString()
                         + "</td> </tr>";
                 check = true;
-                }
+            }
 
         }
-         body += "</tbody> </table> <h2>Tổng tiền: "
-                 + tongTien.getText()
-                 + " VND </h2> <h2>Tổng tiền giảm giá: "
-                 + tongKhuyenMai.getText()
-                 +" VND</h2> <h2 style='color:red;'>Thành tiền: "
-                 + thanhTien.getText()
-                 +" VND</h2> <a href='https://www.cuahangdaquy.com/'>Cửa Hàng Đá Quý ABC</a> <a href='mailto:cuahangdaquy@abc.com'>cuahangdaquy@abc.com</a> </div>";
-        GuiMailHTML  gm = new GuiMailHTML();
+        body += "</tbody> </table> <h2>Tổng tiền: "
+                + tongTien.getText()
+                + " VND </h2> <h2>Tổng tiền giảm giá: "
+                + tongKhuyenMai.getText()
+                + " VND</h2> <h2 style='color:red;'>Thành tiền: "
+                + thanhTien.getText()
+                + " VND</h2> <a href='https://www.cuahangdaquy.com/'>Cửa Hàng Đá Quý ABC</a> <a href='mailto:cuahangdaquy@abc.com'>cuahangdaquy@abc.com</a> </div>";
+        GuiMailHTML gm = new GuiMailHTML();
         try {
             gm.GuiHoaDon(email, body);
             JOptionPane.showMessageDialog(this, "Gửi thành công !!!");
         } catch (MessagingException ex) {
             Logger.getLogger(TaoHoaDon.class.getName()).log(Level.SEVERE, null, ex);
         }
-}
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -824,10 +829,20 @@ private void guiHoaDonHTML() throws AddressException, UnsupportedEncodingExcepti
             JOptionPane.showMessageDialog(this, "Số lượng không được để trống !!!");
             return;
         }
+        if (!(isInteger(soLC.getText()))) {
+            JOptionPane.showMessageDialog(this, "Số lượng và đơn giá phải là số !!!");
+            soLC.setText("1");
+            return;
+        }
         String tempSS = soLC.getText();
         int a = Integer.parseInt(SPDC[3]), b = Integer.parseInt(tempSS);
         if (b > a) {
             JOptionPane.showMessageDialog(this, "Không đủ hàng để bán !!!");
+            return;
+        }
+        int sol = Integer.valueOf(tempSS);
+        if (sol <= 0) {
+            JOptionPane.showMessageDialog(this, "Số không hợp lệ !!!");
             return;
         }
         SPDC[3] = soLC.getText();
@@ -884,7 +899,7 @@ private void guiHoaDonHTML() throws AddressException, UnsupportedEncodingExcepti
         try {
             HoaDon hd = new HoaDon();
             int check = hd.updateHD(maHD, maKH, maKM, tongT, tongKM, thanhT, ghiC);
-            
+
             if (check == 0) {
                 JOptionPane.showMessageDialog(this, "Thanh toán thành thất bại !!!");
                 return;
@@ -929,7 +944,7 @@ private void guiHoaDonHTML() throws AddressException, UnsupportedEncodingExcepti
 
     private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
         // TODO add your handling code here:
-        System.out.println( jSlider1.getValue());
+        System.out.println(jSlider1.getValue());
         soLC.setText(String.valueOf(jSlider1.getValue()));
     }//GEN-LAST:event_jSlider1StateChanged
 

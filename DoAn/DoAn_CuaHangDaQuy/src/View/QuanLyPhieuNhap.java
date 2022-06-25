@@ -37,10 +37,12 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
         setMaNV();
         setVisible(true);
     }
-    public void setMaNV() throws IOException{
+
+    public void setMaNV() throws IOException {
         ReadWriteFile rw = new ReadWriteFile();
-        maNV = Integer.valueOf(rw.readMaNV()); 
+        maNV = Integer.valueOf(rw.readMaNV());
     }
+
     public void setListPN() {
 
         tableQLNH = (DefaultTableModel) bang1.getModel();
@@ -154,6 +156,7 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
         xuat.setBackground(new java.awt.Color(51, 255, 51));
         xuat.setForeground(new java.awt.Color(255, 255, 255));
         xuat.setText("Xuất Phiếu Nhâp");
+        xuat.setEnabled(false);
         xuat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 xuatActionPerformed(evt);
@@ -282,6 +285,8 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
     }//GEN-LAST:event_AddReportActionPerformed
 
     private void xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaActionPerformed
+        xuat.setEnabled(false);
+        xoa.setEnabled(false);
         Connection conn = null;
         try {
 
@@ -318,6 +323,7 @@ public class QuanLyPhieuNhap extends javax.swing.JFrame {
 
     private void bang1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bang1MouseClicked
         // TODO add your handling code here:
+        xuat.setEnabled(true);
         xoa.setEnabled(true);
         int indexTB = bang1.getSelectedRow();
         if (indexTB < tableQLNH.getRowCount() && indexTB >= 0) {

@@ -394,6 +394,11 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Không được để trống !!!");
             return;
         }
+        int sol = Integer.valueOf(soDT);
+        if (sol <= 0) {
+            JOptionPane.showMessageDialog(this, "Số không hợp lệ !!!");
+            return;
+        }
         int ret = 0;
         ret = JOptionPane.showConfirmDialog(null, "Bạn có muốn Thêm", "Thêm", JOptionPane.YES_NO_OPTION);
         if (!(ret == JOptionPane.YES_OPTION)) {
@@ -504,6 +509,11 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         String soDT = SDT.getText();
         String ngayS = NS.getText();
         String ngayVL = NVL.getText();
+        int sol = Integer.valueOf(soDT);
+        if (sol <= 0) {
+            JOptionPane.showMessageDialog(this, "Số không hợp lệ !!!");
+            return;
+        }
         if (tenNV.equals("") || diaC.equals("") || soDT.equals("") || ngayS.equals("") || ngayVL.equals("")) {
             JOptionPane.showMessageDialog(this, "Không được để trống !!!");
             return;
