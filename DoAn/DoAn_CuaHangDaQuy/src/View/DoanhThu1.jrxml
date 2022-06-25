@@ -5,8 +5,7 @@
 	<property name="ireport.y" value="0"/>
 	<parameter name="year" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select * from hoadon hd, cthd ct where hd.mahd = ct.mahd and extract(year from to_date(ngaytaohd, 'DD/MM/YYYY')) = $P{year}
-]]>
+		<![CDATA[select * from hoadon hd, cthd ct where hd.mahd = ct.mahd and extract(year from to_date(ngaytaohd, 'DD/MM/YYYY')) = $P{year}]]>
 	</queryString>
 	<field name="MAHD" class="java.math.BigDecimal"/>
 	<field name="NGAYTAOHD" class="java.sql.Timestamp"/>
@@ -44,9 +43,20 @@
 					<text><![CDATA[Tổng cộng:]]></text>
 				</staticText>
 				<textField evaluationTime="Report">
-					<reportElement x="475" y="43" width="100" height="20" uuid="7cf6569b-d971-4403-a286-2bef5dc6b83a"/>
+					<reportElement x="475" y="43" width="100" height="20" forecolor="#FFFFFF" uuid="7cf6569b-d971-4403-a286-2bef5dc6b83a"/>
 					<textFieldExpression><![CDATA[$V{THANHTIEN_2}]]></textFieldExpression>
 				</textField>
+				<textField>
+					<reportElement x="120" y="63" width="100" height="20" forecolor="#FFFFFF" uuid="1c6299a1-8eac-4767-bb29-b7f5092fe0f0"/>
+					<textFieldExpression><![CDATA[$P{year}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="34" y="63" width="75" height="20" forecolor="#FFFFFF" uuid="5eb81dbd-e5fb-45e8-9093-e9204cae69d9"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Năm:]]></text>
+				</staticText>
 			</frame>
 		</band>
 	</title>

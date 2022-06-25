@@ -3,12 +3,10 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="tong" class="java.lang.Double"/>
 	<parameter name="month" class="java.lang.String"/>
 	<parameter name="year" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select * from hoadon hd, cthd ct where hd.mahd = ct.mahd and extract(month from to_date(ngaytaohd, 'DD/MM/YYYY')) = $P{month} and extract(year from to_date(ngaytaohd, 'DD/MM/YYYY')) = $P{year}
-]]>
+		<![CDATA[select * from hoadon hd, cthd ct where hd.mahd = ct.mahd and extract(month from to_date(ngaytaohd, 'DD/MM/YYYY')) = $P{month} and extract(year from to_date(ngaytaohd, 'DD/MM/YYYY')) = $P{year}]]>
 	</queryString>
 	<field name="MAHD" class="java.math.BigDecimal"/>
 	<field name="MAKH" class="java.math.BigDecimal"/>
@@ -22,6 +20,9 @@
 	<field name="MASP" class="java.math.BigDecimal"/>
 	<field name="SLSP" class="java.math.BigDecimal"/>
 	<variable name="sum" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{THANHTIEN}]]></variableExpression>
+	</variable>
+	<variable name="THANHTIEN_1" class="java.math.BigDecimal" calculation="Sum">
 		<variableExpression><![CDATA[$F{THANHTIEN}]]></variableExpression>
 	</variable>
 	<background>
@@ -38,9 +39,38 @@
 					</textElement>
 					<text><![CDATA[DOANH THU]]></text>
 				</staticText>
+				<textField evaluationTime="Report">
+					<reportElement x="464" y="43" width="100" height="20" uuid="3b62be5f-0b1f-4922-b63a-004bc363ad5c"/>
+					<textFieldExpression><![CDATA[$V{THANHTIEN_1}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="364" y="43" width="100" height="20" forecolor="#FFFFFF" uuid="42532528-6999-49ce-aa25-43f1c234273a"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[TỔNG CỘNG:]]></text>
+				</staticText>
 				<textField>
-					<reportElement x="475" y="43" width="100" height="20" uuid="29de64d6-234d-4ffa-aae4-cdb1ea59364c"/>
-					<textFieldExpression><![CDATA[$V{sum}]]></textFieldExpression>
+					<reportElement x="58" y="69" width="62" height="20" uuid="154e1e0b-9756-4cc6-83db-5fdf98752e19"/>
+					<textFieldExpression><![CDATA[$P{month}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="20" y="69" width="38" height="20" forecolor="#FFFFFF" uuid="99425d0d-1757-44ee-8be4-5e6837b80445"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Tháng:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="120" y="69" width="38" height="20" forecolor="#FFFFFF" uuid="165e871f-8a1a-410a-974c-101333d76776"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Năm:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="158" y="69" width="62" height="20" uuid="bfd7879e-dece-4c70-8ad5-58b1e5918da5"/>
+					<textFieldExpression><![CDATA[$P{year}]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
