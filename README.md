@@ -22,7 +22,7 @@
 * **Mã môn học**: IS216
 * **Lớp học**: IS216.M22
 * **Ngày bắt đầu**: 01/04/2022
-* **Năm học**: 2021
+* **Năm học**: 2021-2022
 
 ## GIẢNG VIÊN HƯỚNG DẪN
 <a name="giangvien"></a>
@@ -30,7 +30,10 @@
 
 ## HƯỚNG DẪN CÀI ĐẶT
 <a name="caidat"></a>
-* Clone project về máy.
+* B1: Tải Tạo User với tên: c##UserAdmin + passwor: 12345678 trong Oracle
+* B2: Import file SQL.sql vào user trên, tải tại:  <a href="https://github.com/Thetuanphan/java_IS216.M22_10/tree/Do/DoAn/DoAn_CuaHangDaQuy/src/SQL">Đây</a>
+* B3: Tải File: DoAn.zip tại <a href="https://github.com/Thetuanphan/java_IS216.M22_10/blob/Do/DoAn.exe/DoAn.zip">Đây</a> và giải nén
+* B4: Chạy File QuanLyCuaHang.exe hoặc DoAn_CuaHangDaQuy.jar
 
 
 ## THÀNH VIÊN NHÓM
@@ -39,7 +42,12 @@
 | ------ |:-------------:| :----------------------|--------------------------------------------------------:|-------------------------:
 | 1      | 19521081      | Phan Thế Tuấn          |  19521081@gm.uit.edu.vn                                 |                         |
 | 2      | 19521365      | Võ Thành Đô            |  19521365@gm.uit.edu.vn                                 | 0399054682              |
-| 3      | 20520615      | Phan Thị Linh          |  20520615@gm.uit.edu.vn                                |                         |
+| 3      | 20520615      | Phan Thị Linh          |  20520615@gm.uit.edu.vn                                 |                         |
 
 ## ĐỒ ÁN CUỐI KỲ
 -  Quản lý cửa hàng đá quý
+<p align="center">
+  <a href="https://ibb.co/KWtqJM0"><img src="https://i.ibb.co/WfryLbx/Screenshot-2022-06-25-044511.png" alt="Screenshot-2022-06-25-044511" border="0"></a>
+</p>
+
+
